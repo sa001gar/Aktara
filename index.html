@@ -45,6 +45,8 @@
         .hero-gradient {
             background: linear-gradient(135deg, #fff8f8 0%, #ffffff 50%, #fff0f0 100%);
         }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 
@@ -391,168 +393,216 @@
     </section>
 
     <!-- Trending Videos Section -->
-    <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl lg:text-4xl font-bold text-aktara-black mb-4">
-                    <span class="text-aktara-red">Trending</span> Saree Styles
-                </h2>
-                <p class="text-lg text-gray-600">Discover the latest fashion trends and styling tips</p>
-            </div>
+    <section class="py-8 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Section Title -->
+    <h2 class="text-2xl font-bold mb-4">
+      <span class="text-aktara-red">Trending</span> Saree Videos
+    </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Video 1 -->
-                <div
-                    class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-500">
-                    <div class="relative">
-                        <img src="
-https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4" alt="Draping Tutorial"
-                            class="w-full h-56 object-cover skeleton" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
-                        </div>
-                        <div
-                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button
-                                class="bg-white/90 text-aktara-red p-4 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-300">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div
-                            class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                            TRENDING
-                        </div>
-                        <div class="absolute bottom-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm">
-                            2:45
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-aktara-black mb-2 text-lg">Perfect Draping Technique</h3>
-                        <p class="text-gray-600 text-sm mb-3">Learn how to drape your saree like a pro with this
-                            step-by-step guide</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <span class="text-sm text-gray-500">256K views</span>
-                                <span class="text-sm text-gray-500">•</span>
-                                <span class="text-sm text-gray-500">2 days ago</span>
-                            </div>
-                            <div class="flex items-center space-x-1">
-                                <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                </svg>
-                                <span class="text-sm text-gray-500">1.2K</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video 2 -->
-                <div
-                    class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-500">
-                    <div class="relative">
-                        <img src="/placeholder.svg?height=250&width=400&text=Color+Matching" alt="Color Matching Guide"
-                            class="w-full h-56 object-cover skeleton" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
-                        </div>
-                        <div
-                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button
-                                class="bg-white/90 text-aktara-red p-4 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-300">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div
-                            class="absolute top-4 left-4 bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                            POPULAR
-                        </div>
-                        <div class="absolute bottom-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm">
-                            4:12
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-aktara-black mb-2 text-lg">Color Matching Secrets</h3>
-                        <p class="text-gray-600 text-sm mb-3">Expert tips on choosing the perfect blouse and accessories
-                            for your saree</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <span class="text-sm text-gray-500">428K views</span>
-                                <span class="text-sm text-gray-500">•</span>
-                                <span class="text-sm text-gray-500">5 days ago</span>
-                            </div>
-                            <div class="flex items-center space-x-1">
-                                <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                </svg>
-                                <span class="text-sm text-gray-500">2.1K</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video 3 -->
-                <div
-                    class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-500 md:col-span-2 lg:col-span-1">
-                    <div class="relative">
-                        <img src="/placeholder.svg?height=250&width=400&text=Occasion+Styling" alt="Occasion Styling"
-                            class="w-full h-56 object-cover skeleton" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
-                        </div>
-                        <div
-                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button
-                                class="bg-white/90 text-aktara-red p-4 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-300">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div
-                            class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                            NEW
-                        </div>
-                        <div class="absolute bottom-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm">
-                            6:30
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-aktara-black mb-2 text-lg">Occasion Perfect Styling</h3>
-                        <p class="text-gray-600 text-sm mb-3">From office wear to weddings - style your saree for every
-                            occasion</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <span class="text-sm text-gray-500">89K views</span>
-                                <span class="text-sm text-gray-500">•</span>
-                                <span class="text-sm text-gray-500">1 day ago</span>
-                            </div>
-                            <div class="flex items-center space-x-1">
-                                <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                </svg>
-                                <span class="text-sm text-gray-500">987</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- View More Videos Button -->
-            <div class="text-center mt-12">
-                <a href="#"
-                    class="inline-flex items-center bg-gradient-to-r from-aktara-red to-red-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                    </svg>
-                    Watch More Videos
-                </a>
-            </div>
+    <!-- Horizontal Scroll Wrapper -->
+    <div class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 hide-scrollbar">
+      
+      <!-- Video Card 1 -->
+      <div class="w-40 flex-shrink-0 snap-start">
+        <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
+          <video 
+            class="w-full h-full object-cover"
+            src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+            autoplay muted loop playsinline>
+          </video>
+          <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+          <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939 Views</span>
         </div>
-    </section>
+        <div class="mt-2 text-sm">
+          <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
+          <p>
+            <span class="font-bold">₹1647</span>
+            <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
+            <span class="text-green-600 text-xs ml-1">50% Off</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Video Card 2 -->
+      <div class="w-40 flex-shrink-0 snap-start">
+        <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
+          <video 
+            class="w-full h-full object-cover"
+            src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+            autoplay muted loop playsinline>
+          </video>
+          <span class="absolute top-2 left-2 bg-purple-600 text-white text-[10px] px-2 py-0.5 rounded-full">POPULAR</span>
+          <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">1K Views</span>
+        </div>
+        <div class="mt-2 text-sm">
+          <h3 class="line-clamp-2 text-aktara-black font-medium">Printed Pure Cotton Fit & Flare</h3>
+          <p>
+            <span class="font-bold">₹2995</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="w-40 flex-shrink-0 snap-start">
+        <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
+          <video 
+            class="w-full h-full object-cover"
+            src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+            autoplay muted loop playsinline>
+          </video>
+          <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+          <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939 Views</span>
+        </div>
+        <div class="mt-2 text-sm">
+          <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
+          <p>
+            <span class="font-bold">₹1647</span>
+            <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
+            <span class="text-green-600 text-xs ml-1">50% Off</span>
+          </p>
+        </div>
+      </div>
+      <div class="w-40 flex-shrink-0 snap-start">
+        <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
+          <video 
+            class="w-full h-full object-cover"
+            src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+            autoplay muted loop playsinline>
+          </video>
+          <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+          <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939 Views</span>
+        </div>
+        <div class="mt-2 text-sm">
+          <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
+          <p>
+            <span class="font-bold">₹1647</span>
+            <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
+            <span class="text-green-600 text-xs ml-1">50% Off</span>
+          </p>
+        </div>
+      </div>
+      <div class="w-40 flex-shrink-0 snap-start">
+        <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
+          <video 
+            class="w-full h-full object-cover"
+            src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+            autoplay muted loop playsinline>
+          </video>
+          <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+          <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939 Views</span>
+        </div>
+        <div class="mt-2 text-sm">
+          <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
+          <p>
+            <span class="font-bold">₹1647</span>
+            <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
+            <span class="text-green-600 text-xs ml-1">50% Off</span>
+          </p>
+        </div>
+      </div>
+      <div class="w-40 flex-shrink-0 snap-start">
+        <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
+          <video 
+            class="w-full h-full object-cover"
+            src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+            autoplay muted loop playsinline>
+          </video>
+          <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+          <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939 Views</span>
+        </div>
+        <div class="mt-2 text-sm">
+          <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
+          <p>
+            <span class="font-bold">₹1647</span>
+            <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
+            <span class="text-green-600 text-xs ml-1">50% Off</span>
+          </p>
+        </div>
+      </div>
+      <div class="w-40 flex-shrink-0 snap-start">
+        <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
+          <video 
+            class="w-full h-full object-cover"
+            src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+            autoplay muted loop playsinline>
+          </video>
+          <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+          <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939 Views</span>
+        </div>
+        <div class="mt-2 text-sm">
+          <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
+          <p>
+            <span class="font-bold">₹1647</span>
+            <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
+            <span class="text-green-600 text-xs ml-1">50% Off</span>
+          </p>
+        </div>
+      </div>
+      <div class="w-40 flex-shrink-0 snap-start">
+        <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
+          <video 
+            class="w-full h-full object-cover"
+            src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+            autoplay muted loop playsinline>
+          </video>
+          <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+          <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939 Views</span>
+        </div>
+        <div class="mt-2 text-sm">
+          <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
+          <p>
+            <span class="font-bold">₹1647</span>
+            <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
+            <span class="text-green-600 text-xs ml-1">50% Off</span>
+          </p>
+        </div>
+      </div>
+      <div class="w-40 flex-shrink-0 snap-start">
+        <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
+          <video 
+            class="w-full h-full object-cover"
+            src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+            autoplay muted loop playsinline>
+          </video>
+          <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+          <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939 Views</span>
+        </div>
+        <div class="mt-2 text-sm">
+          <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
+          <p>
+            <span class="font-bold">₹1647</span>
+            <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
+            <span class="text-green-600 text-xs ml-1">50% Off</span>
+          </p>
+        </div>
+      </div>
+      <div class="w-40 flex-shrink-0 snap-start">
+        <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
+          <video 
+            class="w-full h-full object-cover"
+            src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+            autoplay muted loop playsinline>
+          </video>
+          <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+          <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939 Views</span>
+        </div>
+        <div class="mt-2 text-sm">
+          <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
+          <p>
+            <span class="font-bold">₹1647</span>
+            <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
+            <span class="text-green-600 text-xs ml-1">50% Off</span>
+          </p>
+        </div>
+      </div>
+
+
+
+      <!-- Add more video cards here -->
+    </div>
+  </div>
+</section>
+
 
     <!-- Heritage Story Section -->
     <section class="py-16 bg-gradient-to-br from-red-50 to-gray-50">
