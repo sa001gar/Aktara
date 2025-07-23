@@ -1100,7 +1100,32 @@ https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4" alt="
         });
     });
 
-    
+    // Load more products
+    function loadMoreProducts() {
+        if (isLoading) return;
+        
+        isLoading = true;
+        const loadingDiv = document.getElementById('loadingProducts');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        
+        loadingDiv.classList.remove('hidden');
+        loadMoreBtn.style.display = 'none';
+        
+        setTimeout(() => {
+            loadingDiv.classList.add('hidden');
+            currentPage++;
+            
+            if (currentPage < 5) {
+                loadMoreBtn.style.display = 'block';
+            } else {
+                loadMoreBtn.innerHTML = 'All Products Loaded';
+                loadMoreBtn.disabled = true;
+                loadMoreBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+            
+            isLoading = false;
+        }, 1500);
+    }
 
     // Lazy loading for images
     const images = document.querySelectorAll('img[loading="lazy"]');
