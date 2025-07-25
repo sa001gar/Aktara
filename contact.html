@@ -62,7 +62,7 @@
                                 d="M16 12v1a4 4 0 01-8 0v-1m8 0a4 4 0 00-8 0m8 0V8a4 4 0 00-8 0v4m8 0a4 4 0 01-8 0" />
                         </svg>
                         info@aktara.com
-                    </span>
+                    </span></svg></span>
                 </div>
                 <div class="flex space-x-4 text-gray-600">
                     <a href="#" class="hover:text-aktara-red transition-colors">Track Order</a>
@@ -77,14 +77,16 @@
             <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex-shrink-0">
                     <a href="index.html" class="flex items-center">
-                        <h1 class="text-3xl font-bold text-aktara-red">AKTARA</h1>
+                        <img src="https://aktara.in/assets/images/1691168498AKTARA%20Logo.png" alt="Aktara Logo"
+                            class="h-10 w-auto mr-2">
+                        <!-- <h1 class="text-3xl font-bold text-aktara-red">AKTARA</h1> -->
                     </a>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <a href="index.html"
-                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">HOME</a>
+                        class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium">HOME</a>
                     <div class="relative group">
                         <a href="category.html"
                             class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors flex items-center">
@@ -118,7 +120,7 @@
                     <a href="about.html"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">ABOUT</a>
                     <a href="contact.html"
-                        class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium">CONTACT</a>
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
                 </div>
 
                 <!-- Search and Actions -->
@@ -153,15 +155,13 @@
                                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                         </svg>
                         <span
-                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
-                            x-text="cartCount">0</span>
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </a>
                 </div>
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen"
-                        class="text-aktara-black hover:text-aktara-red p-2">
+                    <button onclick="toggleMobileMenu()" class="text-aktara-black hover:text-aktara-red p-2">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
@@ -171,14 +171,13 @@
             </div>
 
             <!-- Mobile Navigation -->
-            <div x-show="mobileMenuOpen" x-transition class="md:hidden">
+            <div id="mobileMenu" class="md:hidden hidden">
                 <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t shadow-lg">
                     <div class="px-3 py-2">
                         <input type="text" placeholder="Search sarees..."
                             class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red">
                     </div>
-                    <a href="index.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">Home</a>
+                    <a href="index.html" class="text-aktara-red block px-3 py-2 text-base font-medium">Home</a>
                     <a href="category.html"
                         class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">Collections</a>
                     <a href="category.html?category=new"
@@ -186,7 +185,8 @@
                         Arrivals</a>
                     <a href="about.html"
                         class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">About</a>
-                    <a href="contact.html" class="text-aktara-red block px-3 py-2 text-base font-medium">Contact</a>
+                    <a href="contact.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">Contact</a>
                     <a href="login.html"
                         class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">Login</a>
                 </div>

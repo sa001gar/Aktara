@@ -1,67 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Safora</title>
+    <title>Checkout - Aktara | Premium Handwoven Sarees</title>
+    <meta name="description"
+        content="Complete your purchase securely. Fast checkout with multiple payment options for your favorite sarees.">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'safora-red': '#FF0000',
-                        'safora-black': '#000000',
-                    }
-                }
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-aktara-red: #FF0000;
+            --color-aktara-black: #000000;
+        }
+    </style>
+
+    <style>
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FF0000, #FF6B6B);
+            transform-origin: 0%;
+            z-index: 9999;
+        }
+
+        .checkout-step {
+            transition: all 0.3s ease;
+        }
+
+        .checkout-step.active {
+            background: linear-gradient(135deg, #FF0000, #CC0000);
+            color: white;
+        }
+
+        .checkout-step.completed {
+            background: #10B981;
+            color: white;
+        }
+
+        .mobile-nav-premium {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 248, 0.95));
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 0, 0, 0.1);
+        }
+
+        .payment-method {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .payment-method:hover {
+            border-color: #FF0000;
+            box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.1);
+        }
+
+        .payment-method.selected {
+            border-color: #FF0000;
+            background-color: #FEF2F2;
+        }
+
+        .place-order-btn {
+            background: linear-gradient(135deg, #FF0000 0%, #CC0000 50%, #990000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .place-order-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
             }
         }
-    </script>
+
+        .form-input:focus {
+            border-color: #FF0000;
+            box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
+        }
+    </style>
 </head>
+
 <body class="bg-gray-50">
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50" x-data="{ mobileMenuOpen: false }">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <!-- Top Bar -->
+        <div class="bg-gray-100 text-sm py-2 hidden md:block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <div class="flex space-x-4 text-gray-600">
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-phone text-aktara-red"></i>
+                        +91 98765 43210
+                    </span>
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-envelope text-aktara-red"></i>
+                        info@aktara.com
+                    </span>
+                </div>
+                <div class="flex space-x-4 text-gray-600">
+                    <a href="#" class="hover:text-aktara-red transition-colors">Track Order</a>
+                    <a href="#" class="hover:text-aktara-red transition-colors">Size Guide</a>
+                    <a href="#" class="hover:text-aktara-red transition-colors">Free Shipping on ₹2999+</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex-shrink-0">
                     <a href="index.html" class="flex items-center">
-                        <img src="/images/logo.jpg" alt="Safora" class="h-12 w-auto">
+                        <img src="/public/images/logo-removebg.png" alt="Aktara Logo" class="h-12 md:h-14 w-auto mr-2">
                     </a>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="index.html" class="text-safora-black hover:text-safora-red px-3 py-2 text-sm font-medium transition-colors">Home</a>
-                        <a href="category.html" class="text-safora-black hover:text-safora-red px-3 py-2 text-sm font-medium transition-colors">Categories</a>
-                        <a href="about.html" class="text-safora-black hover:text-safora-red px-3 py-2 text-sm font-medium transition-colors">About</a>
-                        <a href="contact.html" class="text-safora-black hover:text-safora-red px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">HOME</a>
+                    <div class="relative group">
+                        <a href="category.html"
+                            class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors flex items-center">
+                            COLLECTIONS
+                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div
+                            class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="py-2">
+                                <a href="category.html?category=silk"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Silk
+                                    Sarees</a>
+                                <a href="category.html?category=cotton"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Cotton
+                                    Sarees</a>
+                                <a href="category.html?category=designer"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Designer
+                                    Collection</a>
+                                <a href="category.html?category=bridal"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Bridal
+                                    Collection</a>
+                            </div>
+                        </div>
                     </div>
+                    <a href="category.html?category=new"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">NEW
+                        ARRIVALS</a>
+                    <a href="about.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">ABOUT</a>
+                    <a href="contact.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
                 </div>
+
+                <!-- Search and Actions -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="login.html" class="text-safora-black hover:text-safora-red px-3 py-2 text-sm font-medium transition-colors">Login</a>
-                    <button class="bg-safora-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
-                        Cart (2)
+                    <div class="relative">
+                        <input type="text" placeholder="Search sarees..."
+                            class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
+                        <i class="fas fa-search absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
+                    </div>
+                    <a href="login.html" class="text-aktara-black hover:text-aktara-red transition-colors">
+                        <i class="fas fa-user text-xl"></i>
+                    </a>
+                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </button>
+                    <a href="cart.html" class="relative text-aktara-black hover:text-aktara-red transition-colors">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </a>
                 </div>
+
+                <!-- Mobile menu button -->
                 <div class="md:hidden">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-safora-black hover:text-safora-red p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
+                    <button onclick="toggleMobileMenu()" class="text-aktara-black hover:text-aktara-red p-2">
+                        <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
-            <div x-show="mobileMenuOpen" x-transition class="md:hidden">
-                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-                    <a href="index.html" class="text-safora-black hover:text-safora-red block px-3 py-2 text-base font-medium">Home</a>
-                    <a href="category.html" class="text-safora-black hover:text-safora-red block px-3 py-2 text-base font-medium">Categories</a>
-                    <a href="about.html" class="text-safora-black hover:text-safora-red block px-3 py-2 text-base font-medium">About</a>
-                    <a href="contact.html" class="text-safora-black hover:text-safora-red block px-3 py-2 text-base font-medium">Contact</a>
-                    <a href="login.html" class="text-safora-black hover:text-safora-red block px-3 py-2 text-base font-medium">Login</a>
-                    <button class="bg-safora-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors w-full text-left">
-                        Cart (2)
-                    </button>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="md:hidden hidden">
+                <div class="mobile-nav-premium px-2 pt-2 pb-3 space-y-1 border-t shadow-lg">
+                    <div class="px-3 py-2">
+                        <div class="relative">
+                            <input type="text" placeholder="Search sarees..."
+                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <a href="index.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-home mr-3"></i>Home
+                    </a>
+                    <a href="category.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-th-large mr-3"></i>Collections
+                    </a>
+                    <a href="category.html?category=new"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-star mr-3"></i>New Arrivals
+                    </a>
+                    <a href="about.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-info-circle mr-3"></i>About
+                    </a>
+                    <a href="contact.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-envelope mr-3"></i>Contact
+                    </a>
+                    <a href="login.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-user mr-3"></i>Login
+                    </a>
                 </div>
             </div>
         </div>
@@ -71,163 +252,233 @@
     <div class="bg-white border-b">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <nav class="flex" aria-label="Breadcrumb">
-                <ol class="flex items-center space-x-4">
-                    <li>
-                        <a href="index.html" class="text-gray-500 hover:text-safora-red transition-colors">Home</a>
-                    </li>
-                    <li>
-                        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </li>
-                    <li>
-                        <span class="text-safora-black font-medium">Checkout</span>
-                    </li>
+                <ol class="flex items-center space-x-2 text-sm">
+                    <li><a href="index.html" class="text-gray-500 hover:text-aktara-red transition-colors">Home</a></li>
+                    <li><i class="fas fa-chevron-right text-gray-400 text-xs"></i></li>
+                    <li><a href="cart.html" class="text-gray-500 hover:text-aktara-red transition-colors">Cart</a></li>
+                    <li><i class="fas fa-chevron-right text-gray-400 text-xs"></i></li>
+                    <li class="text-aktara-red font-medium">Checkout</li>
                 </ol>
             </nav>
         </div>
     </div>
 
+    <!-- Checkout Steps -->
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-center space-x-4 md:space-x-8">
+                <div class="checkout-step completed flex items-center px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-check mr-2"></i>
+                    Cart
+                </div>
+                <div class="w-8 md:w-16 h-0.5 bg-gray-300"></div>
+                <div class="checkout-step active flex items-center px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-credit-card mr-2"></i>
+                    Checkout
+                </div>
+                <div class="w-8 md:w-16 h-0.5 bg-gray-300"></div>
+                <div
+                    class="checkout-step flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-600">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    Complete
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Checkout Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 class="text-3xl font-bold text-safora-black mb-8">Checkout</h1>
-        
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Checkout Form -->
             <div class="lg:col-span-2 space-y-8">
-                <!-- Shipping Information -->
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <h2 class="text-xl font-semibold text-safora-black mb-6">Shipping Information</h2>
-                    <form class="space-y-4" hx-post="/api/checkout" hx-target="#checkout-result">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Contact Information -->
+                <div class="bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
+                    <h2 class="text-xl font-bold text-aktara-black mb-6 flex items-center">
+                        <i class="fas fa-user mr-3 text-aktara-red"></i>
+                        Contact Information
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                            <input type="text"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                placeholder="Enter first name" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                            <input type="text"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                placeholder="Enter last name" required>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input type="email"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                placeholder="Enter email address" required>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                            <input type="tel"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                placeholder="Enter phone number" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping Address -->
+                <div class="bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right" data-aos-delay="100">
+                    <h2 class="text-xl font-bold text-aktara-black mb-6 flex items-center">
+                        <i class="fas fa-truck mr-3 text-aktara-red"></i>
+                        Shipping Address
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Street Address *</label>
+                            <input type="text"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                placeholder="Enter street address" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Apartment, suite, etc.
+                                (optional)</label>
+                            <input type="text"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                placeholder="Apartment, suite, etc.">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div>
-                                <label for="first-name" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                                <input type="text" id="first-name" name="first-name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">City *</label>
+                                <input type="text"
+                                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                    placeholder="Enter city" required>
                             </div>
                             <div>
-                                <label for="last-name" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                                <input type="text" id="last-name" name="last-name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                            <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
-                        </div>
-                        
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
-                        </div>
-                        
-                        <div>
-                            <label for="address" class="block text-sm font-medium text-gray-700 mb-2">Street Address</label>
-                            <input type="text" id="address" name="address" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div>
-                                <label for="city" class="block text-sm font-medium text-gray-700 mb-2">City</label>
-                                <input type="text" id="city" name="city" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
-                            </div>
-                            <div>
-                                <label for="state" class="block text-sm font-medium text-gray-700 mb-2">State</label>
-                                <select id="state" name="state" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
-                                    <option value="">Select State</option>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">State *</label>
+                                <select
+                                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                    required>
+                                    <option value="">Select state</option>
                                     <option value="maharashtra">Maharashtra</option>
-                                    <option value="delhi">Delhi</option>
+                                    <option value="gujarat">Gujarat</option>
                                     <option value="karnataka">Karnataka</option>
                                     <option value="tamil-nadu">Tamil Nadu</option>
-                                    <option value="gujarat">Gujarat</option>
-                                    <option value="rajasthan">Rajasthan</option>
-                                    <option value="west-bengal">West Bengal</option>
+                                    <option value="delhi">Delhi</option>
                                     <option value="uttar-pradesh">Uttar Pradesh</option>
+                                    <option value="west-bengal">West Bengal</option>
+                                    <option value="rajasthan">Rajasthan</option>
                                 </select>
                             </div>
                             <div>
-                                <label for="pincode" class="block text-sm font-medium text-gray-700 mb-2">PIN Code</label>
-                                <input type="text" id="pincode" name="pincode" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">PIN Code *</label>
+                                <input type="text"
+                                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                    placeholder="Enter PIN code" required>
                             </div>
                         </div>
-                    </form>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="billing-same"
+                                class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded">
+                            <label for="billing-same" class="ml-2 text-sm text-gray-700">Billing address is the same as
+                                shipping address</label>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Payment Information -->
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <h2 class="text-xl font-semibold text-safora-black mb-6">Payment Information</h2>
-                    <div class="space-y-4" x-data="{ paymentMethod: 'card' }">
-                        <!-- Payment Method Selection -->
-                        <div class="space-y-3">
-                            <label class="flex items-center p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50 transition-colors" :class="{ 'border-safora-red bg-red-50': paymentMethod === 'card' }">
-                                <input type="radio" name="payment-method" value="card" x-model="paymentMethod" class="text-safora-red focus:ring-safora-red">
-                                <div class="ml-3 flex items-center">
-                                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-                                    </svg>
-                                    <span class="font-medium">Credit/Debit Card</span>
-                                </div>
-                            </label>
-                            
-                            <label class="flex items-center p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50 transition-colors" :class="{ 'border-safora-red bg-red-50': paymentMethod === 'upi' }">
-                                <input type="radio" name="payment-method" value="upi" x-model="paymentMethod" class="text-safora-red focus:ring-safora-red">
-                                <div class="ml-3 flex items-center">
-                                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                                    </svg>
-                                    <span class="font-medium">UPI Payment</span>
-                                </div>
-                            </label>
-                            
-                            <label class="flex items-center p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50 transition-colors" :class="{ 'border-safora-red bg-red-50': paymentMethod === 'cod' }">
-                                <input type="radio" name="payment-method" value="cod" x-model="paymentMethod" class="text-safora-red focus:ring-safora-red">
-                                <div class="ml-3 flex items-center">
-                                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                    </svg>
-                                    <span class="font-medium">Cash on Delivery</span>
-                                </div>
-                            </label>
-                        </div>
-
-                        <!-- Card Payment Form -->
-                        <div x-show="paymentMethod === 'card'" x-transition class="space-y-4 mt-6">
-                            <div>
-                                <label for="card-number" class="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
-                                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
-                            </div>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label for="expiry" class="block text-sm font-medium text-gray-700 mb-2">Expiry Date</label>
-                                    <input type="text" id="expiry" name="expiry" placeholder="MM/YY" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
-                                </div>
-                                <div>
-                                    <label for="cvv" class="block text-sm font-medium text-gray-700 mb-2">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="123" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
+                <!-- Payment Method -->
+                <div class="bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right" data-aos-delay="200">
+                    <h2 class="text-xl font-bold text-aktara-black mb-6 flex items-center">
+                        <i class="fas fa-credit-card mr-3 text-aktara-red"></i>
+                        Payment Method
+                    </h2>
+                    <div class="space-y-4">
+                        <!-- Credit/Debit Card -->
+                        <div class="payment-method border-2 border-gray-200 rounded-lg p-4 selected">
+                            <div class="flex items-center mb-4">
+                                <input type="radio" id="card-payment" name="payment-method" value="card"
+                                    class="h-4 w-4 text-aktara-red focus:ring-aktara-red" checked>
+                                <label for="card-payment"
+                                    class="ml-3 text-sm font-medium text-gray-700 flex items-center">
+                                    <i class="fas fa-credit-card mr-2 text-aktara-red"></i>
+                                    Credit/Debit Card
+                                </label>
+                                <div class="ml-auto flex space-x-2">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAzMiAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjIwIiByeD0iNCIgZmlsbD0iIzAwNTFBNSIvPgo8cGF0aCBkPSJNMTMuMyAwLjJMMTAuOSA5LjZIOC43TDcuNCAzLjZDNy4zIDMuMiA3LjEgMi45IDYuOCAyLjdDNi4yIDIuNCA1LjQgMi4xIDQuNyAxLjlMNC45IDAuMkg5LjJDOS43IDAuMiAxMC4xIDAuNSAxMC4yIDFMMTEuMSA1LjhMMTMuNyAwLjJIMTMuM1pNMTUuOSA5LjZIMTMuOEwxNS4yIDAuMkgxNy4zTDE1LjkgOS42Wk0yMi44IDYuMUMyMi44IDQuNiAyMC41IDQuNSAyMC41IDMuNkMyMC41IDMuMyAyMC44IDMgMjEuNCAzQzIyLjIgMyAyMi45IDMuMiAyMy41IDMuNUwyNCAxLjFDMjMuNCAwLjkgMjIuNiAwLjcgMjEuNyAwLjdDMTkuNyAwLjcgMTguMyAxLjggMTguMyAzLjRDMTguMyA0LjYgMTkuNCA1LjMgMjAuMiA1LjdDMjEgNi4xIDIxLjMgNi40IDIxLjMgNi44QzIxLjMgNy40IDIwLjYgNy43IDE5LjkgNy43QzE5IDcuNyAxOC4xIDcuNCAxNy40IDdMMTYuOSA5LjRDMTcuNyA5LjggMTguOCAxMCAxOS44IDEwQzIyLjEgMTAgMjMuNSA4LjkgMjIuOCA2LjFaTTMxLjggOS42SDMwTDI4LjIgMC4ySDI2LjRDMjYgMC4yIDI1LjcgMC40IDI1LjUgMC43TDIyLjIgOS42SDI0LjVMMjUgOC4ySDI3LjdMMjggOS42SDMxLjhaTTI1LjcgNi40TDI2LjcgMy42TDI3LjMgNi40SDI1LjdaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K"
+                                        alt="Visa" class="h-6">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAzMiAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjIwIiByeD0iNCIgZmlsbD0iI0VCMDAxQiIvPgo8Y2lyY2xlIGN4PSIxMiIgY3k9IjEwIiByPSI3IiBmaWxsPSIjRkY1RjAwIi8+CjxjaXJjbGUgY3g9IjIwIiBjeT0iMTAiIHI9IjciIGZpbGw9IiNGRjVGMDAiLz4KPC9zdmc+Cg=="
+                                        alt="Mastercard" class="h-6">
                                 </div>
                             </div>
-                            <div>
-                                <label for="card-name" class="block text-sm font-medium text-gray-700 mb-2">Cardholder Name</label>
-                                <input type="text" id="card-name" name="card-name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+                                    <input type="text"
+                                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                        placeholder="1234 5678 9012 3456">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Expiry Date</label>
+                                    <input type="text"
+                                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                        placeholder="MM/YY">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                                    <input type="text"
+                                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                        placeholder="123">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Cardholder Name</label>
+                                    <input type="text"
+                                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                        placeholder="Enter cardholder name">
+                                </div>
                             </div>
                         </div>
 
-                        <!-- UPI Payment Form -->
-                        <div x-show="paymentMethod === 'upi'" x-transition class="space-y-4 mt-6">
-                            <div>
-                                <label for="upi-id" class="block text-sm font-medium text-gray-700 mb-2">UPI ID</label>
-                                <input type="text" id="upi-id" name="upi-id" placeholder="yourname@upi" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-safora-red focus:border-safora-red">
+                        <!-- UPI Payment -->
+                        <div class="payment-method border-2 border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center">
+                                <input type="radio" id="upi-payment" name="payment-method" value="upi"
+                                    class="h-4 w-4 text-aktara-red focus:ring-aktara-red">
+                                <label for="upi-payment"
+                                    class="ml-3 text-sm font-medium text-gray-700 flex items-center">
+                                    <i class="fas fa-mobile-alt mr-2 text-aktara-red"></i>
+                                    UPI Payment
+                                </label>
+                                <div class="ml-auto">
+                                    <span
+                                        class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded">UPI</span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- COD Message -->
-                        <div x-show="paymentMethod === 'cod'" x-transition class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
-                            <div class="flex">
-                                <svg class="w-5 h-5 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                                </svg>
-                                <div>
-                                    <h3 class="text-sm font-medium text-yellow-800">Cash on Delivery</h3>
-                                    <p class="text-sm text-yellow-700 mt-1">You will pay ₹50 extra as COD charges. Payment will be collected at the time of delivery.</p>
+                        <!-- Net Banking -->
+                        <div class="payment-method border-2 border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center">
+                                <input type="radio" id="netbanking-payment" name="payment-method" value="netbanking"
+                                    class="h-4 w-4 text-aktara-red focus:ring-aktara-red">
+                                <label for="netbanking-payment"
+                                    class="ml-3 text-sm font-medium text-gray-700 flex items-center">
+                                    <i class="fas fa-university mr-2 text-aktara-red"></i>
+                                    Net Banking
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Cash on Delivery -->
+                        <div class="payment-method border-2 border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center">
+                                <input type="radio" id="cod-payment" name="payment-method" value="cod"
+                                    class="h-4 w-4 text-aktara-red focus:ring-aktara-red">
+                                <label for="cod-payment"
+                                    class="ml-3 text-sm font-medium text-gray-700 flex items-center">
+                                    <i class="fas fa-money-bill-wave mr-2 text-aktara-red"></i>
+                                    Cash on Delivery
+                                </label>
+                                <div class="ml-auto">
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Available</span>
                                 </div>
                             </div>
                         </div>
@@ -237,135 +488,379 @@
 
             <!-- Order Summary -->
             <div class="lg:col-span-1">
-                <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
-                    <h2 class="text-xl font-semibold text-safora-black mb-6">Order Summary</h2>
-                    
-                    <!-- Cart Items -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24" data-aos="fade-left">
+                    <h2 class="text-xl font-bold text-aktara-black mb-6">Order Summary</h2>
+
+                    <!-- Order Items -->
                     <div class="space-y-4 mb-6">
                         <div class="flex items-center space-x-4">
-                            <img src="/placeholder.svg?height=80&width=80" alt="Royal Red Silk Saree" class="w-16 h-16 object-cover rounded-md">
+                            <img src="https://lajreedesigner.com/cdn/shop/files/KP-Karishma-Red_5_900x1350_crop_center@2x.jpg?v=1745495600"
+                                alt="Royal Red Silk Saree" class="w-16 h-20 object-cover rounded-lg">
                             <div class="flex-1">
-                                <h3 class="font-medium text-safora-black">Royal Red Silk Saree</h3>
-                                <p class="text-sm text-gray-600">Quantity: 1</p>
-                                <p class="text-sm font-medium text-safora-red">₹4,999</p>
+                                <h4 class="text-sm font-medium text-aktara-black">Royal Red Silk Saree</h4>
+                                <p class="text-xs text-gray-500">Qty: 1</p>
+                                <p class="text-sm font-bold text-aktara-red">₹8,999</p>
                             </div>
                         </div>
-                        
                         <div class="flex items-center space-x-4">
-                            <img src="/placeholder.svg?height=80&width=80" alt="Blue Floral Cotton Saree" class="w-16 h-16 object-cover rounded-md">
+                            <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSOasMiGNdg35aA_gedyxtQrTdiqiD9CkOB84MO-PfrA5jT7KywRbaBYaYv3K-aai2hUUjG0ds8hdgSliDfV8Tcmp20v_5yjWRTYM_PqL8HyPN2-MbhLUqG"
+                                alt="Blue Cotton Saree" class="w-16 h-20 object-cover rounded-lg">
                             <div class="flex-1">
-                                <h3 class="font-medium text-safora-black">Blue Floral Cotton Saree</h3>
-                                <p class="text-sm text-gray-600">Quantity: 1</p>
-                                <p class="text-sm font-medium text-safora-red">₹1,999</p>
+                                <h4 class="text-sm font-medium text-aktara-black">Blue Floral Cotton Saree</h4>
+                                <p class="text-xs text-gray-500">Qty: 1</p>
+                                <p class="text-sm font-bold text-aktara-red">₹3,999</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSxsA-rILRGxU6gC2sCdj0FcqyLFgQRUWS_ISaaYzN_j1rSF5kjNUkIV6VD9fwF6dHHY6ZkCjsUKRp97x5E4Dg_WrIWbNWV0BSzSC9b1wk"
+                                alt="Green Designer Saree" class="w-16 h-20 object-cover rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="text-sm font-medium text-aktara-black">Emerald Designer Saree</h4>
+                                <p class="text-xs text-gray-500">Qty: 1</p>
+                                <p class="text-sm font-bold text-aktara-red">₹12,999</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Order Totals -->
-                    <div class="border-t pt-4 space-y-2">
+                    <hr class="border-gray-200 mb-6">
+
+                    <!-- Price Breakdown -->
+                    <div class="space-y-3 mb-6">
                         <div class="flex justify-between text-sm">
-                            <span class="text-gray-600">Subtotal</span>
-                            <span class="text-safora-black">₹6,998</span>
+                            <span class="text-gray-600">Subtotal (3 items)</span>
+                            <span class="font-medium">₹25,997</span>
                         </div>
                         <div class="flex justify-between text-sm">
                             <span class="text-gray-600">Shipping</span>
-                            <span class="text-green-600">Free</span>
+                            <span class="font-medium text-green-600">Free</span>
                         </div>
                         <div class="flex justify-between text-sm">
-                            <span class="text-gray-600">Tax (GST 18%)</span>
-                            <span class="text-safora-black">₹1,260</span>
+                            <span class="text-gray-600">Tax (GST)</span>
+                            <span class="font-medium">₹2,600</span>
                         </div>
-                        <div class="flex justify-between text-sm" x-data="{ codCharges: false }" x-show="codCharges">
-                            <span class="text-gray-600">COD Charges</span>
-                            <span class="text-safora-black">₹50</span>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Discount</span>
+                            <span class="font-medium text-green-600">-₹4,000</span>
                         </div>
-                        <div class="border-t pt-2 flex justify-between text-lg font-semibold">
-                            <span class="text-safora-black">Total</span>
-                            <span class="text-safora-red">₹8,258</span>
+                        <hr class="border-gray-200">
+                        <div class="flex justify-between text-lg font-bold">
+                            <span class="text-aktara-black">Total</span>
+                            <span class="text-aktara-red">₹24,597</span>
                         </div>
                     </div>
 
                     <!-- Place Order Button -->
-                    <button type="submit" class="w-full mt-6 bg-safora-red text-white py-3 px-4 rounded-md text-lg font-medium hover:bg-red-700 transition-colors" hx-post="/api/place-order" hx-target="#order-result">
-                        Place Order
+                    <button onclick="placeOrder()"
+                        class="place-order-btn w-full bg-aktara-red text-white py-4 rounded-lg font-medium text-center hover:bg-red-700 transition-all duration-300 transform hover:scale-105 mb-4">
+                        <i class="fas fa-lock mr-2"></i>
+                        Place Order - ₹24,597
                     </button>
-                    <div id="order-result" class="mt-4"></div>
 
                     <!-- Security Info -->
-                    <div class="mt-6 flex items-center justify-center space-x-2 text-sm text-gray-600">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                        </svg>
-                        <span>Secure SSL encrypted payment</span>
+                    <div class="text-center text-xs text-gray-500 mb-4">
+                        <i class="fas fa-shield-alt text-green-500 mr-1"></i>
+                        Your payment information is secure and encrypted
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="text-xs text-gray-500 text-center">
+                        By placing your order, you agree to our
+                        <a href="#" class="text-aktara-red hover:underline">Terms of Service</a> and
+                        <a href="#" class="text-aktara-red hover:underline">Privacy Policy</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="checkout-result"></div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-safora-black text-white py-12 mt-16">
+    <footer class="bg-aktara-black text-white py-12 lg:py-16 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <img src="/images/logo.jpg" alt="Safora" class="h-12 w-auto mb-4 filter brightness-0 invert">
-                    <p class="text-gray-300 mb-4">Premium sarees for every occasion. Crafted with love, delivered with care.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- Brand Section -->
+                <div class="lg:col-span-2">
+                    <h1 class="text-2xl lg:text-3xl font-bold text-aktara-red mb-6">AKTARA</h1>
+                    <p class="text-gray-300 mb-6 max-w-md text-sm lg:text-base">
+                        Premium handwoven sarees for every occasion. Crafted with love, delivered with care. Experience
+                        the perfect blend of tradition and contemporary style.
+                    </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-safora-red transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                            </svg>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-facebook-f text-lg"></i>
                         </a>
-                        <a href="#" class="text-gray-300 hover:text-safora-red transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
-                            </svg>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-twitter text-lg"></i>
                         </a>
-                        <a href="#" class="text-gray-300 hover:text-safora-red transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z.017-.001z"/>
-                            </svg>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-pinterest text-lg"></i>
                         </a>
-                        <a href="#" class="text-gray-300 hover:text-safora-red transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.056 0C5.5 0 .056 5.5.056 12.056s5.444 12.056 12 12.056 12-5.5 12-12.056S18.612 0 12.056 0zm5.338 8.663l-1.107 5.825c-.832.037-1.613-.213-2.244-.673l-1.006-.737c-.18-.131-.222-.384-.091-.563.131-.18.384-.222.563-.091l1.006.737c.33.242.742.39 1.175.39l.881-4.631-3.619 3.256c-.18.162-.459.146-.619-.034-.162-.18-.146-.459.034-.619l4.5-4.05c.146-.131.365-.131.511 0 .131.146.131.365 0 .511l-.984.879z"/>
-                            </svg>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-instagram text-lg"></i>
                         </a>
                     </div>
                 </div>
+
+                <!-- Quick Links -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-300 hover:text-safora-red transition-colors">Home</a></li>
-                        <li><a href="category.html" class="text-gray-300 hover:text-safora-red transition-colors">Categories</a></li>
-                        <li><a href="about.html" class="text-gray-300 hover:text-safora-red transition-colors">About Us</a></li>
-                        <li><a href="contact.html" class="text-gray-300 hover:text-safora-red transition-colors">Contact</a></li>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-aktara-red transition-colors">Home</a>
+                        </li>
+                        <li><a href="category.html" class="text-gray-300 hover:text-aktara-red transition-colors">All
+                                Sarees</a></li>
+                        <li><a href="category.html?category=new"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">New Arrivals</a></li>
+                        <li><a href="category.html?category=bestseller"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Bestsellers</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-aktara-red transition-colors">About
+                                Us</a></li>
+                        <li><a href="contact.html"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Contact</a></li>
                     </ul>
                 </div>
+
+                <!-- Categories -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Categories</h3>
-                    <ul class="space-y-2">
-                        <li><a href="category.html?category=cotton" class="text-gray-300 hover:text-safora-red transition-colors">Cotton Sarees</a></li>
-                        <li><a href="category.html?category=silk" class="text-gray-300 hover:text-safora-red transition-colors">Silk Sarees</a></li>
-                        <li><a href="category.html?category=designer" class="text-gray-300 hover:text-safora-red transition-colors">Designer Sarees</a></li>
-                        <li><a href="category.html?category=bridal" class="text-gray-300 hover:text-safora-red transition-colors">Bridal Collection</a></li>
+                    <h3 class="text-lg font-semibold mb-6">Categories</h3>
+                    <ul class="space-y-3">
+                        <li><a href="category.html?category=cotton"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Cotton Sarees</a></li>
+                        <li><a href="category.html?category=silk"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Silk Sarees</a></li>
+                        <li><a href="category.html?category=designer"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Designer Sarees</a></li>
+                        <li><a href="category.html?category=bridal"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Bridal Collection</a></li>
+                        <li><a href="category.html?category=festive"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Festive Wear</a></li>
+                        <li><a href="category.html?category=party"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Party Wear</a></li>
                     </ul>
                 </div>
+
+                <!-- Customer Service -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
-                    <div class="space-y-2 text-gray-300">
-                        <p>📍 123 Fashion Street, Mumbai, India</p>
-                        <p>📞 +91 98765 43210</p>
-                        <p>✉️ info@safora.com</p>
-                        <p>🕒 Mon-Sat: 10AM-8PM</p>
-                    </div>
+                    <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Size Guide</a>
+                        </li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Care
+                                Instructions</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Shipping Info</a>
+                        </li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Returns &
+                                Exchange</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Track Your
+                                Order</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">FAQ</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-300">&copy; 2024 Safora. All rights reserved. | Privacy Policy | Terms of Service</p>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-700 mt-12 pt-8">
+                <div class="flex flex-col lg:flex-row justify-between items-center">
+                    <div class="text-gray-300 text-sm mb-4 lg:mb-0 text-center lg:text-left">
+                        &copy; 2024 Aktara. All rights reserved. |
+                        <a href="#" class="hover:text-aktara-red transition-colors">Privacy Policy</a> |
+                        <a href="#" class="hover:text-aktara-red transition-colors">Terms of Service</a>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-300 text-sm">We Accept:</span>
+                        <div class="flex space-x-2">
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="32" height="10" viewBox="0 0 32 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.3 0.2L10.9 9.6H8.7L7.4 3.6C7.3 3.2 7.1 2.9 6.8 2.7C6.2 2.4 5.4 2.1 4.7 1.9L4.9 0.2H9.2C9.7 0.2 10.1 0.5 10.2 1L11.1 5.8L13.7 0.2H13.3ZM15.9 9.6H13.8L15.2 0.2H17.3L15.9 9.6ZM22.8 6.1C22.8 4.6 20.5 4.5 20.5 3.6C20.5 3.3 20.8 3 21.4 3C22.2 3 22.9 3.2 23.5 3.5L24 1.1C23.4 0.9 22.6 0.7 21.7 0.7C19.7 0.7 18.3 1.8 18.3 3.4C18.3 4.6 19.4 5.3 20.2 5.7C21 6.1 21.3 6.4 21.3 6.8C21.3 7.4 20.6 7.7 19.9 7.7C19 7.7 18.1 7.4 17.4 7L16.9 9.4C17.7 9.8 18.8 10 19.8 10C22.1 10 23.5 8.9 22.8 6.1ZM31.8 9.6H30L28.2 0.2H26.4C26 0.2 25.7 0.4 25.5 0.7L22.2 9.6H24.5L25 8.2H27.7L28 9.6H31.8ZM25.7 6.4L26.7 3.6L27.3 6.4H25.7Z"
+                                        fill="#1A1F71" />
+                                </svg>
+                            </div>
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="24" height="15" viewBox="0 0 24 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="8" cy="7.5" r="7" fill="#EB001B" />
+                                    <circle cx="16" cy="7.5" r="7" fill="#F79E1B" />
+                                    <path
+                                        d="M12 2.5C13.5 3.8 14.5 5.5 14.5 7.5C14.5 9.5 13.5 11.2 12 12.5C10.5 11.2 9.5 9.5 9.5 7.5C9.5 5.5 10.5 3.8 12 2.5Z"
+                                        fill="#FF5F00" />
+                                </svg>
+                            </div>
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="28" height="14" viewBox="0 0 28 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="14" cy="7" r="7" fill="#FF6600" />
+                                    <text x="14" y="9.5" font-family="Arial, sans-serif" font-size="4.5"
+                                        font-weight="bold" fill="white" text-anchor="middle">UPI</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop"
+        class="fixed bottom-6 right-6 bg-aktara-red text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-red-700 transform hover:scale-110 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Order Success Modal -->
+    <div id="orderSuccessModal"
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-green-600 text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-aktara-black mb-2">Order Placed Successfully!</h3>
+            <p class="text-gray-600 mb-6">Thank you for your purchase. Your order #AKT-2024-001 has been confirmed.</p>
+            <div class="space-y-3">
+                <button onclick="closeOrderModal()"
+                    class="w-full bg-aktara-red text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors">
+                    Continue Shopping
+                </button>
+                <button
+                    class="w-full border border-aktara-red text-aktara-red py-3 rounded-lg font-medium hover:bg-red-50 transition-colors">
+                    Track Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Payment method selection
+        document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                // Remove selected class from all payment methods
+                document.querySelectorAll('.payment-method').forEach(method => {
+                    method.classList.remove('selected');
+                });
+
+                // Add selected class to chosen payment method
+                this.closest('.payment-method').classList.add('selected');
+            });
+        });
+
+        // Place order functionality
+        function placeOrder() {
+            // Validate form (simplified for demo)
+            const requiredFields = document.querySelectorAll('input[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('border-red-500');
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+
+            if (!isValid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Show loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+            button.disabled = true;
+
+            // Simulate order processing
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                showOrderSuccessModal();
+            }, 3000);
+        }
+
+        // Show order success modal
+        function showOrderSuccessModal() {
+            const modal = document.getElementById('orderSuccessModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // Close order success modal
+        function closeOrderModal() {
+            const modal = document.getElementById('orderSuccessModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            // Redirect to home page
+            window.location.href = 'index.html';
+        }
+
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.transform = `scaleX(${scrolled}%)`;
+        });
+
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('orderSuccessModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeOrderModal();
+            }
+        });
+
+        // Auto-format card number input
+        document.querySelector('input[placeholder="1234 5678 9012 3456"]')?.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+
+        // Auto-format expiry date input
+        document.querySelector('input[placeholder="MM/YY"]')?.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+    </script>
 </body>
+
 </html>
