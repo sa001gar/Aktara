@@ -4,18 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Aktara</title>
+    <title>About Us - Aktara Sarees</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style type="text/tailwindcss">
         @theme {
-    --color-aktara-red: #FF0000;
-    --color-aktara-black: #000000;
-  }
-</style>
+            --color-aktara-red: #FF0000;
+            --color-aktara-black: #000000;
+        }
+    </style>
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-gray-50" x-data="{ mobileMenuOpen: false, cartCount: 0 }">
+<body class="bg-gray-50" x-data="{ 
+    mobileMenuOpen: false, 
+    cartCount: 0,
+    counters: {
+        years: 0,
+        artisans: 0,
+        customers: 0,
+        products: 0
+    },
+    animateCounters() {
+        const targets = { years: 39, artisans: 500, customers: 10000, products: 2500 };
+        Object.keys(targets).forEach(key => {
+            let current = 0;
+            const target = targets[key];
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                this.counters[key] = Math.floor(current);
+            }, 20);
+        });
+    }
+}">
 
     <!-- Navigation -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
@@ -88,7 +145,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="category.html?category=new"
+                    <a href="newarrival.html"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">NEW
                         ARRIVALS</a>
                     <a href="about.html"
@@ -101,7 +158,7 @@
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="relative">
                         <input type="text" placeholder="Search sarees..."
-                            class="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
+                            class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
                         <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -157,7 +214,7 @@
                         class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">Home</a>
                     <a href="category.html"
                         class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">Collections</a>
-                    <a href="category.html?category=new"
+                    <a href="newarrival.html"
                         class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">New
                         Arrivals</a>
                     <a href="about.html" class="text-aktara-red block px-3 py-2 text-base font-medium">About</a>
@@ -170,133 +227,150 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-aktara-red to-red-600 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">About Aktara</h1>
-            <p class="text-xl max-w-3xl mx-auto">Celebrating India's rich textile heritage through premium handwoven
-                sarees crafted with love and precision since 1985.</p>
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="flex items-center space-x-4">
+                    <li>
+                        <a href="index.html" class="text-gray-500 hover:text-aktara-red transition-colors">Home</a>
+                    </li>
+                    <li>
+                        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </li>
+                    <li>
+                        <span class="text-aktara-black font-medium">About Us</span>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- About Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-aktara-red via-red-600 to-red-700 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="floating-element absolute top-10 right-10 w-20 h-20 bg-white opacity-10 rounded-full"></div>
+        <div class="floating-element absolute bottom-20 left-10 w-16 h-16 bg-white opacity-10 rounded-full"
+            style="animation-delay: -2s;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">About Aktara</h1>
+                <p class="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">Celebrating India's rich textile
+                    heritage through premium handwoven sarees crafted with love and precision since 1985.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-16 bg-white" x-intersect="animateCounters()">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center fade-in">
+                    <div class="counter text-4xl md:text-5xl font-bold text-aktara-red mb-2"
+                        x-text="counters.years + '+'">0+</div>
+                    <div class="text-gray-600 font-medium">Years of Excellence</div>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="counter text-4xl md:text-5xl font-bold text-aktara-red mb-2"
+                        x-text="counters.artisans + '+'">0+</div>
+                    <div class="text-gray-600 font-medium">Skilled Artisans</div>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="counter text-4xl md:text-5xl font-bold text-aktara-red mb-2"
+                        x-text="counters.customers + '+'">0+</div>
+                    <div class="text-gray-600 font-medium">Happy Customers</div>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="counter text-4xl md:text-5xl font-bold text-aktara-red mb-2"
+                        x-text="counters.products + '+'">0+</div>
+                    <div class="text-gray-600 font-medium">Unique Products</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Our Story -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
+                <div class="fade-in">
                     <h2 class="text-3xl md:text-4xl font-bold text-aktara-black mb-6">Our Story</h2>
                     <p class="text-lg text-gray-700 mb-6 leading-relaxed">
                         Founded in 1985, Aktara began as a small family business with a passion for preserving India's
                         traditional textile craftsmanship. What started as a humble venture has grown into a trusted
                         name in premium handwoven sarees.
                     </p>
-                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
                         Our journey is rooted in the belief that every saree tells a story - of the artisan who weaves
                         it, the tradition it represents, and the woman who wears it. We work directly with skilled
                         weavers across India to bring you authentic, high-quality sarees that celebrate our rich
                         cultural heritage.
                     </p>
                     <div class="grid grid-cols-2 gap-6">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-aktara-red mb-2">39+</div>
-                            <div class="text-sm text-gray-600">Years of Excellence</div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                            <div class="text-3xl font-bold text-aktara-red mb-2">1985</div>
+                            <div class="text-sm text-gray-600">Founded</div>
                         </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-aktara-red mb-2">500+</div>
-                            <div class="text-sm text-gray-600">Skilled Artisans</div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                            <div class="text-3xl font-bold text-aktara-red mb-2">15+</div>
+                            <div class="text-sm text-gray-600">States Covered</div>
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="fade-in">
                     <img src="/placeholder.svg?height=500&width=600&text=Our+Story+Image" alt="Our Story"
-                        class="w-full h-auto rounded-lg shadow-lg">
+                        class="w-full h-auto rounded-lg shadow-xl">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Our Mission -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-aktara-black mb-4">Our Mission</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    To preserve and promote India's traditional textile heritage while empowering artisan communities
-                    and providing women with timeless, elegant sarees.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="bg-aktara-red w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-aktara-black mb-2">Quality Craftsmanship</h3>
-                    <p class="text-gray-600">Every saree is meticulously handwoven by skilled artisans using traditional
-                        techniques passed down through generations.</p>
-                </div>
-                <div class="text-center">
-                    <div class="bg-aktara-red w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-aktara-black mb-2">Artisan Empowerment</h3>
-                    <p class="text-gray-600">We work directly with weaving communities, ensuring fair wages and
-                        supporting the preservation of traditional skills.</p>
-                </div>
-                <div class="text-center">
-                    <div class="bg-aktara-red w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-aktara-black mb-2">Cultural Heritage</h3>
-                    <p class="text-gray-600">We celebrate and preserve India's rich textile traditions, bringing
-                        authentic designs to modern women.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
+    <!-- Mission & Vision -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-aktara-black mb-4">Meet Our Team</h2>
-                <p class="text-lg text-gray-600">The passionate individuals behind Aktara's success</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <img src="/placeholder.svg?height=300&width=300&text=Founder" alt="Founder"
-                        class="w-48 h-48 rounded-full mx-auto mb-4 object-cover">
-                    <h3 class="text-xl font-semibold text-aktara-black mb-2">Priya Sharma</h3>
-                    <p class="text-aktara-red font-medium mb-2">Founder & CEO</p>
-                    <p class="text-gray-600">With over 30 years of experience in textiles, Priya founded Aktara with a
-                        vision to preserve traditional craftsmanship.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <div class="bg-gradient-to-br from-aktara-red to-red-600 p-8 rounded-xl text-white h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-white bg-opacity-20 p-3 rounded-full mr-4">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold">Our Mission</h3>
+                        </div>
+                        <p class="text-lg leading-relaxed">
+                            To preserve and promote India's traditional textile heritage while empowering artisan
+                            communities and providing women with timeless, elegant sarees that celebrate their
+                            individuality and cultural roots.
+                        </p>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <img src="/placeholder.svg?height=300&width=300&text=Designer" alt="Designer"
-                        class="w-48 h-48 rounded-full mx-auto mb-4 object-cover">
-                    <h3 class="text-xl font-semibold text-aktara-black mb-2">Rajesh Kumar</h3>
-                    <p class="text-aktara-red font-medium mb-2">Head Designer</p>
-                    <p class="text-gray-600">Rajesh brings contemporary aesthetics to traditional designs, creating
-                        timeless pieces that appeal to modern women.</p>
-                </div>
-                <div class="text-center">
-                    <img src="/placeholder.svg?height=300&width=300&text=Operations" alt="Operations"
-                        class="w-48 h-48 rounded-full mx-auto mb-4 object-cover">
-                    <h3 class="text-xl font-semibold text-aktara-black mb-2">Meera Patel</h3>
-                    <p class="text-aktara-red font-medium mb-2">Operations Director</p>
-                    <p class="text-gray-600">Meera ensures quality control and manages our relationships with artisan
-                        communities across India.</p>
+                <div class="fade-in">
+                    <div class="bg-gradient-to-br from-gray-800 to-aktara-black p-8 rounded-xl text-white h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-white bg-opacity-20 p-3 rounded-full mr-4">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold">Our Vision</h3>
+                        </div>
+                        <p class="text-lg leading-relaxed">
+                            To become the global leader in authentic Indian handwoven textiles, bridging the gap between
+                            traditional craftsmanship and contemporary fashion while ensuring sustainable livelihoods
+                            for artisan communities.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -305,26 +379,28 @@
     <!-- Values Section -->
     <section class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold text-aktara-black mb-4">Our Values</h2>
                 <p class="text-lg text-gray-600">The principles that guide everything we do</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="fade-in">
+                    <div
+                        class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
                         <div class="bg-aktara-red w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Authenticity</h3>
-                        <p class="text-gray-600 text-sm">Every piece is genuinely handwoven using traditional
-                            techniques.</p>
+                        <h3 class="text-lg font-semibold text-aktara-black mb-2 text-center">Authenticity</h3>
+                        <p class="text-gray-600 text-sm text-center">Every piece is genuinely handwoven using
+                            traditional techniques passed down through generations.</p>
                     </div>
                 </div>
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="fade-in">
+                    <div
+                        class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
                         <div class="bg-aktara-red w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -332,13 +408,14 @@
                                 </path>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Quality</h3>
-                        <p class="text-gray-600 text-sm">We never compromise on the quality of materials and
-                            craftsmanship.</p>
+                        <h3 class="text-lg font-semibold text-aktara-black mb-2 text-center">Quality</h3>
+                        <p class="text-gray-600 text-sm text-center">We never compromise on the quality of materials and
+                            craftsmanship in our products.</p>
                     </div>
                 </div>
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="fade-in">
+                    <div
+                        class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
                         <div class="bg-aktara-red w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -346,21 +423,116 @@
                                 </path>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Community</h3>
-                        <p class="text-gray-600 text-sm">Supporting artisan communities and preserving traditional
-                            skills.</p>
+                        <h3 class="text-lg font-semibold text-aktara-black mb-2 text-center">Community</h3>
+                        <p class="text-gray-600 text-sm text-center">Supporting artisan communities and preserving
+                            traditional weaving skills.</p>
                     </div>
                 </div>
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="fade-in">
+                    <div
+                        class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
                         <div class="bg-aktara-red w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Innovation</h3>
-                        <p class="text-gray-600 text-sm">Blending traditional techniques with contemporary designs.</p>
+                        <h3 class="text-lg font-semibold text-aktara-black mb-2 text-center">Innovation</h3>
+                        <p class="text-gray-600 text-sm text-center">Blending traditional techniques with contemporary
+                            designs and modern business practices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-aktara-black mb-4">Meet Our Team</h2>
+                <p class="text-lg text-gray-600">The passionate individuals behind Aktara's success</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center fade-in">
+                    <div class="relative mb-6">
+                        <img src="/placeholder.svg?height=300&width=300&text=Founder" alt="Founder"
+                            class="w-48 h-48 rounded-full mx-auto object-cover shadow-lg">
+                        <div
+                            class="absolute inset-0 bg-aktara-red bg-opacity-0 hover:bg-opacity-20 rounded-full transition-all duration-300 w-48 h-48 mx-auto">
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-aktara-black mb-2">Priya Sharma</h3>
+                    <p class="text-aktara-red font-medium mb-3">Founder & CEO</p>
+                    <p class="text-gray-600 mb-4">With over 30 years of experience in textiles, Priya founded Aktara
+                        with a vision to preserve traditional craftsmanship.</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-aktara-red transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-aktara-red transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="relative mb-6">
+                        <img src="/placeholder.svg?height=300&width=300&text=Designer" alt="Designer"
+                            class="w-48 h-48 rounded-full mx-auto object-cover shadow-lg">
+                        <div
+                            class="absolute inset-0 bg-aktara-red bg-opacity-0 hover:bg-opacity-20 rounded-full transition-all duration-300 w-48 h-48 mx-auto">
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-aktara-black mb-2">Rajesh Kumar</h3>
+                    <p class="text-aktara-red font-medium mb-3">Head Designer</p>
+                    <p class="text-gray-600 mb-4">Rajesh brings contemporary aesthetics to traditional designs, creating
+                        timeless pieces that appeal to modern women.</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-aktara-red transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-aktara-red transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="relative mb-6">
+                        <img src="/placeholder.svg?height=300&width=300&text=Operations" alt="Operations"
+                            class="w-48 h-48 rounded-full mx-auto object-cover shadow-lg">
+                        <div
+                            class="absolute inset-0 bg-aktara-red bg-opacity-0 hover:bg-opacity-20 rounded-full transition-all duration-300 w-48 h-48 mx-auto">
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-aktara-black mb-2">Meera Patel</h3>
+                    <p class="text-aktara-red font-medium mb-3">Operations Director</p>
+                    <p class="text-gray-600 mb-4">Meera ensures quality control and manages our relationships with
+                        artisan communities across India.</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-aktara-red transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-aktara-red transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -369,7 +541,7 @@
 
     <!-- CTA Section -->
     <section class="py-16 bg-gradient-to-r from-aktara-red to-red-600 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Experience the Aktara Difference</h2>
             <p class="text-xl mb-8 max-w-2xl mx-auto">
                 Discover our exquisite collection of handwoven sarees and become part of our story.
@@ -431,8 +603,8 @@
                         </li>
                         <li><a href="category.html" class="text-gray-300 hover:text-aktara-red transition-colors">All
                                 Sarees</a></li>
-                        <li><a href="category.html?category=new"
-                                class="text-gray-300 hover:text-aktara-red transition-colors">New Arrivals</a></li>
+                        <li><a href="newarrival.html" class="text-gray-300 hover:text-aktara-red transition-colors">New
+                                Arrivals</a></li>
                         <li><a href="category.html?category=bestseller"
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Bestsellers</a></li>
                         <li><a href="about.html" class="text-gray-300 hover:text-aktara-red transition-colors">About
@@ -506,6 +678,27 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 
 </body>
 
