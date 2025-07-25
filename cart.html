@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Aktara | Premium Handwoven Sarees</title>
+    <meta name="description"
+        content="Review your selected sarees and proceed to checkout. Secure shopping cart with easy quantity management.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-aktara-red: #FF0000;
+            --color-aktara-black: #000000;
+        }
+    </style>
+
+    <style>
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FF0000, #FF6B6B);
+            transform-origin: 0%;
+            z-index: 9999;
+        }
+
+        .cart-item-animation {
+            transition: all 0.3s ease;
+        }
+
+        .cart-item-animation:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .quantity-input {
+            -moz-appearance: textfield;
+        }
+
+        .quantity-input::-webkit-outer-spin-button,
+        .quantity-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .mobile-nav-premium {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 248, 0.95));
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 0, 0, 0.1);
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #FF0000 0%, #CC0000 50%, #990000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checkout-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <!-- Top Bar -->
+        <div class="bg-gray-100 text-sm py-2 hidden md:block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <div class="flex space-x-4 text-gray-600">
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-phone text-aktara-red"></i>
+                        +91 98765 43210
+                    </span>
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-envelope text-aktara-red"></i>
+                        info@aktara.com
+                    </span>
+                </div>
+                <div class="flex space-x-4 text-gray-600">
+                    <a href="#" class="hover:text-aktara-red transition-colors">Track Order</a>
+                    <a href="#" class="hover:text-aktara-red transition-colors">Size Guide</a>
+                    <a href="#" class="hover:text-aktara-red transition-colors">Free Shipping on ₹2999+</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center">
+                        <img src="/public/images/logo-removebg.png" alt="Aktara Logo" class="h-12 md:h-14 w-auto mr-2">
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">HOME</a>
+                    <div class="relative group">
+                        <a href="category.html"
+                            class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors flex items-center">
+                            COLLECTIONS
+                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div
+                            class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="py-2">
+                                <a href="category.html?category=silk"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Silk
+                                    Sarees</a>
+                                <a href="category.html?category=cotton"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Cotton
+                                    Sarees</a>
+                                <a href="category.html?category=designer"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Designer
+                                    Collection</a>
+                                <a href="category.html?category=bridal"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Bridal
+                                    Collection</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="category.html?category=new"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">NEW
+                        ARRIVALS</a>
+                    <a href="about.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">ABOUT</a>
+                    <a href="contact.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
+                </div>
+
+                <!-- Search and Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search sarees..."
+                            class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
+                        <i class="fas fa-search absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
+                    </div>
+                    <a href="login.html" class="text-aktara-black hover:text-aktara-red transition-colors">
+                        <i class="fas fa-user text-xl"></i>
+                    </a>
+                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                    <a href="cart.html" class="relative text-aktara-red">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span id="cartCount"
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-aktara-black hover:text-aktara-red p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="md:hidden hidden">
+                <div class="mobile-nav-premium px-2 pt-2 pb-3 space-y-1 border-t shadow-lg">
+                    <div class="px-3 py-2">
+                        <div class="relative">
+                            <input type="text" placeholder="Search sarees..."
+                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <a href="index.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-home mr-3"></i>Home
+                    </a>
+                    <a href="category.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-th-large mr-3"></i>Collections
+                    </a>
+                    <a href="category.html?category=new"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-star mr-3"></i>New Arrivals
+                    </a>
+                    <a href="about.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-info-circle mr-3"></i>About
+                    </a>
+                    <a href="contact.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-envelope mr-3"></i>Contact
+                    </a>
+                    <a href="login.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-user mr-3"></i>Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="flex items-center space-x-2 text-sm">
+                    <li><a href="index.html" class="text-gray-500 hover:text-aktara-red transition-colors">Home</a></li>
+                    <li><i class="fas fa-chevron-right text-gray-400 text-xs"></i></li>
+                    <li class="text-aktara-red font-medium">Shopping Cart</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Cart Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Cart Items -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
+                    <div class="flex items-center justify-between mb-6">
+                        <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black">Shopping Cart</h1>
+                        <span class="text-gray-600">3 items</span>
+                    </div>
+
+                    <!-- Cart Item 1 -->
+                    <div class="cart-item-animation border-b border-gray-200 pb-6 mb-6">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="flex-shrink-0">
+                                <img src="https://lajreedesigner.com/cdn/shop/files/KP-Karishma-Red_5_900x1350_crop_center@2x.jpg?v=1745495600"
+                                    alt="Royal Red Silk Saree"
+                                    class="w-24 h-32 sm:w-32 sm:h-40 object-cover rounded-lg">
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-col sm:flex-row sm:justify-between">
+                                    <div class="mb-4 sm:mb-0">
+                                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Royal Red Silk Saree
+                                            with Golden Border</h3>
+                                        <p class="text-gray-600 text-sm mb-2">Color: Red | Size: Free Size</p>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i class="fas fa-truck mr-2"></i>
+                                            <span>Free shipping</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xl font-bold text-aktara-red mb-2">₹8,999</div>
+                                        <div class="text-sm text-gray-500 line-through">₹12,999</div>
+                                        <div class="text-sm text-green-600 font-medium">31% off</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mt-4">
+                                    <div class="flex items-center border border-gray-300 rounded-lg">
+                                        <button onclick="updateQuantity(1, -1)"
+                                            class="px-3 py-2 text-gray-600 hover:text-aktara-red transition-colors">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input type="number" id="qty-1" value="1" min="1"
+                                            class="quantity-input w-16 text-center py-2 border-0 focus:outline-none">
+                                        <button onclick="updateQuantity(1, 1)"
+                                            class="px-3 py-2 text-gray-600 hover:text-aktara-red transition-colors">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <button class="text-gray-500 hover:text-aktara-red transition-colors">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
+                                        <button onclick="removeItem(1)"
+                                            class="text-gray-500 hover:text-red-600 transition-colors">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 2 -->
+                    <div class="cart-item-animation border-b border-gray-200 pb-6 mb-6">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="flex-shrink-0">
+                                <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSOasMiGNdg35aA_gedyxtQrTdiqiD9CkOB84MO-PfrA5jT7KywRbaBYaYv3K-aai2hUUjG0ds8hdgSliDfV8Tcmp20v_5yjWRTYM_PqL8HyPN2-MbhLUqG"
+                                    alt="Blue Cotton Saree" class="w-24 h-32 sm:w-32 sm:h-40 object-cover rounded-lg">
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-col sm:flex-row sm:justify-between">
+                                    <div class="mb-4 sm:mb-0">
+                                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Blue Floral Cotton
+                                            Saree</h3>
+                                        <p class="text-gray-600 text-sm mb-2">Color: Blue | Size: Free Size</p>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i class="fas fa-truck mr-2"></i>
+                                            <span>Free shipping</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xl font-bold text-aktara-red">₹3,999</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mt-4">
+                                    <div class="flex items-center border border-gray-300 rounded-lg">
+                                        <button onclick="updateQuantity(2, -1)"
+                                            class="px-3 py-2 text-gray-600 hover:text-aktara-red transition-colors">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input type="number" id="qty-2" value="1" min="1"
+                                            class="quantity-input w-16 text-center py-2 border-0 focus:outline-none">
+                                        <button onclick="updateQuantity(2, 1)"
+                                            class="px-3 py-2 text-gray-600 hover:text-aktara-red transition-colors">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <button class="text-gray-500 hover:text-aktara-red transition-colors">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
+                                        <button onclick="removeItem(2)"
+                                            class="text-gray-500 hover:text-red-600 transition-colors">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 3 -->
+                    <div class="cart-item-animation">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="flex-shrink-0">
+                                <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSxsA-rILRGxU6gC2sCdj0FcqyLFgQRUWS_ISaaYzN_j1rSF5kjNUkIV6VD9fwF6dHHY6ZkCjsUKRp97x5E4Dg_WrIWbNWV0BSzSC9b1wk"
+                                    alt="Green Designer Saree"
+                                    class="w-24 h-32 sm:w-32 sm:h-40 object-cover rounded-lg">
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-col sm:flex-row sm:justify-between">
+                                    <div class="mb-4 sm:mb-0">
+                                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Emerald Designer Saree
+                                            with Embroidery</h3>
+                                        <p class="text-gray-600 text-sm mb-2">Color: Green | Size: Free Size</p>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i class="fas fa-truck mr-2"></i>
+                                            <span>Free shipping</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xl font-bold text-aktara-red">₹12,999</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mt-4">
+                                    <div class="flex items-center border border-gray-300 rounded-lg">
+                                        <button onclick="updateQuantity(3, -1)"
+                                            class="px-3 py-2 text-gray-600 hover:text-aktara-red transition-colors">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input type="number" id="qty-3" value="1" min="1"
+                                            class="quantity-input w-16 text-center py-2 border-0 focus:outline-none">
+                                        <button onclick="updateQuantity(3, 1)"
+                                            class="px-3 py-2 text-gray-600 hover:text-aktara-red transition-colors">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <button class="text-gray-500 hover:text-aktara-red transition-colors">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
+                                        <button onclick="removeItem(3)"
+                                            class="text-gray-500 hover:text-red-600 transition-colors">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Continue Shopping -->
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <a href="category.html"
+                            class="inline-flex items-center text-aktara-red hover:text-red-700 font-medium transition-colors">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Continue Shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24" data-aos="fade-left">
+                    <h2 class="text-xl font-bold text-aktara-black mb-6">Order Summary</h2>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Subtotal (3 items)</span>
+                            <span class="font-medium">₹25,997</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Shipping</span>
+                            <span class="font-medium text-green-600">Free</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Tax</span>
+                            <span class="font-medium">₹2,600</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Discount</span>
+                            <span class="font-medium text-green-600">-₹4,000</span>
+                        </div>
+                        <hr class="border-gray-200">
+                        <div class="flex justify-between text-lg font-bold">
+                            <span class="text-aktara-black">Total</span>
+                            <span class="text-aktara-red">₹24,597</span>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="mb-6">
+                        <div class="flex">
+                            <input type="text" placeholder="Enter promo code"
+                                class="flex-1 px-4 py-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
+                            <button
+                                class="bg-aktara-red text-white px-6 py-3 rounded-r-lg hover:bg-red-700 transition-colors">
+                                Apply
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Checkout Button -->
+                    <a href="checkout.html"
+                        class="checkout-btn w-full bg-aktara-red text-white py-4 rounded-lg font-medium text-center block hover:bg-red-700 transition-all duration-300 transform hover:scale-105 mb-4">
+                        <i class="fas fa-lock mr-2"></i>
+                        Proceed to Checkout
+                    </a>
+
+                    <!-- Security Badge -->
+                    <div class="text-center text-sm text-gray-500">
+                        <i class="fas fa-shield-alt text-green-500 mr-1"></i>
+                        Secure 256-bit SSL encryption
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-600 mb-3">We accept:</p>
+                        <div class="flex space-x-2">
+                            <div class="bg-white border rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="32" height="10" viewBox="0 0 32 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.3 0.2L10.9 9.6H8.7L7.4 3.6C7.3 3.2 7.1 2.9 6.8 2.7C6.2 2.4 5.4 2.1 4.7 1.9L4.9 0.2H9.2C9.7 0.2 10.1 0.5 10.2 1L11.1 5.8L13.7 0.2H13.3ZM15.9 9.6H13.8L15.2 0.2H17.3L15.9 9.6ZM22.8 6.1C22.8 4.6 20.5 4.5 20.5 3.6C20.5 3.3 20.8 3 21.4 3C22.2 3 22.9 3.2 23.5 3.5L24 1.1C23.4 0.9 22.6 0.7 21.7 0.7C19.7 0.7 18.3 1.8 18.3 3.4C18.3 4.6 19.4 5.3 20.2 5.7C21 6.1 21.3 6.4 21.3 6.8C21.3 7.4 20.6 7.7 19.9 7.7C19 7.7 18.1 7.4 17.4 7L16.9 9.4C17.7 9.8 18.8 10 19.8 10C22.1 10 23.5 8.9 22.8 6.1ZM31.8 9.6H30L28.2 0.2H26.4C26 0.2 25.7 0.4 25.5 0.7L22.2 9.6H24.5L25 8.2H27.7L28 9.6H31.8ZM25.7 6.4L26.7 3.6L27.3 6.4H25.7Z"
+                                        fill="#1A1F71" />
+                                </svg>
+                            </div>
+                            <div class="bg-white border rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="24" height="15" viewBox="0 0 24 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="8" cy="7.5" r="7" fill="#EB001B" />
+                                    <circle cx="16" cy="7.5" r="7" fill="#F79E1B" />
+                                    <path
+                                        d="M12 2.5C13.5 3.8 14.5 5.5 14.5 7.5C14.5 9.5 13.5 11.2 12 12.5C10.5 11.2 9.5 9.5 9.5 7.5C9.5 5.5 10.5 3.8 12 2.5Z"
+                                        fill="#FF5F00" />
+                                </svg>
+                            </div>
+                            <div class="bg-white border rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="28" height="14" viewBox="0 0 28 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="14" cy="7" r="7" fill="#FF6600" />
+                                    <text x="14" y="9.5" font-family="Arial, sans-serif" font-size="4.5"
+                                        font-weight="bold" fill="white" text-anchor="middle">UPI</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recently Viewed -->
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold text-aktara-black mb-8" data-aos="fade-up">You might also like</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative">
+                        <img src="https://www.banarasee.in/cdn/shop/files/IMG_9630_940x.jpg?v=1683428505"
+                            alt="Pink Bridal Saree"
+                            class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <button
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg opacity-0 group-hover:opacity-100">
+                            <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-aktara-black mb-2 text-sm">Pink Silk Bridal Saree</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-aktara-red">₹18,999</span>
+                            <button
+                                class="bg-aktara-red text-white px-3 py-2 rounded-full text-xs font-medium hover:bg-red-700 transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative">
+                        <img src="https://www.lavanyathelabel.com/cdn/shop/files/lbl101ks886_1_700x.jpg?v=1752668380"
+                            alt="Yellow Chiffon Saree"
+                            class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <button
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg opacity-0 group-hover:opacity-100">
+                            <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-aktara-black mb-2 text-sm">Sunshine Chiffon Saree</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-aktara-red">₹3,499</span>
+                            <button
+                                class="bg-aktara-red text-white px-3 py-2 rounded-full text-xs font-medium hover:bg-red-700 transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative">
+                        <img src="https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg"
+                            alt="Purple Georgette Saree"
+                            class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <button
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg opacity-0 group-hover:opacity-100">
+                            <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-aktara-black mb-2 text-sm">Purple Sequin Georgette</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-aktara-red">₹5,999</span>
+                            <button
+                                class="bg-aktara-red text-white px-3 py-2 rounded-full text-xs font-medium hover:bg-red-700 transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative">
+                        <img src="https://resources.indianclothstore.com/productimages/Maroon-Silk-Saree-With-Blouse-18710418042024.jpg"
+                            alt="Maroon Silk Saree"
+                            class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <button
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg opacity-0 group-hover:opacity-100">
+                            <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-aktara-black mb-2 text-sm">Maroon Silk Traditional</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-aktara-red">₹8,999</span>
+                            <button
+                                class="bg-aktara-red text-white px-3 py-2 rounded-full text-xs font-medium hover:bg-red-700 transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-aktara-black text-white py-12 lg:py-16 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- Brand Section -->
+                <div class="lg:col-span-2">
+                    <h1 class="text-2xl lg:text-3xl font-bold text-aktara-red mb-6">AKTARA</h1>
+                    <p class="text-gray-300 mb-6 max-w-md text-sm lg:text-base">
+                        Premium handwoven sarees for every occasion. Crafted with love, delivered with care. Experience
+                        the perfect blend of tradition and contemporary style.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-pinterest text-lg"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-aktara-red transition-colors">Home</a>
+                        </li>
+                        <li><a href="category.html" class="text-gray-300 hover:text-aktara-red transition-colors">All
+                                Sarees</a></li>
+                        <li><a href="category.html?category=new"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">New Arrivals</a></li>
+                        <li><a href="category.html?category=bestseller"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Bestsellers</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-aktara-red transition-colors">About
+                                Us</a></li>
+                        <li><a href="contact.html"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Categories</h3>
+                    <ul class="space-y-3">
+                        <li><a href="category.html?category=cotton"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Cotton Sarees</a></li>
+                        <li><a href="category.html?category=silk"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Silk Sarees</a></li>
+                        <li><a href="category.html?category=designer"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Designer Sarees</a></li>
+                        <li><a href="category.html?category=bridal"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Bridal Collection</a></li>
+                        <li><a href="category.html?category=festive"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Festive Wear</a></li>
+                        <li><a href="category.html?category=party"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Party Wear</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Size Guide</a>
+                        </li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Care
+                                Instructions</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Shipping Info</a>
+                        </li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Returns &
+                                Exchange</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Track Your
+                                Order</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-700 mt-12 pt-8">
+                <div class="flex flex-col lg:flex-row justify-between items-center">
+                    <div class="text-gray-300 text-sm mb-4 lg:mb-0 text-center lg:text-left">
+                        &copy; 2024 Aktara. All rights reserved. |
+                        <a href="#" class="hover:text-aktara-red transition-colors">Privacy Policy</a> |
+                        <a href="#" class="hover:text-aktara-red transition-colors">Terms of Service</a>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-300 text-sm">We Accept:</span>
+                        <div class="flex space-x-2">
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="32" height="10" viewBox="0 0 32 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.3 0.2L10.9 9.6H8.7L7.4 3.6C7.3 3.2 7.1 2.9 6.8 2.7C6.2 2.4 5.4 2.1 4.7 1.9L4.9 0.2H9.2C9.7 0.2 10.1 0.5 10.2 1L11.1 5.8L13.7 0.2H13.3ZM15.9 9.6H13.8L15.2 0.2H17.3L15.9 9.6ZM22.8 6.1C22.8 4.6 20.5 4.5 20.5 3.6C20.5 3.3 20.8 3 21.4 3C22.2 3 22.9 3.2 23.5 3.5L24 1.1C23.4 0.9 22.6 0.7 21.7 0.7C19.7 0.7 18.3 1.8 18.3 3.4C18.3 4.6 19.4 5.3 20.2 5.7C21 6.1 21.3 6.4 21.3 6.8C21.3 7.4 20.6 7.7 19.9 7.7C19 7.7 18.1 7.4 17.4 7L16.9 9.4C17.7 9.8 18.8 10 19.8 10C22.1 10 23.5 8.9 22.8 6.1ZM31.8 9.6H30L28.2 0.2H26.4C26 0.2 25.7 0.4 25.5 0.7L22.2 9.6H24.5L25 8.2H27.7L28 9.6H31.8ZM25.7 6.4L26.7 3.6L27.3 6.4H25.7Z"
+                                        fill="#1A1F71" />
+                                </svg>
+                            </div>
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="24" height="15" viewBox="0 0 24 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="8" cy="7.5" r="7" fill="#EB001B" />
+                                    <circle cx="16" cy="7.5" r="7" fill="#F79E1B" />
+                                    <path
+                                        d="M12 2.5C13.5 3.8 14.5 5.5 14.5 7.5C14.5 9.5 13.5 11.2 12 12.5C10.5 11.2 9.5 9.5 9.5 7.5C9.5 5.5 10.5 3.8 12 2.5Z"
+                                        fill="#FF5F00" />
+                                </svg>
+                            </div>
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="28" height="14" viewBox="0 0 28 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="14" cy="7" r="7" fill="#FF6600" />
+                                    <text x="14" y="9.5" font-family="Arial, sans-serif" font-size="4.5"
+                                        font-weight="bold" fill="white" text-anchor="middle">UPI</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop"
+        class="fixed bottom-6 right-6 bg-aktara-red text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-red-700 transform hover:scale-110 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Quantity update functionality
+        function updateQuantity(itemId, change) {
+            const qtyInput = document.getElementById(`qty-${itemId}`);
+            let currentQty = parseInt(qtyInput.value);
+            let newQty = currentQty + change;
+
+            if (newQty >= 1) {
+                qtyInput.value = newQty;
+                updateCartTotals();
+            }
+        }
+
+        // Remove item functionality
+        function removeItem(itemId) {
+            if (confirm('Are you sure you want to remove this item from your cart?')) {
+                // In a real application, you would make an API call here
+                console.log(`Removing item ${itemId} from cart`);
+                // For demo purposes, we'll just show an alert
+                alert('Item removed from cart');
+                updateCartTotals();
+            }
+        }
+
+        // Update cart totals (simplified for demo)
+        function updateCartTotals() {
+            // This would typically recalculate based on actual quantities and prices
+            console.log('Updating cart totals...');
+        }
+
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.transform = `scaleX(${scrolled}%)`;
+        });
+
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>
