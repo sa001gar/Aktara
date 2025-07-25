@@ -109,7 +109,7 @@
 <body class="bg-gray-50">
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
-
+    
     <!-- Navigation -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <!-- Top Bar -->
@@ -122,7 +122,7 @@
                     </span>
                     <span class="flex items-center gap-1">
                         <i class="fas fa-envelope text-aktara-red"></i>
-                        info@aktara.com
+                        info@aktara.in
                     </span>
                 </div>
                 <div class="flex space-x-4 text-gray-600">
@@ -132,20 +132,21 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Main Navigation -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex-shrink-0">
                     <a href="index.html" class="flex items-center">
-                        <img src="/public/images/logo-removebg.png" alt="Aktara Logo" class="h-12 md:h-14 w-auto mr-2">
+                        <!-- Logo -->
+                        <img src="assets/logo_new.png" alt="" class="h-10 md:h-12 lg:h-14">
                     </a>
                 </div>
-
+                
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <a href="index.html"
-                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">HOME</a>
+                        class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium">HOME</a>
                     <div class="relative group">
                         <a href="category.html"
                             class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors flex items-center">
@@ -178,29 +179,42 @@
                     <a href="contact.html"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
                 </div>
-
-                <!-- Search and Actions -->
+                
+                <!--  Search and Actions -->
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="relative">
-                        <input type="text" placeholder="Search sarees..."
-                            class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
+                        <input type="text" 
+                               id="searchInput"
+                               placeholder="Search sarees..."
+                               class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red"
+                               autocomplete="off">
                         <i class="fas fa-search absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
+                        
+                        <!-- Search Results Dropdown -->
+                        <div id="searchResults" class="search-results">
+                            <div id="searchLoading" class="search-loading hidden">
+                                <div class="search-spinner"></div>
+                                <span class="ml-2 text-gray-600">Searching...</span>
+                            </div>
+                            <div id="searchResultsList"></div>
+                        </div>
                     </div>
                     <a href="login.html" class="text-aktara-black hover:text-aktara-red transition-colors">
                         <i class="fas fa-user text-xl"></i>
                     </a>
-                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors">
+                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors"
+                        onclick="toggleWishlist()">
                         <i class="fas fa-heart text-xl"></i>
-                        <span
+                        <span id="wishlistCount"
                             class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </button>
                     <a href="cart.html" class="relative text-aktara-black hover:text-aktara-red transition-colors">
                         <i class="fas fa-shopping-bag text-xl"></i>
                         <span
-                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </a>
                 </div>
-
+                
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button onclick="toggleMobileMenu()" class="text-aktara-black hover:text-aktara-red p-2">
@@ -208,19 +222,31 @@
                     </button>
                 </div>
             </div>
-
-            <!-- Mobile Navigation -->
+            
+            <!--  Mobile Navigation -->
             <div id="mobileMenu" class="md:hidden hidden">
                 <div class="mobile-nav-premium px-2 pt-2 pb-3 space-y-1 border-t shadow-lg">
                     <div class="px-3 py-2">
                         <div class="relative">
-                            <input type="text" placeholder="Search sarees..."
-                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            <input type="text" 
+                                   id="mobileSearchInput"
+                                   placeholder="Search sarees..."
+                                   class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red"
+                                   autocomplete="off">
                             <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                            
+                            <!-- Mobile Search Results -->
+                            <div id="mobileSearchResults" class="search-results">
+                                <div id="mobileSearchLoading" class="search-loading hidden">
+                                    <div class="search-spinner"></div>
+                                    <span class="ml-2 text-gray-600">Searching...</span>
+                                </div>
+                                <div id="mobileSearchResultsList"></div>
+                            </div>
                         </div>
                     </div>
                     <a href="index.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        class="text-aktara-red block px-3 py-3 text-base font-medium border-l-4 border-aktara-red bg-red-50">
                         <i class="fas fa-home mr-3"></i>Home
                     </a>
                     <a href="category.html"
@@ -243,6 +269,19 @@
                         class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
                         <i class="fas fa-user mr-3"></i>Login
                     </a>
+                    <div class="flex justify-around py-4 border-t border-gray-200 mt-4">
+                        <button
+                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors"
+                            onclick="toggleWishlist()">
+                            <i class="fas fa-heart text-xl mb-1"></i>
+                            <span class="text-xs">Wishlist</span>
+                        </button>
+                        <a href="cart.html"
+                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors">
+                            <i class="fas fa-shopping-bag text-xl mb-1"></i>
+                            <span class="text-xs">Cart</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
