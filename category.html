@@ -9,9 +9,9 @@
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style type="text/tailwindcss">
         @theme {
-    --color-aktara-red: #FF0000;
-    --color-aktara-black: #000000;
-  }
+            --color-aktara-red: #FF0000;
+            --color-aktara-black: #000000;
+        }
     </style>
 
     <style>
@@ -30,25 +30,144 @@
                 background-position: -200% 0;
             }
         }
+
+        .mobile-filters-overlay {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-filters-panel {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-filters-panel.open {
+            transform: translateX(0);
+        }
+
+        .dropdown-content {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown.open .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
 <body class="bg-gray-50" x-data="{ 
     mobileMenuOpen: false, 
+    mobileFiltersOpen: false,
     cartCount: 0,
+    categoryDropdownOpen: false,
+    priceDropdownOpen: false,
+    fabricDropdownOpen: false,
     filters: {
         category: [],
         priceRange: '',
-        fabric: [],
-        sortBy: 'featured'
+        fabric: []
     },
     products: [
-        { id: 1, name: 'Royal Red Silk Saree', price: 8999, originalPrice: 12999, category: 'silk', fabric: 'silk', rating: 5, reviews: 147, image: '/placeholder.svg?height=300&width=300&text=Royal+Red+Silk', badge: 'Best Seller' },
-        { id: 2, name: 'Blue Floral Cotton Saree', price: 3999, category: 'cotton', fabric: 'cotton', rating: 4, reviews: 89, image: '/placeholder.svg?height=300&width=300&text=Blue+Cotton+Saree' },
-        { id: 3, name: 'Emerald Designer Saree', price: 12999, category: 'designer', fabric: 'silk', rating: 5, reviews: 203, image: '/placeholder.svg?height=300&width=300&text=Green+Designer+Saree' },
-        { id: 4, name: 'Pink Silk Bridal Saree', price: 18999, category: 'bridal', fabric: 'silk', rating: 5, reviews: 67, image: '/placeholder.svg?height=300&width=300&text=Pink+Silk+Saree' },
-        { id: 5, name: 'Sunshine Chiffon Saree', price: 5499, category: 'designer', fabric: 'chiffon', rating: 4, reviews: 45, image: '/placeholder.svg?height=300&width=300&text=Yellow+Chiffon+Saree' },
-        { id: 6, name: 'Purple Sequin Georgette', price: 7999, category: 'designer', fabric: 'georgette', rating: 5, reviews: 78, image: '/placeholder.svg?height=300&width=300&text=Purple+Georgette+Saree' }
+        { 
+            id: 1, 
+            name: 'Royal Red Silk Saree', 
+            price: 8999, 
+            originalPrice: 12999, 
+            category: 'silk', 
+            fabric: 'silk', 
+            rating: 5, 
+            reviews: 147, 
+            image: 'https://lajreedesigner.com/cdn/shop/files/KP-Karishma-Red_5_900x1350_crop_center@2x.jpg?v=1745495600', 
+            badge: 'Best Seller' 
+        },
+        { 
+            id: 2, 
+            name: 'Blue Floral Cotton Saree', 
+            price: 3999, 
+            category: 'cotton', 
+            fabric: 'cotton', 
+            rating: 4, 
+            reviews: 89, 
+            image: 'https://www.teejh.com/cdn/shop/products/TES223_1_720x.jpg?v=1666258983' 
+        },
+        { 
+            id: 3, 
+            name: 'Emerald Designer Saree', 
+            price: 12999, 
+            category: 'designer', 
+            fabric: 'silk', 
+            rating: 5, 
+            reviews: 203, 
+            image: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSxsA-rILRGxU6gC2sCdj0FcqyLFgQRUWS_ISaaYzN_j1rSF5kjNUkIV6VD9fwF6dHHY6ZkCjsUKRp97x5E4Dg_WrIWbNWV0BSzSC9b1wk' 
+        },
+        { 
+            id: 4, 
+            name: 'Pink Silk Bridal Saree', 
+            price: 18999, 
+            category: 'bridal', 
+            fabric: 'silk', 
+            rating: 5, 
+            reviews: 67, 
+            image: 'https://www.banarasee.in/cdn/shop/files/IMG_9630_940x.jpg?v=1683428505' 
+        },
+        { 
+            id: 5, 
+            name: 'Sunshine Chiffon Saree', 
+            price: 5499, 
+            category: 'designer', 
+            fabric: 'chiffon', 
+            rating: 4, 
+            reviews: 45, 
+            image: 'https://www.lavanyathelabel.com/cdn/shop/files/lbl101ks886_1_700x.jpg?v=1752668380' 
+        },
+        { 
+            id: 6, 
+            name: 'Purple Sequin Georgette', 
+            price: 7999, 
+            category: 'designer', 
+            fabric: 'georgette', 
+            rating: 5, 
+            reviews: 78, 
+            image: 'https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg' 
+        },
+        { 
+            id: 7, 
+            name: 'Maroon Silk Traditional', 
+            price: 8999, 
+            category: 'silk', 
+            fabric: 'silk', 
+            rating: 5, 
+            reviews: 92, 
+            image: 'https://resources.indianclothstore.com/productimages/Maroon-Silk-Saree-With-Blouse-18710418042024.jpg' 
+        },
+        { 
+            id: 8, 
+            name: 'Orange Festival Cotton', 
+            price: 2999, 
+            category: 'cotton', 
+            fabric: 'cotton', 
+            rating: 4, 
+            reviews: 156, 
+            image: 'https://arvisaa.com/cdn/shop/products/KP-Kalyani-Orange_1_720x.jpg?v=1737618305', 
+            badge: 'New' 
+        },
+        { 
+            id: 9, 
+            name: 'Golden Bridal Silk Saree', 
+            price: 22999, 
+            category: 'bridal', 
+            fabric: 'silk', 
+            rating: 5, 
+            reviews: 43, 
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLAouvSQF0mxFpbBIWAiD5-XVyz-xveLetTA&s', 
+            badge: 'Premium' 
+        }
     ],
     get filteredProducts() {
         let filtered = this.products;
@@ -76,24 +195,13 @@
             });
         }
         
-        // Sort products
-        switch(this.filters.sortBy) {
-            case 'price-low':
-                return filtered.sort((a, b) => a.price - b.price);
-            case 'price-high':
-                return filtered.sort((a, b) => b.price - a.price);
-            case 'newest':
-                return filtered.sort((a, b) => b.id - a.id);
-            default:
-                return filtered;
-        }
+        return filtered;
     },
     clearFilters() {
         this.filters = {
             category: [],
             priceRange: '',
-            fabric: [],
-            sortBy: 'featured'
+            fabric: []
         };
     }
 }">
@@ -182,7 +290,7 @@
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="relative">
                         <input type="text" placeholder="Search sarees..."
-                            class="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
+                            class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
                         <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -276,196 +384,363 @@
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex flex-col lg:flex-row gap-8">
-            <!-- Filters Sidebar -->
-            <div class="lg:w-1/4">
-                <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
-                    <h3 class="text-lg font-semibold text-aktara-black mb-6">Filters</h3>
+        <!-- Header with Filters -->
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-aktara-black">Premium Saree Collection</h1>
+                <p class="text-gray-600 mt-1" x-text="`${filteredProducts.length} products found`"></p>
+            </div>
 
-                    <!-- Category Filter -->
-                    <div class="mb-6">
-                        <h4 class="font-medium text-aktara-black mb-3">Category</h4>
-                        <div class="space-y-2">
-                            <label class="flex items-center">
+            <!-- Desktop Filter Dropdowns -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <!-- Category Filter Dropdown -->
+                <div class="relative dropdown" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open"
+                        class="flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11H5m14-7l-7 7-7-7"></path>
+                        </svg>
+                        <span>Category</span>
+                        <span x-show="filters.category.length > 0"
+                            class="bg-aktara-red text-white text-xs rounded-full px-2 py-1"
+                            x-text="filters.category.length"></span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border z-10">
+                        <div class="py-2">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
                                 <input type="checkbox" x-model="filters.category" value="cotton"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">Cotton</span>
                             </label>
-                            <label class="flex items-center">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
                                 <input type="checkbox" x-model="filters.category" value="silk"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">Silk</span>
                             </label>
-                            <label class="flex items-center">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
                                 <input type="checkbox" x-model="filters.category" value="designer"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">Designer</span>
                             </label>
-                            <label class="flex items-center">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
                                 <input type="checkbox" x-model="filters.category" value="bridal"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">Bridal</span>
                             </label>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Price Range Filter -->
-                    <div class="mb-6">
-                        <h4 class="font-medium text-aktara-black mb-3">Price Range</h4>
-                        <div class="space-y-2">
-                            <label class="flex items-center">
-                                <input type="radio" x-model="filters.priceRange" value="under-2000" name="price"
+                <!-- Price Range Filter Dropdown -->
+                <div class="relative dropdown" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open"
+                        class="flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1">
+                            </path>
+                        </svg>
+                        <span>Price Range</span>
+                        <span x-show="filters.priceRange"
+                            class="bg-aktara-red text-white text-xs rounded-full px-2 py-1">1</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border z-10">
+                        <div class="py-2">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="radio" x-model="filters.priceRange" value="under-2000" name="desktop-price"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">Under ₹2,000</span>
                             </label>
-                            <label class="flex items-center">
-                                <input type="radio" x-model="filters.priceRange" value="2000-5000" name="price"
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="radio" x-model="filters.priceRange" value="2000-5000" name="desktop-price"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">₹2,000 - ₹5,000</span>
                             </label>
-                            <label class="flex items-center">
-                                <input type="radio" x-model="filters.priceRange" value="5000-10000" name="price"
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="radio" x-model="filters.priceRange" value="5000-10000" name="desktop-price"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">₹5,000 - ₹10,000</span>
                             </label>
-                            <label class="flex items-center">
-                                <input type="radio" x-model="filters.priceRange" value="above-10000" name="price"
-                                    class="text-aktara-red focus:ring-aktara-red">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="radio" x-model="filters.priceRange" value="above-10000"
+                                    name="desktop-price" class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">Above ₹10,000</span>
                             </label>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Fabric Filter -->
-                    <div class="mb-6">
-                        <h4 class="font-medium text-aktara-black mb-3">Fabric</h4>
-                        <div class="space-y-2">
-                            <label class="flex items-center">
+                <!-- Fabric Filter Dropdown -->
+                <div class="relative dropdown" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open"
+                        class="flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z">
+                            </path>
+                        </svg>
+                        <span>Fabric</span>
+                        <span x-show="filters.fabric.length > 0"
+                            class="bg-aktara-red text-white text-xs rounded-full px-2 py-1"
+                            x-text="filters.fabric.length"></span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border z-10">
+                        <div class="py-2">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
                                 <input type="checkbox" x-model="filters.fabric" value="cotton"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">Cotton</span>
                             </label>
-                            <label class="flex items-center">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
                                 <input type="checkbox" x-model="filters.fabric" value="silk"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">Silk</span>
                             </label>
-                            <label class="flex items-center">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
                                 <input type="checkbox" x-model="filters.fabric" value="chiffon"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">Chiffon</span>
                             </label>
-                            <label class="flex items-center">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
                                 <input type="checkbox" x-model="filters.fabric" value="georgette"
                                     class="text-aktara-red focus:ring-aktara-red">
                                 <span class="ml-2 text-gray-700">Georgette</span>
                             </label>
                         </div>
                     </div>
+                </div>
 
-                    <button @click="clearFilters()"
-                        class="w-full bg-aktara-red text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors">
-                        Clear All Filters
-                    </button>
+                <!-- Clear Filters Button -->
+                <button @click="clearFilters()"
+                    x-show="filters.category.length > 0 || filters.priceRange || filters.fabric.length > 0"
+                    class="bg-aktara-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">
+                    Clear All
+                </button>
+            </div>
+
+            <!-- Mobile Filter Button -->
+            <button @click="mobileFiltersOpen = true"
+                class="lg:hidden flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 w-full sm:w-auto justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                    </path>
+                </svg>
+                <span>Filters</span>
+                <span x-show="filters.category.length > 0 || filters.priceRange || filters.fabric.length > 0"
+                    class="bg-aktara-red text-white text-xs rounded-full px-2 py-1"
+                    x-text="filters.category.length + (filters.priceRange ? 1 : 0) + filters.fabric.length"></span>
+            </button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <template x-for="product in filteredProducts" :key="product.id">
+                <div
+                    class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+                    <div class="relative">
+                        <img :src="product.image" :alt="product.name"
+                            class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300 skeleton"
+                            loading="lazy">
+                        <div x-show="product.badge"
+                            class="absolute top-4 right-4 bg-aktara-red text-white px-2 py-1 rounded text-sm font-medium"
+                            x-text="product.badge">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-aktara-black mb-2 line-clamp-2" x-text="product.name">
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4"
+                            x-text="`${product.fabric.charAt(0).toUpperCase() + product.fabric.slice(1)} saree`">
+                        </p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400 text-sm">
+                                <template x-for="i in 5">
+                                    <span x-text="i <= product.rating ? '★' : '☆'"></span>
+                                </template>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2" x-text="`(${product.reviews})`"></span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-aktara-red"
+                                    x-text="`₹${product.price.toLocaleString()}`"></span>
+                                <span x-show="product.originalPrice" class="text-sm text-gray-500 line-through ml-2"
+                                    x-text="product.originalPrice ? `₹${product.originalPrice.toLocaleString()}` : ''"></span>
+                            </div>
+                            <a :href="`product.html?id=${product.id}`"
+                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- No Results Message -->
+        <div x-show="filteredProducts.length === 0" class="text-center py-12">
+            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.5-1.006-6-2.709V15a7.963 7.963 0 01-2-5.291A7.963 7.963 0 016 4a7.963 7.963 0 016 0 7.963 7.963 0 016 5.291z">
+                </path>
+            </svg>
+            <h3 class="mt-2 text-sm font-medium text-gray-900">No products found</h3>
+            <p class="mt-1 text-sm text-gray-500">Try adjusting your filters to see more results.</p>
+            <div class="mt-6">
+                <button @click="clearFilters()"
+                    class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-aktara-red hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-aktara-red">
+                    Clear Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-12 flex justify-center" x-show="filteredProducts.length > 0">
+            <nav class="flex items-center space-x-2">
+                <button class="px-3 py-2 text-gray-500 hover:text-aktara-red transition-colors">
+                    Previous
+                </button>
+                <button class="px-3 py-2 bg-aktara-red text-white rounded-md">
+                    1
+                </button>
+                <button class="px-3 py-2 text-gray-700 hover:text-aktara-red transition-colors">
+                    2
+                </button>
+                <button class="px-3 py-2 text-gray-700 hover:text-aktara-red transition-colors">
+                    3
+                </button>
+                <button class="px-3 py-2 text-gray-700 hover:text-aktara-red transition-colors">
+                    Next
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Mobile Filters Overlay -->
+    <div x-show="mobileFiltersOpen" class="fixed inset-0 z-50 lg:hidden" x-transition>
+        <div class="mobile-filters-overlay fixed inset-0" @click="mobileFiltersOpen = false"></div>
+        <div class="mobile-filters-panel fixed inset-y-0 left-0 w-80 bg-white shadow-xl"
+            :class="{ 'open': mobileFiltersOpen }">
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 class="text-lg font-semibold text-aktara-black">Filters</h3>
+                <button @click="mobileFiltersOpen = false" class="text-gray-500 hover:text-aktara-black">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="p-4 overflow-y-auto h-full pb-20">
+                <!-- Category Filter -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-aktara-black mb-3">Category</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" x-model="filters.category" value="cotton"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">Cotton</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" x-model="filters.category" value="silk"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">Silk</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" x-model="filters.category" value="designer"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">Designer</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" x-model="filters.category" value="bridal"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">Bridal</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Range Filter -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-aktara-black mb-3">Price Range</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" x-model="filters.priceRange" value="under-2000" name="mobile-price"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">Under ₹2,000</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" x-model="filters.priceRange" value="2000-5000" name="mobile-price"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">₹2,000 - ₹5,000</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" x-model="filters.priceRange" value="5000-10000" name="mobile-price"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">₹5,000 - ₹10,000</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" x-model="filters.priceRange" value="above-10000" name="mobile-price"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">Above ₹10,000</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Fabric Filter -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-aktara-black mb-3">Fabric</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" x-model="filters.fabric" value="cotton"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">Cotton</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" x-model="filters.fabric" value="silk"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">Silk</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" x-model="filters.fabric" value="chiffon"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">Chiffon</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" x-model="filters.fabric" value="georgette"
+                                class="text-aktara-red focus:ring-aktara-red">
+                            <span class="ml-2 text-gray-700">Georgette</span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
-            <!-- Products Grid -->
-            <div class="lg:w-3/4">
-                <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-2xl md:text-3xl font-bold text-aktara-black">Premium Saree Collection</h1>
-                    <div class="flex items-center space-x-4">
-                        <span class="text-gray-600">Sort by:</span>
-                        <select x-model="filters.sortBy"
-                            class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-aktara-red">
-                            <option value="featured">Featured</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                            <option value="newest">Newest First</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <template x-for="product in filteredProducts" :key="product.id">
-                        <div
-                            class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                            <div class="relative">
-                                <img :src="product.image" :alt="product.name"
-                                    class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300 skeleton"
-                                    loading="lazy">
-                                <div x-show="product.badge"
-                                    class="absolute top-4 right-4 bg-aktara-red text-white px-2 py-1 rounded text-sm font-medium"
-                                    x-text="product.badge">
-                                </div>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="text-lg font-semibold text-aktara-black mb-2" x-text="product.name"></h3>
-                                <p class="text-gray-600 text-sm mb-4"
-                                    x-text="`${product.fabric.charAt(0).toUpperCase() + product.fabric.slice(1)} saree`">
-                                </p>
-                                <div class="flex items-center mb-3">
-                                    <div class="flex text-yellow-400 text-sm">
-                                        <template x-for="i in 5">
-                                            <span x-text="i <= product.rating ? '★' : '☆'"></span>
-                                        </template>
-                                    </div>
-                                    <span class="text-gray-500 text-sm ml-2" x-text="`(${product.reviews})`"></span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <span class="text-2xl font-bold text-aktara-red"
-                                            x-text="`₹${product.price.toLocaleString()}`"></span>
-                                        <span x-show="product.originalPrice"
-                                            class="text-sm text-gray-500 line-through ml-2"
-                                            x-text="product.originalPrice ? `₹${product.originalPrice.toLocaleString()}` : ''"></span>
-                                    </div>
-                                    <a :href="`product.html?id=${product.id}`"
-                                        class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
-                                        View Details
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </template>
-                </div>
-
-                <!-- No Results Message -->
-                <div x-show="filteredProducts.length === 0" class="text-center py-12">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.5-1.006-6-2.709V15a7.963 7.963 0 01-2-5.291A7.963 7.963 0 016 4a7.963 7.963 0 016 0 7.963 7.963 0 016 5.291z">
-                        </path>
-                    </svg>
-                    <h3 class="mt-2 text-sm font-medium text-gray-900">No products found</h3>
-                    <p class="mt-1 text-sm text-gray-500">Try adjusting your filters to see more results.</p>
-                    <div class="mt-6">
-                        <button @click="clearFilters()"
-                            class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-aktara-red hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-aktara-red">
-                            Clear Filters
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Pagination -->
-                <div class="mt-12 flex justify-center">
-                    <nav class="flex items-center space-x-2">
-                        <button class="px-3 py-2 text-gray-500 hover:text-aktara-red transition-colors">
-                            Previous
-                        </button>
-                        <button class="px-3 py-2 bg-aktara-red text-white rounded-md">
-                            1
-                        </button>
-                        <button class="px-3 py-2 text-gray-700 hover:text-aktara-red transition-colors">
-                            2
-                        </button>
-                        <button class="px-3 py-2 text-gray-700 hover:text-aktara-red transition-colors">
-                            3
-                        </button>
-                        <button class="px-3 py-2 text-gray-700 hover:text-aktara-red transition-colors">
-                            Next
-                        </button>
-                    </nav>
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t">
+                <div class="flex space-x-3">
+                    <button @click="clearFilters()"
+                        class="flex-1 bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition-colors">
+                        Clear All
+                    </button>
+                    <button @click="mobileFiltersOpen = false"
+                        class="flex-1 bg-aktara-red text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors">
+                        Apply Filters
+                    </button>
                 </div>
             </div>
         </div>
