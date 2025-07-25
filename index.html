@@ -1,51 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aktara - Premium Handwoven Sarees | Authentic Indian Ethnic Wear</title>
+    <link rel="icon" href="/public/images/favicon.ico" type="image/x-icon">
     <meta name="description"
         content="Discover Aktara's exquisite collection of handwoven sarees, silk sarees, cotton sarees, and designer ethnic wear. Premium quality, authentic craftsmanship, worldwide shipping.">
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
     <!-- Swiper.js for better scrolling -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style type="text/tailwindcss">
         @theme {
             --color-aktara-red: #FF0000;
             --color-aktara-black: #000000;
         }
     </style>
-
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
         .skeleton {
             background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
         }
-
         @keyframes loading {
             0% {
                 background-position: 200% 0;
             }
-
             100% {
                 background-position: -200% 0;
             }
         }
-
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -56,51 +52,40 @@
             transform-origin: 0%;
             z-index: 9999;
         }
-
         .hero-gradient {
             background: linear-gradient(135deg, #fff8f8 0%, #ffffff 50%, #fff0f0 100%);
         }
-
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
-
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-
         .wishlist-btn {
             transition: all 0.3s ease;
         }
-
         .wishlist-btn.active {
             color: #FF0000;
             transform: scale(1.1);
         }
-
         .mobile-menu-overlay {
             backdrop-filter: blur(10px);
             background: rgba(0, 0, 0, 0.5);
         }
-
         .glass-effect {
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.9);
         }
-
         .video-card {
             transition: transform 0.3s ease;
         }
-
         .video-card:hover {
             transform: translateY(-5px);
         }
-
         .swiper-pagination-bullet-active {
             background: #FF0000 !important;
         }
-
         @media (max-width: 768px) {
             .mobile-nav-premium {
                 background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 248, 0.95));
@@ -108,13 +93,11 @@
                 border-bottom: 1px solid rgba(255, 0, 0, 0.1);
             }
         }
-
         .cta-enhanced {
             background: linear-gradient(135deg, #FF0000 0%, #CC0000 50%, #990000 100%);
             position: relative;
             overflow: hidden;
         }
-
         .cta-enhanced::before {
             content: '';
             position: absolute;
@@ -125,32 +108,87 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             animation: shimmer 3s infinite;
         }
-
         @keyframes shimmer {
             0% {
                 left: -100%;
             }
-
             100% {
                 left: 100%;
             }
         }
-
         .card-hover-effect {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .card-hover-effect:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
+        
+        /* Search Results Styles */
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .search-results.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .search-result-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .search-result-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .search-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .search-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #FF0000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
-
 <body class="bg-gray-50">
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
-
+    
     <!-- Navigation -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <!-- Top Bar -->
@@ -163,7 +201,7 @@
                     </span>
                     <span class="flex items-center gap-1">
                         <i class="fas fa-envelope text-aktara-red"></i>
-                        info@aktara.com
+                        info@aktara.in
                     </span>
                 </div>
                 <div class="flex space-x-4 text-gray-600">
@@ -173,16 +211,17 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Main Navigation -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex-shrink-0">
                     <a href="index.html" class="flex items-center">
-                        <img src="/public/images/logo-removebg.png" alt="Aktara Logo" class="h-12 md:h-14 w-auto mr-2">
+                        <!-- Logo -->
+                        <img src="assets/logo_new.png" alt="" class="h-10 md:h-12 lg:h-14">
                     </a>
                 </div>
-
+                
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <a href="index.html"
@@ -219,13 +258,25 @@
                     <a href="contact.html"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
                 </div>
-
-                <!-- Search and Actions -->
+                
+                <!-- Enhanced Search and Actions -->
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="relative">
-                        <input type="text" placeholder="Search sarees..."
-                            class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
+                        <input type="text" 
+                               id="searchInput"
+                               placeholder="Search sarees..."
+                               class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red"
+                               autocomplete="off">
                         <i class="fas fa-search absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
+                        
+                        <!-- Search Results Dropdown -->
+                        <div id="searchResults" class="search-results">
+                            <div id="searchLoading" class="search-loading hidden">
+                                <div class="search-spinner"></div>
+                                <span class="ml-2 text-gray-600">Searching...</span>
+                            </div>
+                            <div id="searchResultsList"></div>
+                        </div>
                     </div>
                     <a href="login.html" class="text-aktara-black hover:text-aktara-red transition-colors">
                         <i class="fas fa-user text-xl"></i>
@@ -242,7 +293,7 @@
                             class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </a>
                 </div>
-
+                
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button onclick="toggleMobileMenu()" class="text-aktara-black hover:text-aktara-red p-2">
@@ -250,15 +301,27 @@
                     </button>
                 </div>
             </div>
-
+            
             <!-- Enhanced Mobile Navigation -->
             <div id="mobileMenu" class="md:hidden hidden">
                 <div class="mobile-nav-premium px-2 pt-2 pb-3 space-y-1 border-t shadow-lg">
                     <div class="px-3 py-2">
                         <div class="relative">
-                            <input type="text" placeholder="Search sarees..."
-                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            <input type="text" 
+                                   id="mobileSearchInput"
+                                   placeholder="Search sarees..."
+                                   class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red"
+                                   autocomplete="off">
                             <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                            
+                            <!-- Mobile Search Results -->
+                            <div id="mobileSearchResults" class="search-results">
+                                <div id="mobileSearchLoading" class="search-loading hidden">
+                                    <div class="search-spinner"></div>
+                                    <span class="ml-2 text-gray-600">Searching...</span>
+                                </div>
+                                <div id="mobileSearchResultsList"></div>
+                            </div>
                         </div>
                     </div>
                     <a href="index.html"
@@ -304,7 +367,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative hero-gradient py-12 lg:py-16 overflow-hidden">
+    <section class="relative hero-gradient py-12 lg:py-8 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div data-aos="fade-right">
@@ -348,10 +411,6 @@
                     <div class="relative">
                         <img src="/public/images/one.jpg" alt="Beautiful Saree Collection"
                             class="w-full h-auto rounded-2xl shadow-2xl skeleton" loading="lazy">
-                        <div class="absolute -bottom-4 -left-4 bg-white p-3 lg:p-4 rounded-xl shadow-lg">
-                            <div class="text-xs lg:text-sm text-gray-600">Starting from</div>
-                            <div class="text-xl lg:text-2xl font-bold text-aktara-red">₹2,999</div>
-                        </div>
                         <div class="absolute -top-4 -right-4 bg-aktara-red text-white p-2 lg:p-3 rounded-full">
                             <span class="text-xs lg:text-sm font-bold">NEW</span>
                         </div>
@@ -422,7 +481,6 @@
                         <div class="absolute bottom-4 left-4 text-white">
                             <h3 class="text-lg lg:text-xl font-bold mb-1">Silk Sarees</h3>
                             <p class="text-xs lg:text-sm opacity-90">Luxury & Tradition</p>
-                            <p class="text-xs lg:text-sm mt-2">From ₹5,999</p>
                         </div>
                     </div>
                 </a>
@@ -439,7 +497,6 @@
                         <div class="absolute bottom-4 left-4 text-white">
                             <h3 class="text-lg lg:text-xl font-bold mb-1">Cotton Sarees</h3>
                             <p class="text-xs lg:text-sm opacity-90">Comfortable & Elegant</p>
-                            <p class="text-xs lg:text-sm mt-2">From ₹2,999</p>
                         </div>
                     </div>
                 </a>
@@ -456,7 +513,6 @@
                         <div class="absolute bottom-4 left-4 text-white">
                             <h3 class="text-lg lg:text-xl font-bold mb-1">Designer Collection</h3>
                             <p class="text-xs lg:text-sm opacity-90">Contemporary Style</p>
-                            <p class="text-xs lg:text-sm mt-2">From ₹8,999</p>
                         </div>
                     </div>
                 </a>
@@ -473,7 +529,6 @@
                         <div class="absolute bottom-4 left-4 text-white">
                             <h3 class="text-lg lg:text-xl font-bold mb-1">Bridal Collection</h3>
                             <p class="text-xs lg:text-sm opacity-90">Special Occasions</p>
-                            <p class="text-xs lg:text-sm mt-2">From ₹15,999</p>
                         </div>
                     </div>
                 </a>
@@ -488,7 +543,7 @@
                 <h2 class="text-xl lg:text-2xl font-bold">
                     <span class="text-aktara-red">Trending</span> Saree Videos
                 </h2>
-                <a href="https://instagram.com/aktara_sarees" target="_blank"
+                <a href="https://instagram.com/aktara.official" target="_blank"
                     class="text-aktara-red hover:text-red-700 font-medium flex items-center text-sm lg:text-base">
                     <i class="fab fa-instagram mr-2"></i>
                     Follow Us
@@ -503,7 +558,7 @@
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
                                 <video class="w-full h-full object-cover"
-                                    src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+                                    src="video/insta_1.mp4"
                                     autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
@@ -511,19 +566,19 @@
                                 <span
                                     class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939
                                     Views</span>
-                                <a href="https://instagram.com/reel/example1" target="_blank"
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
                                     class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <div class="mt-2 text-sm">
+                            <!-- <div class="mt-2 text-sm">
                                 <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
                                 <p>
                                     <span class="font-bold">₹1647</span>
                                     <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
                                     <span class="text-green-600 text-xs ml-1">50% Off</span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -532,7 +587,7 @@
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
                                 <video class="w-full h-full object-cover"
-                                    src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+                                    src="video/insta_2.mp4"
                                     autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
@@ -540,19 +595,19 @@
                                 <span
                                     class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">1.2K
                                     Views</span>
-                                <a href="https://instagram.com/reel/example2" target="_blank"
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
                                     class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <div class="mt-2 text-sm">
+                            <!-- <div class="mt-2 text-sm">
                                 <h3 class="line-clamp-2 text-aktara-black font-medium">Royal Blue Silk Saree</h3>
                                 <p>
                                     <span class="font-bold">₹2999</span>
                                     <span class="line-through text-gray-400 text-xs ml-1">₹4999</span>
                                     <span class="text-green-600 text-xs ml-1">40% Off</span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -561,7 +616,7 @@
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
                                 <video class="w-full h-full object-cover"
-                                    src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+                                    src="video/insta_3.mp4"
                                     autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
@@ -569,19 +624,19 @@
                                 <span
                                     class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">856
                                     Views</span>
-                                <a href="https://instagram.com/reel/example3" target="_blank"
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
                                     class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <div class="mt-2 text-sm">
+                            <!-- <div class="mt-2 text-sm">
                                 <h3 class="line-clamp-2 text-aktara-black font-medium">Designer Embroidered Saree</h3>
                                 <p>
                                     <span class="font-bold">₹3999</span>
                                     <span class="line-through text-gray-400 text-xs ml-1">₹5999</span>
                                     <span class="text-green-600 text-xs ml-1">33% Off</span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -590,7 +645,7 @@
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
                                 <video class="w-full h-full object-cover"
-                                    src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+                                    src="video/insta_4.mp4"
                                     autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
@@ -598,19 +653,19 @@
                                 <span
                                     class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">2.1K
                                     Views</span>
-                                <a href="https://instagram.com/reel/example4" target="_blank"
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
                                     class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <div class="mt-2 text-sm">
+                            <!-- <div class="mt-2 text-sm">
                                 <h3 class="line-clamp-2 text-aktara-black font-medium">Traditional Cotton Saree</h3>
                                 <p>
                                     <span class="font-bold">₹1299</span>
                                     <span class="line-through text-gray-400 text-xs ml-1">₹1999</span>
                                     <span class="text-green-600 text-xs ml-1">35% Off</span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -619,7 +674,7 @@
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
                                 <video class="w-full h-full object-cover"
-                                    src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+                                    src="video/insta_5.mp4"
                                     autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
@@ -627,19 +682,19 @@
                                 <span
                                     class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">5.3K
                                     Views</span>
-                                <a href="https://instagram.com/reel/example5" target="_blank"
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
                                     class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <div class="mt-2 text-sm">
+                            <!-- <div class="mt-2 text-sm">
                                 <h3 class="line-clamp-2 text-aktara-black font-medium">Festive Golden Saree</h3>
                                 <p>
                                     <span class="font-bold">₹4999</span>
                                     <span class="line-through text-gray-400 text-xs ml-1">₹7999</span>
                                     <span class="text-green-600 text-xs ml-1">37% Off</span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -648,7 +703,7 @@
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
                                 <video class="w-full h-full object-cover"
-                                    src="https://cdn.shopify.com/videos/c/o/v/25f46e6e55d5402ba23b753c3c96ca6c.mp4"
+                                    src="video/insta_6.mp4"
                                     autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
@@ -656,19 +711,19 @@
                                 <span
                                     class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">1.8K
                                     Views</span>
-                                <a href="https://instagram.com/reel/example6" target="_blank"
-                                    class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
+                                    class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full  hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <div class="mt-2 text-sm">
+                            <!-- <div class="mt-2 text-sm">
                                 <h3 class="line-clamp-2 text-aktara-black font-medium">Bridal Red Silk Saree</h3>
                                 <p>
                                     <span class="font-bold">₹8999</span>
                                     <span class="line-through text-gray-400 text-xs ml-1">₹12999</span>
                                     <span class="text-green-600 text-xs ml-1">30% Off</span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -678,6 +733,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Heritage Story Section -->
     <section class="py-12 lg:py-16 bg-gradient-to-br from-red-50 to-gray-50">
@@ -732,7 +788,7 @@
         </div>
     </section>
 
-    <!-- Enhanced Best Selling Products -->
+    <!-- Enhanced Best Selling Products (No Pricing) -->
     <section class="py-12 lg:py-16 bg-white" id="products-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center mb-8 lg:mb-12" data-aos="fade-up">
@@ -777,10 +833,7 @@
                             <span class="text-gray-500 text-sm ml-2">(24)</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-lg lg:text-xl font-bold text-aktara-red">₹8,999</span>
-                                <span class="text-sm text-gray-500 line-through ml-2">₹12,999</span>
-                            </div>
+                            <div class="text-sm text-gray-600">Premium Quality</div>
                             <a href="product.html?id=1"
                                 class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
                                 View Details
@@ -788,7 +841,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- Product 2 -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
                     data-aos-delay="200">
@@ -815,9 +868,7 @@
                             <span class="text-gray-500 text-sm ml-2">(18)</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-lg lg:text-xl font-bold text-aktara-red">₹3,999</span>
-                            </div>
+                            <div class="text-sm text-gray-600">Comfortable Wear</div>
                             <a href="product.html?id=2"
                                 class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
                                 View Details
@@ -825,7 +876,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- Product 3 -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
                     data-aos-delay="300">
@@ -852,9 +903,7 @@
                             <span class="text-gray-500 text-sm ml-2">(31)</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-lg lg:text-xl font-bold text-aktara-red">₹12,999</span>
-                            </div>
+                            <div class="text-sm text-gray-600">Designer Collection</div>
                             <a href="product.html?id=3"
                                 class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
                                 View Details
@@ -862,7 +911,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- Product 4 -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
                     data-aos-delay="400">
@@ -893,9 +942,7 @@
                             <span class="text-gray-500 text-sm ml-2">(12)</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-lg lg:text-xl font-bold text-aktara-red">₹18,999</span>
-                            </div>
+                            <div class="text-sm text-gray-600">Bridal Special</div>
                             <a href="product.html?id=4"
                                 class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
                                 View Details
@@ -928,7 +975,7 @@
                         Explore Collection
                     </a>
                 </div>
-
+                
                 <!-- Featured Item 2 -->
                 <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
                     data-aos="fade-up" data-aos-delay="200">
@@ -941,7 +988,7 @@
                         Shop Now
                     </a>
                 </div>
-
+                
                 <!-- Featured Item 3 -->
                 <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
                     data-aos="fade-up" data-aos-delay="300">
@@ -958,7 +1005,7 @@
         </div>
     </section>
 
-    <!-- Enhanced Latest Arrivals with Wishlist -->
+    <!-- Enhanced Latest Arrivals (No Pricing) -->
     <section class="py-12 lg:py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center mb-8 lg:mb-12" data-aos="fade-up">
@@ -996,7 +1043,7 @@
                         <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Sunshine Chiffon Saree
                         </h3>
                         <div class="flex items-center justify-between">
-                            <span class="text-lg lg:text-xl font-bold text-aktara-red">₹3,499</span>
+                            <div class="text-sm text-gray-600">Elegant Design</div>
                             <button onclick="addToCart(5)"
                                 class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
                                 Add to Cart
@@ -1004,7 +1051,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- New Product 2 -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
                     data-aos-delay="200">
@@ -1028,7 +1075,7 @@
                         <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Purple Sequin Georgette
                         </h3>
                         <div class="flex items-center justify-between">
-                            <span class="text-lg lg:text-xl font-bold text-aktara-red">₹5,999</span>
+                            <div class="text-sm text-gray-600">Party Special</div>
                             <button onclick="addToCart(6)"
                                 class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
                                 Add to Cart
@@ -1036,7 +1083,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- New Product 3 -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
                     data-aos-delay="300">
@@ -1060,7 +1107,7 @@
                         <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Maroon Silk Traditional
                         </h3>
                         <div class="flex items-center justify-between">
-                            <span class="text-lg lg:text-xl font-bold text-aktara-red">₹8,999</span>
+                            <div class="text-sm text-gray-600">Classic Style</div>
                             <button onclick="addToCart(7)"
                                 class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
                                 Add to Cart
@@ -1068,7 +1115,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- New Product 4 -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
                     data-aos-delay="400">
@@ -1092,7 +1139,7 @@
                         <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Orange Festival Cotton
                         </h3>
                         <div class="flex items-center justify-between">
-                            <span class="text-lg lg:text-xl font-bold text-aktara-red">₹2,999</span>
+                            <div class="text-sm text-gray-600">Festival Ready</div>
                             <button onclick="addToCart(8)"
                                 class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
                                 Add to Cart
@@ -1104,6 +1151,7 @@
         </div>
     </section>
 
+    <!-- Collection Banners -->
     <section class="py-12 lg:py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
@@ -1126,7 +1174,7 @@
                         style="background-image: url('https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg');">
                     </div>
                 </div>
-
+                
                 <!-- Banner 2 -->
                 <div
                     class="relative bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 rounded-2xl overflow-hidden card-hover-effect min-h-[280px] lg:min-h-[320px]">
@@ -1180,7 +1228,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" data-aos="fade-up"
                     data-aos-delay="200">
                     <div class="flex items-center mb-4">
@@ -1201,7 +1248,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" data-aos="fade-up"
                     data-aos-delay="300">
                     <div class="flex items-center mb-4">
@@ -1223,7 +1269,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Customer Stats -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 mt-12 lg:mt-16 text-center">
                 <div data-aos="fade-up" data-aos-delay="100">
@@ -1265,7 +1311,7 @@
                     </button>
                 </form>
                 <p class="text-red-100 text-sm mt-4">Join 25,000+ happy customers who love our sarees</p>
-                <div class="flex justify-center space-x-6 mt-6">
+                <!-- <div class="flex justify-center space-x-6 mt-6">
                     <div class="text-center">
                         <div class="text-lg font-bold text-white">Weekly</div>
                         <div class="text-red-200 text-sm">New Arrivals</div>
@@ -1278,18 +1324,21 @@
                         <div class="text-lg font-bold text-white">Style</div>
                         <div class="text-red-200 text-sm">Tips</div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Enhanced Footer with Logo SVG -->
     <footer class="bg-aktara-black text-white py-12 lg:py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                <!-- Brand Section -->
+                <!-- Brand Section with Logo -->
                 <div class="lg:col-span-2">
-                    <h1 class="text-2xl lg:text-3xl font-bold text-aktara-red mb-6">AKTARA</h1>
+                    <!-- Enhanced Logo SVG -->
+                    <div class="flex items-center mb-6">
+                        <img src="assets/logo.jpg" alt="" class="w-auto h-16 rounded-lg mr-3">
+                    </div>
                     <p class="text-gray-300 mb-6 max-w-md text-sm lg:text-base">
                         Premium handwoven sarees for every occasion. Crafted with love, delivered with care. Experience
                         the perfect blend of tradition and contemporary style.
@@ -1297,23 +1346,31 @@
                     <div class="flex space-x-4">
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-facebook-f text-lg"></i>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-twitter text-lg"></i>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-pinterest text-lg"></i>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                            </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-instagram text-lg"></i>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
-
+                
                 <!-- Quick Links -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
@@ -1332,7 +1389,7 @@
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Contact</a></li>
                     </ul>
                 </div>
-
+                
                 <!-- Categories -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Categories</h3>
@@ -1351,7 +1408,7 @@
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Party Wear</a></li>
                     </ul>
                 </div>
-
+                
                 <!-- Customer Service -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
@@ -1370,7 +1427,7 @@
                     </ul>
                 </div>
             </div>
-
+            
             <!-- Bottom Footer -->
             <div class="border-t border-gray-700 mt-12 pt-8">
                 <div class="flex flex-col lg:flex-row justify-between items-center">
@@ -1382,6 +1439,7 @@
                     <div class="flex items-center space-x-4">
                         <span class="text-gray-300 text-sm">We Accept:</span>
                         <div class="flex space-x-2">
+                            <!-- Visa SVG -->
                             <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
                                 <svg width="32" height="10" viewBox="0 0 32 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -1390,6 +1448,7 @@
                                         fill="#1A1F71" />
                                 </svg>
                             </div>
+                            <!-- Mastercard SVG -->
                             <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
                                 <svg width="24" height="15" viewBox="0 0 24 15" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -1400,6 +1459,7 @@
                                         fill="#FF5F00" />
                                 </svg>
                             </div>
+                            <!-- UPI SVG -->
                             <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
                                 <svg width="28" height="14" viewBox="0 0 28 14" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -1413,6 +1473,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </footer>
 
     <!-- Back to Top Button -->
@@ -1446,249 +1507,10 @@
         </div>
     </div>
 
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            offset: 100
-        });
 
-        // Initialize Swiper for trending videos
-        const trendingSwiper = new Swiper('.trendingVideosSwiper', {
-            slidesPerView: 1.2,
-            spaceBetween: 16,
-            centeredSlides: false,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2.2,
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 3.2,
-                    spaceBetween: 24,
-                },
-                1024: {
-                    slidesPerView: 4.2,
-                    spaceBetween: 24,
-                },
-                1280: {
-                    slidesPerView: 5.2,
-                    spaceBetween: 24,
-                }
-            }
-        });
+    <!-- JavaScript -->
+     <script src="js/common.js"></script>
+     <script src="js/index.js"></script>
 
-        // Wishlist functionality
-        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-        function updateWishlistCount() {
-            document.getElementById('wishlistCount').textContent = wishlist.length;
-        }
-
-        function toggleWishlistItem(productId) {
-            const index = wishlist.indexOf(productId);
-            const button = document.querySelector(`button[onclick="toggleWishlistItem(${productId})"] i`);
-
-            if (index > -1) {
-                wishlist.splice(index, 1);
-                button.classList.remove('text-aktara-red');
-                button.classList.add('text-gray-400');
-            } else {
-                wishlist.push(productId);
-                button.classList.remove('text-gray-400');
-                button.classList.add('text-aktara-red');
-            }
-
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            updateWishlistCount();
-            updateWishlistModal();
-        }
-
-        function toggleWishlist() {
-            const modal = document.getElementById('wishlistModal');
-            modal.classList.toggle('hidden');
-            modal.classList.toggle('flex');
-            updateWishlistModal();
-        }
-
-        function updateWishlistModal() {
-            const wishlistItems = document.getElementById('wishlistItems');
-            const emptyWishlist = document.getElementById('emptyWishlist');
-
-            if (wishlist.length === 0) {
-                wishlistItems.classList.add('hidden');
-                emptyWishlist.classList.remove('hidden');
-            } else {
-                wishlistItems.classList.remove('hidden');
-                emptyWishlist.classList.add('hidden');
-
-                // Sample wishlist items (in a real app, you'd fetch product details)
-                wishlistItems.innerHTML = wishlist.map(id => `
-                    <div class="flex items-center space-x-4 p-4 border rounded-lg">
-                        <img src="/placeholder.svg?height=60&width=60&text=Product${id}" alt="Product" class="w-15 h-15 object-cover rounded">
-                        <div class="flex-1">
-                            <h4 class="font-medium text-aktara-black">Sample Product ${id}</h4>
-                            <p class="text-aktara-red font-bold">₹${(id * 1000) + 999}</p>
-                        </div>
-                        <button onclick="toggleWishlistItem(${id})" class="text-aktara-red hover:text-red-700">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `).join('');
-            }
-        }
-
-        // Add to cart functionality
-        function addToCart(productId) {
-            // Add animation feedback
-            const button = event.target;
-            const originalText = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-check mr-2"></i>Added!';
-            button.classList.add('bg-green-500');
-            button.classList.remove('bg-aktara-red');
-
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.classList.remove('bg-green-500');
-                button.classList.add('bg-aktara-red');
-            }, 2000);
-
-            // Here you would typically add the item to cart
-            console.log('Added product', productId, 'to cart');
-        }
-
-        // Newsletter subscription
-        function subscribeNewsletter(event) {
-            event.preventDefault();
-            const email = document.getElementById('newsletterEmail').value;
-            const button = event.target.querySelector('button');
-            const originalText = button.innerHTML;
-
-            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Subscribing...';
-            button.disabled = true;
-
-            // Simulate API call
-            setTimeout(() => {
-                button.innerHTML = '<i class="fas fa-check mr-2"></i>Subscribed!';
-                button.classList.add('bg-green-500');
-
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.classList.remove('bg-green-500');
-                    button.disabled = false;
-                    document.getElementById('newsletterEmail').value = '';
-                }, 3000);
-            }, 2000);
-
-            console.log('Newsletter subscription for:', email);
-        }
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        }
-
-        // Scroll progress
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('scrollProgress').style.transform = `scaleX(${scrolled}%)`;
-        });
-
-        // Back to top functionality
-        const backToTopButton = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.add('opacity-0', 'invisible');
-                backToTopButton.classList.remove('opacity-100', 'visible');
-            }
-        });
-
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Lazy loading for images
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.classList.remove('skeleton');
-                    observer.unobserve(img);
-                }
-            });
-        });
-
-        images.forEach(img => imageObserver.observe(img));
-
-        // Initialize wishlist on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            updateWishlistCount();
-
-            // Update wishlist button states
-            wishlist.forEach(productId => {
-                const button = document.querySelector(`button[onclick="toggleWishlistItem(${productId})"] i`);
-                if (button) {
-                    button.classList.remove('text-gray-400');
-                    button.classList.add('text-aktara-red');
-                }
-            });
-        });
-
-        // Close wishlist modal when clicking outside
-        document.getElementById('wishlistModal').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) {
-                toggleWishlist();
-            }
-        });
-
-        // Infinite scroll for videos (simulate loading more content)
-        let videoPage = 1;
-        let isLoadingVideos = false;
-
-        function loadMoreVideos() {
-            if (isLoadingVideos) return;
-            isLoadingVideos = true;
-
-            // Simulate loading more videos
-            setTimeout(() => {
-                videoPage++;
-                isLoadingVideos = false;
-                console.log('Loaded more videos, page:', videoPage);
-            }, 1000);
-        }
-
-        // Trigger infinite scroll for videos
-        window.addEventListener('scroll', () => {
-            const videosSection = document.querySelector('.trendingVideosSwiper');
-            if (videosSection) {
-                const rect = videosSection.getBoundingClientRect();
-                if (rect.bottom <= window.innerHeight + 1000 && !isLoadingVideos && videoPage < 5) {
-                    loadMoreVideos();
-                }
-            }
-        });
-    </script>
 </body>
-
 </html>
