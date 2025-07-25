@@ -25,6 +25,8 @@
         }
     </style>
 
+    <link rel="stylesheet" href="css/common.css">
+
     <style>
         .scroll-progress {
             position: fixed;
@@ -94,7 +96,7 @@
 <body class="bg-gray-50">
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
-
+    
     <!-- Navigation -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <!-- Top Bar -->
@@ -107,7 +109,7 @@
                     </span>
                     <span class="flex items-center gap-1">
                         <i class="fas fa-envelope text-aktara-red"></i>
-                        info@aktara.com
+                        info@aktara.in
                     </span>
                 </div>
                 <div class="flex space-x-4 text-gray-600">
@@ -117,20 +119,21 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Main Navigation -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex-shrink-0">
                     <a href="index.html" class="flex items-center">
-                        <img src="/public/images/logo-removebg.png" alt="Aktara Logo" class="h-12 md:h-14 w-auto mr-2">
+                        <!-- Logo -->
+                        <img src="assets/logo_new.png" alt="" class="h-10 md:h-12 lg:h-14">
                     </a>
                 </div>
-
+                
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <a href="index.html"
-                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">HOME</a>
+                        class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium">HOME</a>
                     <div class="relative group">
                         <a href="category.html"
                             class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors flex items-center">
@@ -163,29 +166,42 @@
                     <a href="contact.html"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
                 </div>
-
-                <!-- Search and Actions -->
+                
+                <!--  Search and Actions -->
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="relative">
-                        <input type="text" placeholder="Search sarees..."
-                            class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
+                        <input type="text" 
+                               id="searchInput"
+                               placeholder="Search sarees..."
+                               class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red"
+                               autocomplete="off">
                         <i class="fas fa-search absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
+                        
+                        <!-- Search Results Dropdown -->
+                        <div id="searchResults" class="search-results">
+                            <div id="searchLoading" class="search-loading hidden">
+                                <div class="search-spinner"></div>
+                                <span class="ml-2 text-gray-600">Searching...</span>
+                            </div>
+                            <div id="searchResultsList"></div>
+                        </div>
                     </div>
                     <a href="login.html" class="text-aktara-black hover:text-aktara-red transition-colors">
                         <i class="fas fa-user text-xl"></i>
                     </a>
-                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors">
+                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors"
+                        onclick="toggleWishlist()">
                         <i class="fas fa-heart text-xl"></i>
-                        <span
+                        <span id="wishlistCount"
                             class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </button>
-                    <a href="cart.html" class="relative text-aktara-red">
+                    <a href="cart.html" class="relative text-aktara-black hover:text-aktara-red transition-colors">
                         <i class="fas fa-shopping-bag text-xl"></i>
-                        <span id="cartCount"
-                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                        <span
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </a>
                 </div>
-
+                
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button onclick="toggleMobileMenu()" class="text-aktara-black hover:text-aktara-red p-2">
@@ -193,19 +209,31 @@
                     </button>
                 </div>
             </div>
-
-            <!-- Mobile Navigation -->
+            
+            <!--  Mobile Navigation -->
             <div id="mobileMenu" class="md:hidden hidden">
                 <div class="mobile-nav-premium px-2 pt-2 pb-3 space-y-1 border-t shadow-lg">
                     <div class="px-3 py-2">
                         <div class="relative">
-                            <input type="text" placeholder="Search sarees..."
-                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            <input type="text" 
+                                   id="mobileSearchInput"
+                                   placeholder="Search sarees..."
+                                   class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red"
+                                   autocomplete="off">
                             <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                            
+                            <!-- Mobile Search Results -->
+                            <div id="mobileSearchResults" class="search-results">
+                                <div id="mobileSearchLoading" class="search-loading hidden">
+                                    <div class="search-spinner"></div>
+                                    <span class="ml-2 text-gray-600">Searching...</span>
+                                </div>
+                                <div id="mobileSearchResultsList"></div>
+                            </div>
                         </div>
                     </div>
                     <a href="index.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        class="text-aktara-red block px-3 py-3 text-base font-medium border-l-4 border-aktara-red bg-red-50">
                         <i class="fas fa-home mr-3"></i>Home
                     </a>
                     <a href="category.html"
@@ -228,6 +256,19 @@
                         class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
                         <i class="fas fa-user mr-3"></i>Login
                     </a>
+                    <div class="flex justify-around py-4 border-t border-gray-200 mt-4">
+                        <button
+                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors"
+                            onclick="toggleWishlist()">
+                            <i class="fas fa-heart text-xl mb-1"></i>
+                            <span class="text-xs">Wishlist</span>
+                        </button>
+                        <a href="cart.html"
+                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors">
+                            <i class="fas fa-shopping-bag text-xl mb-1"></i>
+                            <span class="text-xs">Cart</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -607,14 +648,16 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-aktara-black text-white py-12 lg:py-16 mt-16">
+<!-- Footer -->
+    <footer class="bg-aktara-black text-white py-12 lg:py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                <!-- Brand Section -->
+                <!-- Brand Section with Logo -->
                 <div class="lg:col-span-2">
-                    <h1 class="text-2xl lg:text-3xl font-bold text-aktara-red mb-6">AKTARA</h1>
+                    <!--  Logo -->
+                    <div class="flex items-center mb-6">
+                        <img src="assets/logo.jpg" alt="" class="w-auto h-16 rounded-lg mr-3">
+                    </div>
                     <p class="text-gray-300 mb-6 max-w-md text-sm lg:text-base">
                         Premium handwoven sarees for every occasion. Crafted with love, delivered with care. Experience
                         the perfect blend of tradition and contemporary style.
@@ -622,23 +665,31 @@
                     <div class="flex space-x-4">
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-facebook-f text-lg"></i>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-twitter text-lg"></i>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-pinterest text-lg"></i>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                            </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
-                            <i class="fab fa-instagram text-lg"></i>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
-
+                
                 <!-- Quick Links -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
@@ -657,7 +708,7 @@
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Contact</a></li>
                     </ul>
                 </div>
-
+                
                 <!-- Categories -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Categories</h3>
@@ -676,7 +727,7 @@
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Party Wear</a></li>
                     </ul>
                 </div>
-
+                
                 <!-- Customer Service -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
@@ -695,7 +746,7 @@
                     </ul>
                 </div>
             </div>
-
+            
             <!-- Bottom Footer -->
             <div class="border-t border-gray-700 mt-12 pt-8">
                 <div class="flex flex-col lg:flex-row justify-between items-center">
@@ -707,6 +758,7 @@
                     <div class="flex items-center space-x-4">
                         <span class="text-gray-300 text-sm">We Accept:</span>
                         <div class="flex space-x-2">
+                            <!-- Visa SVG -->
                             <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
                                 <svg width="32" height="10" viewBox="0 0 32 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -715,6 +767,7 @@
                                         fill="#1A1F71" />
                                 </svg>
                             </div>
+                            <!-- Mastercard SVG -->
                             <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
                                 <svg width="24" height="15" viewBox="0 0 24 15" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -725,12 +778,14 @@
                                         fill="#FF5F00" />
                                 </svg>
                             </div>
+                            <!-- UPI SVG -->
                             <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
                                 <svg width="28" height="14" viewBox="0 0 28 14" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="14" cy="7" r="7" fill="#FF6600" />
                                     <text x="14" y="9.5" font-family="Arial, sans-serif" font-size="4.5"
                                         font-weight="bold" fill="white" text-anchor="middle">UPI</text>
+                                    <path d="M19 4L21 7L19 10" stroke="white" stroke-width="1" fill="none" />
                                 </svg>
                             </div>
                         </div>
@@ -745,6 +800,8 @@
         class="fixed bottom-6 right-6 bg-aktara-red text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-red-700 transform hover:scale-110 z-50">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <script src="js/common.js"></script>
 
     <script>
         // Initialize AOS

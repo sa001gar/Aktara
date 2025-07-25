@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aktara - Premium Handwoven Sarees | Authentic Indian Ethnic Wear</title>
-    <link rel="icon" href="/public/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/logo_new.png" type="image/png">
     <meta name="description"
         content="Discover Aktara's exquisite collection of handwoven sarees, silk sarees, cotton sarees, and designer ethnic wear. Premium quality, authentic craftsmanship, worldwide shipping.">
     <!-- Tailwind CSS -->
@@ -12,8 +12,8 @@
     <!-- Swiper.js for better scrolling -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- AOS Animation Library
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,167 +23,9 @@
             --color-aktara-black: #000000;
         }
     </style>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-        body {
-            font-family: 'Roboto', sans-serif;
-            overflow-x: hidden;
-        }
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-        @keyframes loading {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -200% 0;
-            }
-        }
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #FF0000, #FF6B6B);
-            transform-origin: 0%;
-            z-index: 9999;
-        }
-        .hero-gradient {
-            background: linear-gradient(135deg, #fff8f8 0%, #ffffff 50%, #fff0f0 100%);
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .wishlist-btn {
-            transition: all 0.3s ease;
-        }
-        .wishlist-btn.active {
-            color: #FF0000;
-            transform: scale(1.1);
-        }
-        .mobile-menu-overlay {
-            backdrop-filter: blur(10px);
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
-        }
-        .video-card {
-            transition: transform 0.3s ease;
-        }
-        .video-card:hover {
-            transform: translateY(-5px);
-        }
-        .swiper-pagination-bullet-active {
-            background: #FF0000 !important;
-        }
-        @media (max-width: 768px) {
-            .mobile-nav-premium {
-                background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 248, 0.95));
-                backdrop-filter: blur(20px);
-                border-bottom: 1px solid rgba(255, 0, 0, 0.1);
-            }
-        }
-        .cta-enhanced {
-            background: linear-gradient(135deg, #FF0000 0%, #CC0000 50%, #990000 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .cta-enhanced::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: shimmer 3s infinite;
-        }
-        @keyframes shimmer {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-        .card-hover-effect {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover-effect:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        /* Search Results Styles */
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            max-height: 400px;
-            overflow-y: auto;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-        
-        .search-results.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .search-result-item {
-            padding: 12px 16px;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        
-        .search-result-item:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-        
-        .search-loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .search-spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #f3f3f3;
-            border-top: 2px solid #FF0000;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+
 </head>
 <body class="bg-gray-50">
     <!-- Scroll Progress -->
@@ -259,7 +101,7 @@
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
                 </div>
                 
-                <!-- Enhanced Search and Actions -->
+                <!--  Search and Actions -->
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="relative">
                         <input type="text" 
@@ -302,7 +144,7 @@
                 </div>
             </div>
             
-            <!-- Enhanced Mobile Navigation -->
+            <!--  Mobile Navigation -->
             <div id="mobileMenu" class="md:hidden hidden">
                 <div class="mobile-nav-premium px-2 pt-2 pb-3 space-y-1 border-t shadow-lg">
                     <div class="px-3 py-2">
@@ -370,7 +212,7 @@
     <section class="relative hero-gradient py-12 lg:py-8 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div data-aos="fade-right">
+                <div >
                     <div class="text-sm font-medium text-aktara-red mb-4 tracking-wider uppercase">HANDCRAFTED
                         EXCELLENCE SINCE 1985</div>
                     <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold text-aktara-black mb-6 leading-tight">
@@ -407,9 +249,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative" data-aos="fade-left">
+                <div class="relative" x-data="{ fade: false }" x-intersect:enter="fade = true">
                     <div class="relative">
-                        <img src="/public/images/one.jpg" alt="Beautiful Saree Collection"
+                        <img src="/assets/hero.png" alt="Beautiful Saree Collection"
                             class="w-full h-auto rounded-2xl shadow-2xl skeleton" loading="lazy">
                         <div class="absolute -top-4 -right-4 bg-aktara-red text-white p-2 lg:p-3 rounded-full">
                             <span class="text-xs lg:text-sm font-bold">NEW</span>
@@ -424,7 +266,7 @@
     <section class="py-8 lg:py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8 text-center">
-                <div data-aos="fade-up" data-aos-delay="100">
+                <div ">
                     <div
                         class="bg-green-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-shipping-fast text-green-600 text-xl lg:text-2xl"></i>
@@ -432,7 +274,7 @@
                     <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Free Shipping</h3>
                     <p class="text-xs lg:text-sm text-gray-600">On orders above ₹2,999</p>
                 </div>
-                <div data-aos="fade-up" data-aos-delay="200">
+                <div >
                     <div
                         class="bg-blue-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-undo text-blue-600 text-xl lg:text-2xl"></i>
@@ -440,7 +282,7 @@
                     <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">15 Day Return</h3>
                     <p class="text-xs lg:text-sm text-gray-600">Easy return policy</p>
                 </div>
-                <div data-aos="fade-up" data-aos-delay="300">
+                <div >
                     <div
                         class="bg-purple-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-shield-alt text-purple-600 text-xl lg:text-2xl"></i>
@@ -448,7 +290,7 @@
                     <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Secure Payment</h3>
                     <p class="text-xs lg:text-sm text-gray-600">100% secure transactions</p>
                 </div>
-                <div data-aos="fade-up" data-aos-delay="400">
+                <div ="fade-up" -delay="400">
                     <div
                         class="bg-yellow-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-bolt text-yellow-600 text-xl lg:text-2xl"></i>
@@ -463,13 +305,13 @@
     <!-- Featured Categories -->
     <section class="py-12 lg:py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 lg:mb-12" data-aos="fade-up">
+            <div class="text-center mb-8 lg:mb-12" ="fade-up">
                 <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-4">Shop by Category</h2>
                 <p class="text-base lg:text-lg text-gray-600">Explore our curated collection of premium sarees</p>
             </div>
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                <a href="category.html?category=silk" class="group cursor-pointer" data-aos="fade-up"
-                    data-aos-delay="100">
+                <a href="category.html?category=silk" class="group cursor-pointer" ="fade-up"
+                    -delay="100">
                     <div
                         class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-purple-50 to-purple-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
                         <img src="https://img.freepik.com/premium-photo/zari-embroidered-red-silk-bridal-saree-indian-clothes_1342603-13343.jpg?w=740"
@@ -484,8 +326,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="category.html?category=cotton" class="group cursor-pointer" data-aos="fade-up"
-                    data-aos-delay="200">
+                <a href="category.html?category=cotton" class="group cursor-pointer">
                     <div
                         class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
                         <img src="https://www.teejh.com/cdn/shop/products/TES223_1_720x.jpg?v=1666258983"
@@ -500,8 +341,8 @@
                         </div>
                     </div>
                 </a>
-                <a href="category.html?category=designer" class="group cursor-pointer" data-aos="fade-up"
-                    data-aos-delay="300">
+                <a href="category.html?category=designer" class="group cursor-pointer" ="fade-up"
+                    -delay="300">
                     <div
                         class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-pink-50 to-pink-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
                         <img src="https://www.manyavar.com/dw/image/v2/BJZV_PRD/on/demandware.static/-/Library-Sites-ManyavarSharedLibrary/default/dw27ddc46f/blog-How-to-Choose-the-Right-Fabric-and-Pattern-for-Your-Saree-A-Guide.jpg"
@@ -516,8 +357,8 @@
                         </div>
                     </div>
                 </a>
-                <a href="category.html?category=bridal" class="group cursor-pointer" data-aos="fade-up"
-                    data-aos-delay="400">
+                <a href="category.html?category=bridal" class="group cursor-pointer" ="fade-up"
+                    -delay="400">
                     <div
                         class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-red-50 to-red-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLAouvSQF0mxFpbBIWAiD5-XVyz-xveLetTA&s"
@@ -536,10 +377,10 @@
         </div>
     </section>
 
-    <!-- Enhanced Trending Videos Section -->
+    <!--  Trending Videos Section -->
     <section class="py-8 lg:py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center mb-6" data-aos="fade-up">
+            <div class="flex justify-between items-center mb-6" ="fade-up">
                 <h2 class="text-xl lg:text-2xl font-bold">
                     <span class="text-aktara-red">Trending</span> Saree Videos
                 </h2>
@@ -551,7 +392,7 @@
             </div>
 
             <!-- Swiper Container -->
-            <div class="swiper trendingVideosSwiper" data-aos="fade-up" data-aos-delay="200">
+            <div class="swiper trendingVideosSwiper" ="fade-up" -delay="200">
                 <div class="swiper-wrapper">
                     <!-- Video Card 1 -->
                     <div class="swiper-slide">
@@ -739,7 +580,7 @@
     <section class="py-12 lg:py-16 bg-gradient-to-br from-red-50 to-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div data-aos="fade-right">
+                <div ="fade-right">
                     <div class="text-sm font-medium text-aktara-red mb-4 tracking-wider uppercase">OUR HERITAGE</div>
                     <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-6">
                         <span class="text-aktara-red">39 Years</span> of<br>
@@ -772,8 +613,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="relative" data-aos="fade-left">
-                    <img src="/public/images/one.jpg" alt="Heritage Story"
+                <div class="relative" ="fade-left">
+                    <img src="/assets/hero.png" alt="Heritage Story"
                         class="w-full h-auto rounded-2xl shadow-2xl skeleton" loading="lazy">
                     <div class="absolute -bottom-4 -left-4 bg-white p-3 lg:p-4 rounded-xl shadow-lg">
                         <div class="text-xl lg:text-2xl font-bold text-aktara-red mb-1">200+</div>
@@ -788,10 +629,10 @@
         </div>
     </section>
 
-    <!-- Enhanced Best Selling Products (No Pricing) -->
+    <!--  Best Selling Products (No Pricing) -->
     <section class="py-12 lg:py-16 bg-white" id="products-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center mb-8 lg:mb-12" data-aos="fade-up">
+            <div class="flex justify-between items-center mb-8 lg:mb-12" ="fade-up">
                 <div>
                     <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-2">Best Sellers</h2>
                     <p class="text-base lg:text-lg text-gray-600">Our customers' favorite picks</p>
@@ -804,8 +645,8 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6" id="products-grid">
                 <!-- Product 1 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="100">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                    -delay="100">
                     <div class="relative">
                         <img src="https://lajreedesigner.com/cdn/shop/files/KP-Karishma-Red_5_900x1350_crop_center@2x.jpg?v=1745495600"
                             alt="Royal Red Silk Saree"
@@ -843,8 +684,8 @@
                 </div>
                 
                 <!-- Product 2 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="200">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                    -delay="200">
                     <div class="relative">
                         <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSOasMiGNdg35aA_gedyxtQrTdiqiD9CkOB84MO-PfrA5jT7KywRbaBYaYv3K-aai2hUUjG0ds8hdgSliDfV8Tcmp20v_5yjWRTYM_PqL8HyPN2-MbhLUqG"
                             alt="Blue Cotton Saree"
@@ -878,8 +719,8 @@
                 </div>
                 
                 <!-- Product 3 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="300">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                    -delay="300">
                     <div class="relative">
                         <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSxsA-rILRGxU6gC2sCdj0FcqyLFgQRUWS_ISaaYzN_j1rSF5kjNUkIV6VD9fwF6dHHY6ZkCjsUKRp97x5E4Dg_WrIWbNWV0BSzSC9b1wk"
                             alt="Green Designer Saree"
@@ -913,8 +754,8 @@
                 </div>
                 
                 <!-- Product 4 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="400">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                    -delay="400">
                     <div class="relative">
                         <img src="https://www.banarasee.in/cdn/shop/files/IMG_9630_940x.jpg?v=1683428505"
                             alt="Pink Bridal Saree"
@@ -957,14 +798,14 @@
     <!-- Curated Collection -->
     <section class="py-12 lg:py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 lg:mb-12" data-aos="fade-up">
+            <div class="text-center mb-8 lg:mb-12" ="fade-up">
                 <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-4">Curated for Your Closet</h2>
                 <p class="text-base lg:text-lg text-gray-600">Handpicked sarees that define elegance</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
                 <!-- Featured Item 1 -->
                 <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
-                    data-aos="fade-up" data-aos-delay="100">
+                    ="fade-up" -delay="100">
                     <img src="https://images.textilecatalog.in/images/800/catalog/20221126/1669441176802008534-WhatsApp%20Image%202022-11-25%20at%204.10.27%20PM.jpeg"
                         alt="Festive Collection" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
                     <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2">Festive Collection</h3>
@@ -978,7 +819,7 @@
                 
                 <!-- Featured Item 2 -->
                 <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
-                    data-aos="fade-up" data-aos-delay="200">
+                    ="fade-up" -delay="200">
                     <img src="https://www.loomfolks.com/wp-content/uploads/2024/01/Perfect-Smart-Soothing-Ocean-Blue-Cotton-Ikkat-Office-Wear-Formal-Saree1.jpg"
                         alt="Office Wear" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
                     <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2">Office Wear</h3>
@@ -991,7 +832,7 @@
                 
                 <!-- Featured Item 3 -->
                 <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
-                    data-aos="fade-up" data-aos-delay="300">
+                    ="fade-up" -delay="300">
                     <img src="https://www.anantexports.in/cdn/shop/products/WhatsAppImage2022-09-06at3.49.22PM.jpg?v=1662632943&width=1946"
                         alt="Party Wear" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
                     <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2">Party Wear</h3>
@@ -1005,10 +846,10 @@
         </div>
     </section>
 
-    <!-- Enhanced Latest Arrivals (No Pricing) -->
+    <!--  Latest Arrivals (No Pricing) -->
     <section class="py-12 lg:py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center mb-8 lg:mb-12" data-aos="fade-up">
+            <div class="flex justify-between items-center mb-8 lg:mb-12" ="fade-up">
                 <div>
                     <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-2">Latest Arrivals</h2>
                     <p class="text-base lg:text-lg text-gray-600">Fresh designs just added to our collection</p>
@@ -1021,8 +862,8 @@
             </div>
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                 <!-- New Product 1 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="100">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                    -delay="100">
                     <div class="relative">
                         <img src="https://www.lavanyathelabel.com/cdn/shop/files/lbl101ks886_1_700x.jpg?v=1752668380"
                             alt="Yellow Chiffon Saree"
@@ -1053,8 +894,8 @@
                 </div>
                 
                 <!-- New Product 2 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="200">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                    -delay="200">
                     <div class="relative">
                         <img src="https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg"
                             alt="Purple Georgette Saree"
@@ -1085,8 +926,8 @@
                 </div>
                 
                 <!-- New Product 3 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="300">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                    -delay="300">
                     <div class="relative">
                         <img src="https://resources.indianclothstore.com/productimages/Maroon-Silk-Saree-With-Blouse-18710418042024.jpg"
                             alt="Maroon Silk Saree"
@@ -1117,8 +958,8 @@
                 </div>
                 
                 <!-- New Product 4 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="400">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                    -delay="400">
                     <div class="relative">
                         <img src="https://arvisaa.com/cdn/shop/products/KP-Kalyani-Orange_1_720x.jpg?v=1737618305"
                             alt="Orange Cotton Saree"
@@ -1201,15 +1042,15 @@
     <!-- Customer Testimonials -->
     <section class="py-12 lg:py-16 bg-gradient-to-br from-red-50 to-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 lg:mb-12" data-aos="fade-up">
+            <div class="text-center mb-8 lg:mb-12" ="fade-up">
                 <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-4">
                     What Our <span class="text-aktara-red">Customers</span> Say
                 </h2>
                 <p class="text-base lg:text-lg text-gray-600">Join thousands of satisfied customers who trust Aktara</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="100">
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" ="fade-up"
+                    -delay="100">
                     <div class="flex items-center mb-4">
                         <div class="flex text-yellow-400">
                             ★★★★★
@@ -1228,8 +1069,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="200">
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" ="fade-up"
+                    -delay="200">
                     <div class="flex items-center mb-4">
                         <div class="flex text-yellow-400">
                             ★★★★★
@@ -1248,8 +1089,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" data-aos="fade-up"
-                    data-aos-delay="300">
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" ="fade-up"
+                    -delay="300">
                     <div class="flex items-center mb-4">
                         <div class="flex text-yellow-400">
                             ★★★★★
@@ -1272,19 +1113,19 @@
             
             <!-- Customer Stats -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 mt-12 lg:mt-16 text-center">
-                <div data-aos="fade-up" data-aos-delay="100">
+                <div ="fade-up" -delay="100">
                     <div class="text-2xl lg:text-3xl font-bold text-aktara-red mb-2">25,000+</div>
                     <div class="text-gray-600 text-sm lg:text-base">Happy Customers</div>
                 </div>
-                <div data-aos="fade-up" data-aos-delay="200">
+                <div ="fade-up" -delay="200">
                     <div class="text-2xl lg:text-3xl font-bold text-aktara-red mb-2">4.9/5</div>
                     <div class="text-gray-600 text-sm lg:text-base">Average Rating</div>
                 </div>
-                <div data-aos="fade-up" data-aos-delay="300">
+                <div ="fade-up" -delay="300">
                     <div class="text-2xl lg:text-3xl font-bold text-aktara-red mb-2">98%</div>
                     <div class="text-gray-600 text-sm lg:text-base">Satisfaction Rate</div>
                 </div>
-                <div data-aos="fade-up" data-aos-delay="400">
+                <div ="fade-up" -delay="400">
                     <div class="text-2xl lg:text-3xl font-bold text-aktara-red mb-2">15,000+</div>
                     <div class="text-gray-600 text-sm lg:text-base">5-Star Reviews</div>
                 </div>
@@ -1292,10 +1133,10 @@
         </div>
     </section>
 
-    <!-- Enhanced Newsletter CTA -->
-    <section class="py-12 lg:py-16 cta-enhanced relative">
+    <!--  Newsletter CTA -->
+    <!-- <section class="py-12 lg:py-16 cta- relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center" data-aos="fade-up">
+            <div class="text-center" ="fade-up">
                 <h2 class="text-2xl lg:text-4xl font-bold text-white mb-4">Stay in Style</h2>
                 <p class="text-lg lg:text-xl text-red-100 mb-8 max-w-2xl mx-auto">
                     Subscribe to our newsletter for the latest saree collections, styling tips, and exclusive offers
@@ -1311,7 +1152,7 @@
                     </button>
                 </form>
                 <p class="text-red-100 text-sm mt-4">Join 25,000+ happy customers who love our sarees</p>
-                <!-- <div class="flex justify-center space-x-6 mt-6">
+                <div class="flex justify-center space-x-6 mt-6">
                     <div class="text-center">
                         <div class="text-lg font-bold text-white">Weekly</div>
                         <div class="text-red-200 text-sm">New Arrivals</div>
@@ -1324,18 +1165,18 @@
                         <div class="text-lg font-bold text-white">Style</div>
                         <div class="text-red-200 text-sm">Tips</div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <!-- Enhanced Footer with Logo SVG -->
+    <!-- Footer -->
     <footer class="bg-aktara-black text-white py-12 lg:py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 <!-- Brand Section with Logo -->
                 <div class="lg:col-span-2">
-                    <!-- Enhanced Logo SVG -->
+                    <!--  Logo -->
                     <div class="flex items-center mb-6">
                         <img src="assets/logo.jpg" alt="" class="w-auto h-16 rounded-lg mr-3">
                     </div>
