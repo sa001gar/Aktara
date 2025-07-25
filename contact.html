@@ -13,6 +13,7 @@
             --color-aktara-black: #000000;
         }
     </style>
+
     <style>
         .fade-in {
             opacity: 0;
@@ -25,20 +26,28 @@
             transform: translateY(0);
         }
 
-        .floating-element {
-            animation: float 6s ease-in-out infinite;
+        .contact-card {
+            transition: all 0.3s ease;
         }
 
-        @keyframes float {
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes pulse {
 
             0%,
             100% {
-                transform: translateY(0px);
+                transform: scale(1);
             }
 
             50% {
-                transform: translateY(-20px);
+                transform: scale(1.05);
             }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
@@ -57,6 +66,7 @@
     showSuccess: false,
     handleSubmit() {
         this.isSubmitting = true;
+        // Simulate form submission
         setTimeout(() => {
             this.isSubmitting = false;
             this.showSuccess = true;
@@ -221,28 +231,32 @@
         </div>
     </nav>
 
-    <!-- Breadcrumb -->
-    <div class="bg-white border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <nav class="flex" aria-label="Breadcrumb">
-                <ol class="flex items-center space-x-4">
-                    <li>
-                        <a href="index.html" class="text-gray-500 hover:text-aktara-red transition-colors">Home</a>
-                    </li>
-                    <li>
-                        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </li>
-                    <li>
-                        <span class="text-aktara-black font-medium">Contact Us</span>
-                    </li>
-                </ol>
-            </nav>
+    <!-- Hero Section -->
+    <section
+        class="relative bg-gradient-to-br from-aktara-red via-red-600 to-red-800 text-white py-20 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                    Contact <span class="text-yellow-300">Us</span>
+                </h1>
+                <p class="text-xl md:text-2xl max-w-4xl mx-auto mb-8 leading-relaxed">
+                    We'd love to hear from you. Get in touch with our team for any questions about our sarees or
+                    services.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact-form"
+                        class="inline-block bg-white text-aktara-red px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+                        Send Message
+                    </a>
+                    <a href="#contact-info"
+                        class="inline-block border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-aktara-red transition-all duration-300 transform hover:scale-105">
+                        Get Directions
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- Success Message -->
     <div x-show="showSuccess" x-transition
@@ -256,254 +270,261 @@
     </div>
 
     <!-- Contact Information Cards -->
-    <section class="py-16 bg-white">
+    <section id="contact-info" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 fade-in">
-                <h1 class="text-3xl md:text-4xl font-bold text-aktara-black mb-4">Contact Us</h1>
-                <p class="text-lg text-gray-600">We'd love to hear from you. Get in touch with our team for any
-                    questions about our sarees or services.</p>
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-aktara-black mb-6">Get in Touch</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Multiple ways to reach us. Choose what works best for you.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                <!-- Visit Store Card -->
-                <div class="fade-in">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                    class="contact-card bg-gradient-to-br from-aktara-red to-red-600 text-white p-8 rounded-2xl shadow-xl fade-in">
                     <div
-                        class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white text-center hover:shadow-xl transition-shadow duration-300">
-                        <div
-                            class="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                </path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Visit Our Store</h3>
-                        <p class="text-sm opacity-90">123 Textile Street<br>Fashion District<br>Mumbai, Maharashtra
-                            400001</p>
+                        class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6 pulse-animation">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
                     </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Visit Our Store</h3>
+                    <p class="text-center text-sm leading-relaxed">
+                        123 Textile Street<br>
+                        Fashion District<br>
+                        Mumbai, Maharashtra 400001<br>
+                        India
+                    </p>
                 </div>
 
-                <!-- Call Us Card -->
-                <div class="fade-in">
+                <div
+                    class="contact-card bg-gradient-to-br from-gray-800 to-aktara-black text-white p-8 rounded-2xl shadow-xl fade-in">
                     <div
-                        class="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white text-center hover:shadow-xl transition-shadow duration-300">
-                        <div
-                            class="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm10-10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Call Us</h3>
-                        <p class="text-sm opacity-90">+91 98765 43210<br>+91 98765 43211<br>Mon-Sat: 10AM-8PM</p>
+                        class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6 pulse-animation">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm10-10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                            </path>
+                        </svg>
                     </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Call Us</h3>
+                    <p class="text-center text-sm leading-relaxed">
+                        +91 98765 43210<br>
+                        +91 98765 43211<br>
+                        Mon-Sat: 10AM-8PM<br>
+                        Sunday: 11AM-6PM
+                    </p>
                 </div>
 
-                <!-- Email Us Card -->
-                <div class="fade-in">
+                <div
+                    class="contact-card bg-gradient-to-br from-blue-600 to-blue-800 text-white p-8 rounded-2xl shadow-xl fade-in">
                     <div
-                        class="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white text-center hover:shadow-xl transition-shadow duration-300">
-                        <div
-                            class="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Email Us</h3>
-                        <p class="text-sm opacity-90">info@aktara.com<br>support@aktara.com<br>orders@aktara.com</p>
+                        class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6 pulse-animation">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
                     </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Email Us</h3>
+                    <p class="text-center text-sm leading-relaxed">
+                        info@aktara.com<br>
+                        support@aktara.com<br>
+                        orders@aktara.com<br>
+                        wholesale@aktara.com
+                    </p>
                 </div>
 
-                <!-- Business Hours Card -->
-                <div class="fade-in">
+                <div
+                    class="contact-card bg-gradient-to-br from-green-600 to-green-800 text-white p-8 rounded-2xl shadow-xl fade-in">
                     <div
-                        class="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white text-center hover:shadow-xl transition-shadow duration-300">
-                        <div
-                            class="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Business Hours</h3>
-                        <p class="text-sm opacity-90">Mon-Sat: 10AM-8PM<br>Sunday: 11AM-6PM<br>Closed on holidays</p>
+                        class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6 pulse-animation">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                     </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Business Hours</h3>
+                    <p class="text-center text-sm leading-relaxed">
+                        Monday - Saturday<br>
+                        10:00 AM - 8:00 PM<br>
+                        Sunday: 11:00 AM - 6:00 PM<br>
+                        Closed on holidays
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Form Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-2">
-                    <!-- Form -->
-                    <div class="p-8 lg:p-12">
-                        <div class="fade-in">
-                            <h2 class="text-3xl font-bold text-aktara-black mb-2">Send us a Message</h2>
-                            <p class="text-gray-600 mb-8">Fill out the form below and we'll get back to you as soon as
-                                possible.</p>
-
-                            <form @submit.prevent="handleSubmit()" class="space-y-6">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name
-                                            *</label>
-                                        <input type="text" id="name" x-model="formData.name" required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
-                                            placeholder="Your full name">
-                                    </div>
-                                    <div>
-                                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email
-                                            Address *</label>
-                                        <input type="email" id="email" x-model="formData.email" required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
-                                            placeholder="your.email@example.com">
-                                    </div>
-                                </div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone
-                                            Number</label>
-                                        <input type="tel" id="phone" x-model="formData.phone"
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
-                                            placeholder="+91 98765 43210">
-                                    </div>
-                                    <div>
-                                        <label for="subject"
-                                            class="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
-                                        <select id="subject" x-model="formData.subject" required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors">
-                                            <option value="">Select a subject</option>
-                                            <option value="general">General Inquiry</option>
-                                            <option value="product">Product Question</option>
-                                            <option value="order">Order Support</option>
-                                            <option value="return">Returns & Exchanges</option>
-                                            <option value="wholesale">Wholesale Inquiry</option>
-                                            <option value="custom">Custom Order</option>
-                                        </select>
-                                    </div>
-                                </div>
-
+    <section id="contact-form" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Form -->
+                <div class="fade-in">
+                    <div class="bg-white p-8 lg:p-12 rounded-2xl shadow-xl">
+                        <h2 class="text-3xl md:text-4xl font-bold text-aktara-black mb-8">Send us a Message</h2>
+                        <form @submit.prevent="handleSubmit()" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name
                                         *</label>
-                                    <textarea id="message" x-model="formData.message" required rows="6"
+                                    <input type="text" id="name" x-model="formData.name" required
                                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
-                                        placeholder="Tell us how we can help you..."></textarea>
+                                        placeholder="Your full name">
                                 </div>
-
-                                <div class="flex items-center">
-                                    <input id="newsletter" type="checkbox"
-                                        class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded">
-                                    <label for="newsletter" class="ml-2 block text-sm text-gray-700">
-                                        Subscribe to our newsletter for latest updates and offers
-                                    </label>
-                                </div>
-
-                                <button type="submit" :disabled="isSubmitting"
-                                    class="w-full bg-aktara-red text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-aktara-red transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                                    <span x-show="!isSubmitting">Send Message</span>
-                                    <span x-show="isSubmitting" class="flex items-center justify-center">
-                                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                                stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor"
-                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                            </path>
-                                        </svg>
-                                        Sending...
-                                    </span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Contact Info Sidebar -->
-                    <div class="bg-gradient-to-br from-aktara-red to-red-600 p-8 lg:p-12 text-white">
-                        <div class="fade-in">
-                            <h3 class="text-2xl font-bold mb-8">Need Immediate Help?</h3>
-
-                            <div class="space-y-6">
-                                <div class="flex items-start space-x-4">
-                                    <div class="bg-white bg-opacity-20 p-3 rounded-full flex-shrink-0">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm10-10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold mb-1">Call us directly</h4>
-                                        <p class="text-sm opacity-90">+91 98765 43210</p>
-                                        <p class="text-sm opacity-90">Available Mon-Sat, 10AM-8PM</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-start space-x-4">
-                                    <div class="bg-white bg-opacity-20 p-3 rounded-full flex-shrink-0">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold mb-1">Email support</h4>
-                                        <p class="text-sm opacity-90">support@aktara.com</p>
-                                        <p class="text-sm opacity-90">We respond within 24 hours</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-start space-x-4">
-                                    <div class="bg-white bg-opacity-20 p-3 rounded-full flex-shrink-0">
-                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold mb-1">WhatsApp</h4>
-                                        <p class="text-sm opacity-90">+91 98765 43210</p>
-                                        <p class="text-sm opacity-90">Quick responses available</p>
-                                    </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email
+                                        Address *</label>
+                                    <input type="email" id="email" x-model="formData.email" required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
+                                        placeholder="your.email@example.com">
                                 </div>
                             </div>
 
-                            <!-- Social Media -->
-                            <div class="mt-8 pt-8 border-t border-white border-opacity-20">
-                                <h4 class="font-semibold mb-4">Follow Us</h4>
-                                <div class="flex space-x-4">
-                                    <a href="#"
-                                        class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-opacity-30 transition-all duration-300">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                                        </svg>
-                                    </a>
-                                    <a href="#"
-                                        class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-opacity-30 transition-all duration-300">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                                        </svg>
-                                    </a>
-                                    <a href="#"
-                                        class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-opacity-30 transition-all duration-300">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
-                                        </svg>
-                                    </a>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone
+                                        Number</label>
+                                    <input type="tel" id="phone" x-model="formData.phone"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
+                                        placeholder="+91 98765 43210">
                                 </div>
+                                <div>
+                                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject
+                                        *</label>
+                                    <select id="subject" x-model="formData.subject" required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors">
+                                        <option value="">Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="product">Product Question</option>
+                                        <option value="order">Order Support</option>
+                                        <option value="return">Returns & Exchanges</option>
+                                        <option value="wholesale">Wholesale Inquiry</option>
+                                        <option value="custom">Custom Order</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message
+                                    *</label>
+                                <textarea id="message" x-model="formData.message" required rows="6"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
+                                    placeholder="Tell us how we can help you..."></textarea>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input id="newsletter" type="checkbox"
+                                    class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded">
+                                <label for="newsletter" class="ml-2 block text-sm text-gray-700">
+                                    Subscribe to our newsletter for latest updates and offers
+                                </label>
+                            </div>
+
+                            <button type="submit" :disabled="isSubmitting"
+                                class="w-full bg-aktara-red text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-aktara-red transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                                <span x-show="!isSubmitting">Send Message</span>
+                                <span x-show="isSubmitting" class="flex items-center justify-center">
+                                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                            stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                        </path>
+                                    </svg>
+                                    Sending...
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contact Info & Map -->
+                <div class="fade-in">
+                    <div class="space-y-8">
+                        <!-- Map Placeholder -->
+                        <div class="bg-gray-200 rounded-2xl h-64 flex items-center justify-center">
+                            <div class="text-center">
+                                <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <p class="text-gray-600">Interactive Map</p>
+                                <p class="text-sm text-gray-500">123 Textile Street, Mumbai</p>
+                            </div>
+                        </div>
+
+                        <!-- Social Media -->
+                        <div class="bg-white p-8 rounded-2xl shadow-xl">
+                            <h3 class="text-2xl font-bold text-aktara-black mb-6">Follow Us</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <a href="#"
+                                    class="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                                    <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                                    </svg>
+                                    <span class="font-medium text-gray-700">Twitter</span>
+                                </a>
+                                <a href="#"
+                                    class="flex items-center space-x-3 p-4 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors">
+                                    <svg class="w-6 h-6 text-pink-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                    </svg>
+                                    <span class="font-medium text-gray-700">Instagram</span>
+                                </a>
+                                <a href="#"
+                                    class="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                                    <svg class="w-6 h-6 text-blue-700" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                    </svg>
+                                    <span class="font-medium text-gray-700">LinkedIn</span>
+                                </a>
+                                <a href="#"
+                                    class="flex items-center space-x-3 p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+                                    <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                                    </svg>
+                                    <span class="font-medium text-gray-700">WhatsApp</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Quick Contact -->
+                        <div class="bg-gradient-to-br from-aktara-red to-red-600 text-white p-8 rounded-2xl">
+                            <h3 class="text-2xl font-bold mb-4">Need Immediate Help?</h3>
+                            <p class="mb-6">For urgent inquiries, call us directly or send a WhatsApp message.</p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="tel:+919876543210"
+                                    class="flex items-center justify-center space-x-2 bg-white bg-opacity-20 px-4 py-3 rounded-lg hover:bg-opacity-30 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm10-10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                                        </path>
+                                    </svg>
+                                    <span>Call Now</span>
+                                </a>
+                                <a href="https://wa.me/919876543210"
+                                    class="flex items-center justify-center space-x-2 bg-white bg-opacity-20 px-4 py-3 rounded-lg hover:bg-opacity-30 transition-colors">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                                    </svg>
+                                    <span>WhatsApp</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -513,56 +534,47 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold text-aktara-black mb-4">Frequently Asked Questions</h2>
-                <p class="text-lg text-gray-600">Quick answers to common questions</p>
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-aktara-black mb-6">Frequently Asked Questions</h2>
+                <p class="text-xl text-gray-600">Quick answers to common questions</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="fade-in">
-                    <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                        <h3 class="text-lg font-semibold text-aktara-black mb-3">What is your return policy?</h3>
-                        <p class="text-gray-600">We offer a 15-day return policy for all our sarees. Items must be in
-                            original condition with tags attached.</p>
-                    </div>
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in">
+                    <h3 class="text-xl font-bold text-aktara-black mb-4">What is your return policy?</h3>
+                    <p class="text-gray-600 leading-relaxed">We offer a 15-day return policy for all our sarees. Items
+                        must be in original condition with tags attached. Custom orders are non-returnable unless
+                        there's a manufacturing defect.</p>
                 </div>
-                <div class="fade-in">
-                    <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                        <h3 class="text-lg font-semibold text-aktara-black mb-3">Do you offer international shipping?
-                        </h3>
-                        <p class="text-gray-600">Yes, we ship worldwide. International shipping costs and delivery times
-                            vary by location.</p>
-                    </div>
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in">
+                    <h3 class="text-xl font-bold text-aktara-black mb-4">Do you offer international shipping?</h3>
+                    <p class="text-gray-600 leading-relaxed">Yes, we ship worldwide. International shipping costs and
+                        delivery times vary by location. Express shipping options are available for urgent orders.</p>
                 </div>
-                <div class="fade-in">
-                    <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                        <h3 class="text-lg font-semibold text-aktara-black mb-3">How do I care for my saree?</h3>
-                        <p class="text-gray-600">Most of our sarees require dry cleaning. Specific care instructions are
-                            provided with each purchase.</p>
-                    </div>
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in">
+                    <h3 class="text-xl font-bold text-aktara-black mb-4">How do I care for my saree?</h3>
+                    <p class="text-gray-600 leading-relaxed">Most of our sarees require dry cleaning for best results.
+                        Specific care instructions are provided with each purchase. Silk sarees should be stored in
+                        breathable fabric bags.</p>
                 </div>
-                <div class="fade-in">
-                    <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                        <h3 class="text-lg font-semibold text-aktara-black mb-3">Do you offer custom designs?</h3>
-                        <p class="text-gray-600">Yes, we offer custom saree designs. Contact us with your requirements
-                            for a personalized quote.</p>
-                    </div>
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in">
+                    <h3 class="text-xl font-bold text-aktara-black mb-4">Do you offer custom designs?</h3>
+                    <p class="text-gray-600 leading-relaxed">Yes, we offer custom saree designs and alterations. Contact
+                        us with your requirements for a personalized quote. Custom orders typically take 2-4 weeks to
+                        complete.</p>
                 </div>
-                <div class="fade-in">
-                    <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                        <h3 class="text-lg font-semibold text-aktara-black mb-3">What payment methods do you accept?
-                        </h3>
-                        <p class="text-gray-600">We accept all major credit cards, debit cards, UPI, net banking, and
-                            cash on delivery.</p>
-                    </div>
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in">
+                    <h3 class="text-xl font-bold text-aktara-black mb-4">What payment methods do you accept?</h3>
+                    <p class="text-gray-600 leading-relaxed">We accept all major credit cards, debit cards, UPI
+                        payments, net banking, and cash on delivery for domestic orders. International customers can pay
+                        via PayPal or international cards.</p>
                 </div>
-                <div class="fade-in">
-                    <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                        <h3 class="text-lg font-semibold text-aktara-black mb-3">How long does shipping take?</h3>
-                        <p class="text-gray-600">Domestic orders typically arrive within 3-7 business days.
-                            International shipping takes 7-14 business days.</p>
-                    </div>
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in">
+                    <h3 class="text-xl font-bold text-aktara-black mb-4">How can I track my order?</h3>
+                    <p class="text-gray-600 leading-relaxed">Once your order is shipped, you'll receive a tracking
+                        number via email and SMS. You can track your order on our website or directly on the courier's
+                        website.</p>
                 </div>
             </div>
         </div>
@@ -688,6 +700,14 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="backToTop"
+        class="fixed bottom-6 right-6 bg-aktara-red text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-red-700 transform hover:scale-110 z-50">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
     <script>
         // Intersection Observer for fade-in animations
         const observerOptions = {
@@ -706,6 +726,26 @@
         // Observe all fade-in elements
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
+        });
+
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 
