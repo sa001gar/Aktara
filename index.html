@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,10 +28,11 @@
     <link rel="stylesheet" href="css/index.css">
 
 </head>
+
 <body class="bg-gray-50">
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
-    
+
     <!-- Navigation -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <!-- Top Bar -->
@@ -53,21 +55,20 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Main Navigation -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex-shrink-0">
                     <a href="index.html" class="flex items-center">
-                        <!-- Logo -->
-                        <img src="assets/logo_new.png" alt="" class="h-10 md:h-12 lg:h-14">
+                        <img src="assets/logo_new.png" alt="Aktara Logo" class="h-10 md:h-12 lg:h-14">
                     </a>
                 </div>
-                
+
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <a href="index.html"
-                        class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium">HOME</a>
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">HOME</a>
                     <div class="relative group">
                         <a href="category.html"
                             class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors flex items-center">
@@ -77,56 +78,45 @@
                         <div
                             class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                             <div class="py-2">
-                                <a href="category.html?category=silk"
+                                <a href="collections.html?collection=silk"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Silk
                                     Sarees</a>
-                                <a href="category.html?category=cotton"
+                                <a href="collections.html?collection=cotton"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Cotton
                                     Sarees</a>
-                                <a href="category.html?category=designer"
+                                <a href="collections.html?collection=designer"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Designer
                                     Collection</a>
-                                <a href="category.html?category=bridal"
+                                <a href="collections.html?collection=bridal"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Bridal
                                     Collection</a>
                             </div>
                         </div>
                     </div>
-                    <a href="category.html?category=new"
+                    <a href="collections.html?collection=new"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">NEW
                         ARRIVALS</a>
                     <a href="about.html"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">ABOUT</a>
+                    <a href="blog.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">BLOG</a>
                     <a href="contact.html"
-                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
+                        class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium">CONTACT</a>
                 </div>
-                
-                <!--  Search and Actions -->
+
+                <!-- Search and Actions -->
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="relative">
-                        <input type="text" 
-                               id="searchInput"
-                               placeholder="Search sarees..."
-                               class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red"
-                               autocomplete="off">
+                        <input type="text" placeholder="Search sarees..."
+                            class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
                         <i class="fas fa-search absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
-                        
-                        <!-- Search Results Dropdown -->
-                        <div id="searchResults" class="search-results">
-                            <div id="searchLoading" class="search-loading hidden">
-                                <div class="search-spinner"></div>
-                                <span class="ml-2 text-gray-600">Searching...</span>
-                            </div>
-                            <div id="searchResultsList"></div>
-                        </div>
                     </div>
                     <a href="login.html" class="text-aktara-black hover:text-aktara-red transition-colors">
                         <i class="fas fa-user text-xl"></i>
                     </a>
-                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors"
-                        onclick="toggleWishlist()">
+                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors">
                         <i class="fas fa-heart text-xl"></i>
-                        <span id="wishlistCount"
+                        <span
                             class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </button>
                     <a href="cart.html" class="relative text-aktara-black hover:text-aktara-red transition-colors">
@@ -135,7 +125,7 @@
                             class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </a>
                 </div>
-                
+
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button onclick="toggleMobileMenu()" class="text-aktara-black hover:text-aktara-red p-2">
@@ -143,57 +133,36 @@
                     </button>
                 </div>
             </div>
-            
-            <!--  Mobile Navigation -->
+
+            <!-- Mobile Navigation -->
             <div id="mobileMenu" class="md:hidden hidden">
-                <div class="mobile-nav-premium px-2 pt-2 pb-3 space-y-1 border-t shadow-lg">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t shadow-lg">
                     <div class="px-3 py-2">
-                        <div class="relative">
-                            <input type="text" 
-                                   id="mobileSearchInput"
-                                   placeholder="Search sarees..."
-                                   class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red"
-                                   autocomplete="off">
-                            <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
-                            
-                            <!-- Mobile Search Results -->
-                            <div id="mobileSearchResults" class="search-results">
-                                <div id="mobileSearchLoading" class="search-loading hidden">
-                                    <div class="search-spinner"></div>
-                                    <span class="ml-2 text-gray-600">Searching...</span>
-                                </div>
-                                <div id="mobileSearchResultsList"></div>
-                            </div>
-                        </div>
+                        <input type="text" placeholder="Search sarees..."
+                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                        <i class="fas fa-search absolute left-6 top-4.5 text-gray-400"></i>
                     </div>
                     <a href="index.html"
-                        class="text-aktara-red block px-3 py-3 text-base font-medium border-l-4 border-aktara-red bg-red-50">
-                        <i class="fas fa-home mr-3"></i>Home
-                    </a>
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">HOME</a>
                     <a href="category.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
-                        <i class="fas fa-th-large mr-3"></i>Collections
-                    </a>
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">COLLECTIONS</a>
                     <a href="category.html?category=new"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
-                        <i class="fas fa-star mr-3"></i>New Arrivals
-                    </a>
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">NEW
+                        ARRIVALS</a>
                     <a href="about.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
-                        <i class="fas fa-info-circle mr-3"></i>About
-                    </a>
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">ABOUT</a>
+                    <a href="blog.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">BLOG</a>
                     <a href="contact.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
-                        <i class="fas fa-envelope mr-3"></i>Contact
-                    </a>
-                    <a href="login.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
-                        <i class="fas fa-user mr-3"></i>Login
-                    </a>
+                        class="text-aktara-red border-l-4 border-aktara-red bg-red-50 block px-3 py-2 text-base font-medium">CONTACT</a>
                     <div class="flex justify-around py-4 border-t border-gray-200 mt-4">
+                        <a href="login.html"
+                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors">
+                            <i class="fas fa-user text-xl mb-1"></i>
+                            <span class="text-xs">Account</span>
+                        </a>
                         <button
-                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors"
-                            onclick="toggleWishlist()">
+                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors">
                             <i class="fas fa-heart text-xl mb-1"></i>
                             <span class="text-xs">Wishlist</span>
                         </button>
@@ -212,7 +181,7 @@
     <section class="relative hero-gradient py-12 lg:py-8 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div >
+                <div>
                     <div class="text-sm font-medium text-aktara-red mb-4 tracking-wider uppercase">HANDCRAFTED
                         EXCELLENCE SINCE 1985</div>
                     <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold text-aktara-black mb-6 leading-tight">
@@ -268,50 +237,50 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8 text-center">
                 <div ">
                     <div
-                        class="bg-green-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-shipping-fast text-green-600 text-xl lg:text-2xl"></i>
-                    </div>
-                    <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Free Shipping</h3>
-                    <p class="text-xs lg:text-sm text-gray-600">On orders above ₹2,999</p>
+                        class=" bg-green-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center
+                    mx-auto mb-4">
+                    <i class="fas fa-shipping-fast text-green-600 text-xl lg:text-2xl"></i>
                 </div>
-                <div >
-                    <div
-                        class="bg-blue-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-undo text-blue-600 text-xl lg:text-2xl"></i>
-                    </div>
-                    <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">15 Day Return</h3>
-                    <p class="text-xs lg:text-sm text-gray-600">Easy return policy</p>
-                </div>
-                <div >
-                    <div
-                        class="bg-purple-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-shield-alt text-purple-600 text-xl lg:text-2xl"></i>
-                    </div>
-                    <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Secure Payment</h3>
-                    <p class="text-xs lg:text-sm text-gray-600">100% secure transactions</p>
-                </div>
-                <div ="fade-up" -delay="400">
-                    <div
-                        class="bg-yellow-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-bolt text-yellow-600 text-xl lg:text-2xl"></i>
-                    </div>
-                    <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Fast Delivery</h3>
-                    <p class="text-xs lg:text-sm text-gray-600">2-3 business days</p>
-                </div>
+                <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Free Shipping</h3>
+                <p class="text-xs lg:text-sm text-gray-600">On orders above ₹2,999</p>
             </div>
+            <div>
+                <div
+                    class="bg-blue-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-undo text-blue-600 text-xl lg:text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">15 Day Return</h3>
+                <p class="text-xs lg:text-sm text-gray-600">Easy return policy</p>
+            </div>
+            <div>
+                <div
+                    class="bg-purple-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shield-alt text-purple-600 text-xl lg:text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Secure Payment</h3>
+                <p class="text-xs lg:text-sm text-gray-600">100% secure transactions</p>
+            </div>
+            <div="fade-up" -delay="400">
+                <div
+                    class="bg-yellow-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-bolt text-yellow-600 text-xl lg:text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Fast Delivery</h3>
+                <p class="text-xs lg:text-sm text-gray-600">2-3 business days</p>
+            </div>
+        </div>
         </div>
     </section>
 
     <!-- Featured Categories -->
     <section class="py-12 lg:py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 lg:mb-12" ="fade-up">
+            <div class="text-center mb-8 lg:mb-12"="fade-up">
                 <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-4">Shop by Category</h2>
                 <p class="text-base lg:text-lg text-gray-600">Explore our curated collection of premium sarees</p>
             </div>
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                <a href="category.html?category=silk" class="group cursor-pointer" ="fade-up"
-                    -delay="100">
+                <a href="category.html?category=silk" class="group cursor-pointer"="fade-up" -delay="100">
                     <div
                         class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-purple-50 to-purple-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
                         <img src="https://img.freepik.com/premium-photo/zari-embroidered-red-silk-bridal-saree-indian-clothes_1342603-13343.jpg?w=740"
@@ -341,8 +310,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="category.html?category=designer" class="group cursor-pointer" ="fade-up"
-                    -delay="300">
+                <a href="category.html?category=designer" class="group cursor-pointer"="fade-up" -delay="300">
                     <div
                         class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-pink-50 to-pink-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
                         <img src="https://www.manyavar.com/dw/image/v2/BJZV_PRD/on/demandware.static/-/Library-Sites-ManyavarSharedLibrary/default/dw27ddc46f/blog-How-to-Choose-the-Right-Fabric-and-Pattern-for-Your-Saree-A-Guide.jpg"
@@ -357,8 +325,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="category.html?category=bridal" class="group cursor-pointer" ="fade-up"
-                    -delay="400">
+                <a href="category.html?category=bridal" class="group cursor-pointer"="fade-up" -delay="400">
                     <div
                         class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-red-50 to-red-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLAouvSQF0mxFpbBIWAiD5-XVyz-xveLetTA&s"
@@ -380,7 +347,7 @@
     <!--  Trending Videos Section -->
     <section class="py-8 lg:py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center mb-6" ="fade-up">
+            <div class="flex justify-between items-center mb-6"="fade-up">
                 <h2 class="text-xl lg:text-2xl font-bold">
                     <span class="text-aktara-red">Trending</span> Saree Videos
                 </h2>
@@ -392,15 +359,14 @@
             </div>
 
             <!-- Swiper Container -->
-            <div class="swiper trendingVideosSwiper" ="fade-up" -delay="200">
+            <div class="swiper trendingVideosSwiper"="fade-up" -delay="200">
                 <div class="swiper-wrapper">
                     <!-- Video Card 1 -->
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_1.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_1.mp4" autoplay muted loop
+                                    playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
                                     class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
@@ -427,9 +393,8 @@
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_2.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_2.mp4" autoplay muted loop
+                                    playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
                                     class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
@@ -456,9 +421,8 @@
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_3.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_3.mp4" autoplay muted loop
+                                    playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
                                     class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">NEW</span>
@@ -485,9 +449,8 @@
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_4.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_4.mp4" autoplay muted loop
+                                    playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
                                     class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">HOT</span>
@@ -514,9 +477,8 @@
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_5.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_5.mp4" autoplay muted loop
+                                    playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
                                     class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">VIRAL</span>
@@ -543,9 +505,8 @@
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_6.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_6.mp4" autoplay muted loop
+                                    playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 <span
                                     class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">LATEST</span>
@@ -580,7 +541,7 @@
     <section class="py-12 lg:py-16 bg-gradient-to-br from-red-50 to-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div ="fade-right">
+                <div="fade-right">
                     <div class="text-sm font-medium text-aktara-red mb-4 tracking-wider uppercase">OUR HERITAGE</div>
                     <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-6">
                         <span class="text-aktara-red">39 Years</span> of<br>
@@ -613,7 +574,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="relative" ="fade-left">
+                <div class="relative"="fade-left">
                     <img src="/assets/hero.png" alt="Heritage Story"
                         class="w-full h-auto rounded-2xl shadow-2xl skeleton" loading="lazy">
                     <div class="absolute -bottom-4 -left-4 bg-white p-3 lg:p-4 rounded-xl shadow-lg">
@@ -632,7 +593,7 @@
     <!--  Best Selling Products (No Pricing) -->
     <section class="py-12 lg:py-16 bg-white" id="products-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center mb-8 lg:mb-12" ="fade-up">
+            <div class="flex justify-between items-center mb-8 lg:mb-12"="fade-up">
                 <div>
                     <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-2">Best Sellers</h2>
                     <p class="text-base lg:text-lg text-gray-600">Our customers' favorite picks</p>
@@ -645,7 +606,7 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6" id="products-grid">
                 <!-- Product 1 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect"="fade-up"
                     -delay="100">
                     <div class="relative">
                         <img src="https://lajreedesigner.com/cdn/shop/files/KP-Karishma-Red_5_900x1350_crop_center@2x.jpg?v=1745495600"
@@ -682,9 +643,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Product 2 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect"="fade-up"
                     -delay="200">
                     <div class="relative">
                         <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSOasMiGNdg35aA_gedyxtQrTdiqiD9CkOB84MO-PfrA5jT7KywRbaBYaYv3K-aai2hUUjG0ds8hdgSliDfV8Tcmp20v_5yjWRTYM_PqL8HyPN2-MbhLUqG"
@@ -717,9 +678,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Product 3 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect"="fade-up"
                     -delay="300">
                     <div class="relative">
                         <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSxsA-rILRGxU6gC2sCdj0FcqyLFgQRUWS_ISaaYzN_j1rSF5kjNUkIV6VD9fwF6dHHY6ZkCjsUKRp97x5E4Dg_WrIWbNWV0BSzSC9b1wk"
@@ -752,9 +713,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Product 4 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect"="fade-up"
                     -delay="400">
                     <div class="relative">
                         <img src="https://www.banarasee.in/cdn/shop/files/IMG_9630_940x.jpg?v=1683428505"
@@ -798,14 +759,14 @@
     <!-- Curated Collection -->
     <section class="py-12 lg:py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 lg:mb-12" ="fade-up">
+            <div class="text-center mb-8 lg:mb-12"="fade-up">
                 <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-4">Curated for Your Closet</h2>
                 <p class="text-base lg:text-lg text-gray-600">Handpicked sarees that define elegance</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
                 <!-- Featured Item 1 -->
-                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
-                    ="fade-up" -delay="100">
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"="fade-up"
+                    -delay="100">
                     <img src="https://images.textilecatalog.in/images/800/catalog/20221126/1669441176802008534-WhatsApp%20Image%202022-11-25%20at%204.10.27%20PM.jpeg"
                         alt="Festive Collection" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
                     <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2">Festive Collection</h3>
@@ -816,10 +777,10 @@
                         Explore Collection
                     </a>
                 </div>
-                
+
                 <!-- Featured Item 2 -->
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
-                    ="fade-up" -delay="200">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"="fade-up"
+                    -delay="200">
                     <img src="https://www.loomfolks.com/wp-content/uploads/2024/01/Perfect-Smart-Soothing-Ocean-Blue-Cotton-Ikkat-Office-Wear-Formal-Saree1.jpg"
                         alt="Office Wear" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
                     <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2">Office Wear</h3>
@@ -829,10 +790,10 @@
                         Shop Now
                     </a>
                 </div>
-                
+
                 <!-- Featured Item 3 -->
-                <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
-                    ="fade-up" -delay="300">
+                <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"="fade-up"
+                    -delay="300">
                     <img src="https://www.anantexports.in/cdn/shop/products/WhatsAppImage2022-09-06at3.49.22PM.jpg?v=1662632943&width=1946"
                         alt="Party Wear" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
                     <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2">Party Wear</h3>
@@ -849,7 +810,7 @@
     <!--  Latest Arrivals (No Pricing) -->
     <section class="py-12 lg:py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center mb-8 lg:mb-12" ="fade-up">
+            <div class="flex justify-between items-center mb-8 lg:mb-12"="fade-up">
                 <div>
                     <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-2">Latest Arrivals</h2>
                     <p class="text-base lg:text-lg text-gray-600">Fresh designs just added to our collection</p>
@@ -862,7 +823,7 @@
             </div>
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                 <!-- New Product 1 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect"="fade-up"
                     -delay="100">
                     <div class="relative">
                         <img src="https://www.lavanyathelabel.com/cdn/shop/files/lbl101ks886_1_700x.jpg?v=1752668380"
@@ -892,9 +853,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- New Product 2 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect"="fade-up"
                     -delay="200">
                     <div class="relative">
                         <img src="https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg"
@@ -924,9 +885,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- New Product 3 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect"="fade-up"
                     -delay="300">
                     <div class="relative">
                         <img src="https://resources.indianclothstore.com/productimages/Maroon-Silk-Saree-With-Blouse-18710418042024.jpg"
@@ -956,9 +917,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- New Product 4 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect"="fade-up"
                     -delay="400">
                     <div class="relative">
                         <img src="https://arvisaa.com/cdn/shop/products/KP-Kalyani-Orange_1_720x.jpg?v=1737618305"
@@ -1015,7 +976,7 @@
                         style="background-image: url('https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg');">
                     </div>
                 </div>
-                
+
                 <!-- Banner 2 -->
                 <div
                     class="relative bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 rounded-2xl overflow-hidden card-hover-effect min-h-[280px] lg:min-h-[320px]">
@@ -1042,15 +1003,14 @@
     <!-- Customer Testimonials -->
     <section class="py-12 lg:py-16 bg-gradient-to-br from-red-50 to-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 lg:mb-12" ="fade-up">
+            <div class="text-center mb-8 lg:mb-12"="fade-up">
                 <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-4">
                     What Our <span class="text-aktara-red">Customers</span> Say
                 </h2>
                 <p class="text-base lg:text-lg text-gray-600">Join thousands of satisfied customers who trust Aktara</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" ="fade-up"
-                    -delay="100">
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect"="fade-up" -delay="100">
                     <div class="flex items-center mb-4">
                         <div class="flex text-yellow-400">
                             ★★★★★
@@ -1069,8 +1029,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" ="fade-up"
-                    -delay="200">
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect"="fade-up" -delay="200">
                     <div class="flex items-center mb-4">
                         <div class="flex text-yellow-400">
                             ★★★★★
@@ -1089,8 +1048,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect" ="fade-up"
-                    -delay="300">
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover-effect"="fade-up" -delay="300">
                     <div class="flex items-center mb-4">
                         <div class="flex text-yellow-400">
                             ★★★★★
@@ -1110,22 +1068,22 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Customer Stats -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 mt-12 lg:mt-16 text-center">
-                <div ="fade-up" -delay="100">
+                <div="fade-up" -delay="100">
                     <div class="text-2xl lg:text-3xl font-bold text-aktara-red mb-2">25,000+</div>
                     <div class="text-gray-600 text-sm lg:text-base">Happy Customers</div>
                 </div>
-                <div ="fade-up" -delay="200">
+                <div="fade-up" -delay="200">
                     <div class="text-2xl lg:text-3xl font-bold text-aktara-red mb-2">4.9/5</div>
                     <div class="text-gray-600 text-sm lg:text-base">Average Rating</div>
                 </div>
-                <div ="fade-up" -delay="300">
+                <div="fade-up" -delay="300">
                     <div class="text-2xl lg:text-3xl font-bold text-aktara-red mb-2">98%</div>
                     <div class="text-gray-600 text-sm lg:text-base">Satisfaction Rate</div>
                 </div>
-                <div ="fade-up" -delay="400">
+                <div="fade-up" -delay="400">
                     <div class="text-2xl lg:text-3xl font-bold text-aktara-red mb-2">15,000+</div>
                     <div class="text-gray-600 text-sm lg:text-base">5-Star Reviews</div>
                 </div>
@@ -1188,30 +1146,34 @@
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                             </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                             </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                                <path
+                                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z" />
                             </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                             </svg>
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Quick Links -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
@@ -1230,7 +1192,7 @@
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Categories -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Categories</h3>
@@ -1249,7 +1211,7 @@
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Party Wear</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Customer Service -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
@@ -1268,7 +1230,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <!-- Bottom Footer -->
             <div class="border-t border-gray-700 mt-12 pt-8">
                 <div class="flex flex-col lg:flex-row justify-between items-center">
@@ -1350,8 +1312,9 @@
 
 
     <!-- JavaScript -->
-     <script src="js/common.js"></script>
-     <script src="js/index.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
 
 </body>
+
 </html>
