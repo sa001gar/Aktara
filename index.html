@@ -4,29 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aktara - Premium Handwoven Sarees | Authentic Indian Ethnic Wear</title>
-    <link rel="icon" href="/assets/logo_new.png" type="image/png">
-    <meta name="description"
-        content="Discover Aktara's exquisite collection of handwoven sarees, silk sarees, cotton sarees, and designer ethnic wear. Premium quality, authentic craftsmanship, worldwide shipping.">
+    <link rel="icon" href="/public/images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Discover Aktara's exquisite collection of handwoven sarees, silk sarees, cotton sarees, and designer ethnic wear. Premium quality, authentic craftsmanship, worldwide shipping.">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
     <!-- Swiper.js for better scrolling -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- AOS Animation Library
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style type="text/tailwindcss">
         @theme {
             --color-aktara-red: #FF0000;
             --color-aktara-black: #000000;
         }
     </style>
+    
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
-
 </head>
+
 <body class="bg-gray-50">
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
@@ -59,56 +60,36 @@
             <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex-shrink-0">
                     <a href="index.html" class="flex items-center">
-                        <!-- Logo -->
                         <img src="assets/logo_new.png" alt="" class="h-10 md:h-12 lg:h-14">
                     </a>
                 </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
-                    <a href="index.html"
-                        class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium">HOME</a>
+                    <a href="index.html" class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium">HOME</a>
                     <div class="relative group">
-                        <a href="category.html"
-                            class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors flex items-center">
+                        <a href="category.html" class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors flex items-center">
                             COLLECTIONS
                             <i class="fas fa-chevron-down ml-1 text-xs"></i>
                         </a>
-                        <div
-                            class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                        <div class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                             <div class="py-2">
-                                <a href="category.html?category=silk"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Silk
-                                    Sarees</a>
-                                <a href="category.html?category=cotton"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Cotton
-                                    Sarees</a>
-                                <a href="category.html?category=designer"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Designer
-                                    Collection</a>
-                                <a href="category.html?category=bridal"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Bridal
-                                    Collection</a>
+                                <a href="category.html?category=silk" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Silk Sarees</a>
+                                <a href="category.html?category=cotton" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Cotton Sarees</a>
+                                <a href="category.html?category=designer" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Designer Collection</a>
+                                <a href="category.html?category=bridal" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Bridal Collection</a>
                             </div>
                         </div>
                     </div>
-                    <a href="category.html?category=new"
-                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">NEW
-                        ARRIVALS</a>
-                    <a href="about.html"
-                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">ABOUT</a>
-                    <a href="contact.html"
-                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
+                    <a href="blog.html" class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">BLOG</a>
+                    <a href="about.html" class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">ABOUT</a>
+                    <a href="contact.html" class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
                 </div>
                 
-                <!--  Search and Actions -->
+                <!-- Search and Actions -->
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="relative">
-                        <input type="text" 
-                               id="searchInput"
-                               placeholder="Search sarees..."
-                               class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red"
-                               autocomplete="off">
+                        <input type="text" id="searchInput" placeholder="Search sarees..." class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red" autocomplete="off">
                         <i class="fas fa-search absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
                         
                         <!-- Search Results Dropdown -->
@@ -123,16 +104,13 @@
                     <a href="login.html" class="text-aktara-black hover:text-aktara-red transition-colors">
                         <i class="fas fa-user text-xl"></i>
                     </a>
-                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors"
-                        onclick="toggleWishlist()">
+                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors" onclick="toggleWishlist()">
                         <i class="fas fa-heart text-xl"></i>
-                        <span id="wishlistCount"
-                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                        <span id="wishlistCount" class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </button>
                     <a href="cart.html" class="relative text-aktara-black hover:text-aktara-red transition-colors">
                         <i class="fas fa-shopping-bag text-xl"></i>
-                        <span
-                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                        <span class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </a>
                 </div>
                 
@@ -144,16 +122,12 @@
                 </div>
             </div>
             
-            <!--  Mobile Navigation -->
+            <!-- Mobile Navigation -->
             <div id="mobileMenu" class="md:hidden hidden">
                 <div class="mobile-nav-premium px-2 pt-2 pb-3 space-y-1 border-t shadow-lg">
                     <div class="px-3 py-2">
                         <div class="relative">
-                            <input type="text" 
-                                   id="mobileSearchInput"
-                                   placeholder="Search sarees..."
-                                   class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red"
-                                   autocomplete="off">
+                            <input type="text" id="mobileSearchInput" placeholder="Search sarees..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red" autocomplete="off">
                             <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
                             
                             <!-- Mobile Search Results -->
@@ -166,39 +140,30 @@
                             </div>
                         </div>
                     </div>
-                    <a href="index.html"
-                        class="text-aktara-red block px-3 py-3 text-base font-medium border-l-4 border-aktara-red bg-red-50">
+                    <a href="index.html" class="text-aktara-red block px-3 py-3 text-base font-medium border-l-4 border-aktara-red bg-red-50">
                         <i class="fas fa-home mr-3"></i>Home
                     </a>
-                    <a href="category.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                    <a href="category.html" class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
                         <i class="fas fa-th-large mr-3"></i>Collections
                     </a>
-                    <a href="category.html?category=new"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
-                        <i class="fas fa-star mr-3"></i>New Arrivals
+                    <a href="blog.html" class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-star mr-3"></i>Blog
                     </a>
-                    <a href="about.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                    <a href="about.html" class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
                         <i class="fas fa-info-circle mr-3"></i>About
                     </a>
-                    <a href="contact.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                    <a href="contact.html" class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
                         <i class="fas fa-envelope mr-3"></i>Contact
                     </a>
-                    <a href="login.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                    <a href="login.html" class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
                         <i class="fas fa-user mr-3"></i>Login
                     </a>
                     <div class="flex justify-around py-4 border-t border-gray-200 mt-4">
-                        <button
-                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors"
-                            onclick="toggleWishlist()">
+                        <button class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors" onclick="toggleWishlist()">
                             <i class="fas fa-heart text-xl mb-1"></i>
                             <span class="text-xs">Wishlist</span>
                         </button>
-                        <a href="cart.html"
-                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors">
+                        <a href="cart.html" class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors">
                             <i class="fas fa-shopping-bag text-xl mb-1"></i>
                             <span class="text-xs">Cart</span>
                         </a>
@@ -212,25 +177,21 @@
     <section class="relative hero-gradient py-12 lg:py-8 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div >
-                    <div class="text-sm font-medium text-aktara-red mb-4 tracking-wider uppercase">HANDCRAFTED
-                        EXCELLENCE SINCE 1985</div>
+                <div class="animate-fade-in-up">
+                    <div class="text-sm font-medium text-aktara-red mb-4 tracking-wider uppercase">HANDCRAFTED EXCELLENCE SINCE 1985</div>
                     <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold text-aktara-black mb-6 leading-tight">
                         TIMELESS<br>
                         <span class="text-aktara-red">ELEGANCE</span><br>
                         REDEFINED
                     </h1>
                     <p class="text-base lg:text-lg text-gray-600 mb-8 max-w-md leading-relaxed">
-                        Discover our exquisite collection of handwoven sarees that celebrate India's rich textile
-                        heritage. Each piece is crafted by skilled artisans with love and precision.
+                        Discover our exquisite collection of handwoven sarees that celebrate India's rich textile heritage. Each piece is crafted by skilled artisans with love and precision.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                        <a href="category.html"
-                            class="inline-block bg-aktara-red text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full text-base lg:text-lg font-medium hover:bg-red-700 transition-all duration-300 transform hover:scale-105 text-center">
+                        <a href="category.html" class="inline-block bg-aktara-red text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full text-base lg:text-lg font-medium hover:bg-red-700 transition-all duration-300 transform hover:scale-105 text-center">
                             EXPLORE COLLECTION
                         </a>
-                        <a href="about.html"
-                            class="inline-block border-2 border-aktara-red text-aktara-red px-6 lg:px-8 py-3 lg:py-4 rounded-full text-base lg:text-lg font-medium hover:bg-aktara-red hover:text-white transition-all duration-300 transform hover:scale-105 text-center">
+                        <a href="about.html" class="inline-block border-2 border-aktara-red text-aktara-red px-6 lg:px-8 py-3 lg:py-4 rounded-full text-base lg:text-lg font-medium hover:bg-aktara-red hover:text-white transition-all duration-300 transform hover:scale-105 text-center">
                             OUR HERITAGE
                         </a>
                     </div>
@@ -249,10 +210,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative" x-data="{ fade: false }" x-intersect:enter="fade = true">
+                <div class="relative animate-fade-in-left">
                     <div class="relative">
-                        <img src="/assets/hero.png" alt="Beautiful Saree Collection"
-                            class="w-full h-auto rounded-2xl shadow-2xl skeleton" loading="lazy">
+                        <img src="/assets/hero.png" alt="Beautiful Saree Collection" class="w-full h-auto rounded-2xl shadow-2xl skeleton" loading="lazy">
                         <div class="absolute -top-4 -right-4 bg-aktara-red text-white p-2 lg:p-3 rounded-full">
                             <span class="text-xs lg:text-sm font-bold">NEW</span>
                         </div>
@@ -266,33 +226,29 @@
     <section class="py-8 lg:py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8 text-center">
-                <div ">
-                    <div
-                        class="bg-green-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="animate-fade-in-up" style="animation-delay: 0.1s">
+                    <div class="bg-green-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-shipping-fast text-green-600 text-xl lg:text-2xl"></i>
                     </div>
                     <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Free Shipping</h3>
                     <p class="text-xs lg:text-sm text-gray-600">On orders above ₹2,999</p>
                 </div>
-                <div >
-                    <div
-                        class="bg-blue-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="animate-fade-in-up" style="animation-delay: 0.2s">
+                    <div class="bg-blue-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-undo text-blue-600 text-xl lg:text-2xl"></i>
                     </div>
                     <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">15 Day Return</h3>
                     <p class="text-xs lg:text-sm text-gray-600">Easy return policy</p>
                 </div>
-                <div >
-                    <div
-                        class="bg-purple-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="animate-fade-in-up" style="animation-delay: 0.3s">
+                    <div class="bg-purple-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-shield-alt text-purple-600 text-xl lg:text-2xl"></i>
                     </div>
                     <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Secure Payment</h3>
                     <p class="text-xs lg:text-sm text-gray-600">100% secure transactions</p>
                 </div>
-                <div ="fade-up" -delay="400">
-                    <div
-                        class="bg-yellow-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="animate-fade-in-up" style="animation-delay: 0.4s">
+                    <div class="bg-yellow-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-bolt text-yellow-600 text-xl lg:text-2xl"></i>
                     </div>
                     <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Fast Delivery</h3>
@@ -305,68 +261,45 @@
     <!-- Featured Categories -->
     <section class="py-12 lg:py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 lg:mb-12" ="fade-up">
+            <div class="text-center mb-8 lg:mb-12 animate-fade-in-up">
                 <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-4">Shop by Category</h2>
                 <p class="text-base lg:text-lg text-gray-600">Explore our curated collection of premium sarees</p>
             </div>
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                <a href="category.html?category=silk" class="group cursor-pointer" ="fade-up"
-                    -delay="100">
-                    <div
-                        class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-purple-50 to-purple-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
-                        <img src="https://img.freepik.com/premium-photo/zari-embroidered-red-silk-bridal-saree-indian-clothes_1342603-13343.jpg?w=740"
-                            alt="Silk Sarees"
-                            class="w-full h-48 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500 skeleton"
-                            loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
-                        </div>
+                <a href="category.html?category=silk" class="group cursor-pointer animate-fade-in-up" style="animation-delay: 0.1s">
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-purple-50 to-purple-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
+                        <img src="https://img.freepik.com/premium-photo/zari-embroidered-red-silk-bridal-saree-indian-clothes_1342603-13343.jpg?w=740" alt="Silk Sarees" class="w-full h-48 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500 skeleton" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                         <div class="absolute bottom-4 left-4 text-white">
                             <h3 class="text-lg lg:text-xl font-bold mb-1">Silk Sarees</h3>
                             <p class="text-xs lg:text-sm opacity-90">Luxury & Tradition</p>
                         </div>
                     </div>
                 </a>
-                <a href="category.html?category=cotton" class="group cursor-pointer">
-                    <div
-                        class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
-                        <img src="https://www.teejh.com/cdn/shop/products/TES223_1_720x.jpg?v=1666258983"
-                            alt="Cotton Sarees"
-                            class="w-full h-48 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500 skeleton"
-                            loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
-                        </div>
+                <a href="category.html?category=cotton" class="group cursor-pointer animate-fade-in-up" style="animation-delay: 0.2s">
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
+                        <img src="https://www.teejh.com/cdn/shop/products/TES223_1_720x.jpg?v=1666258983" alt="Cotton Sarees" class="w-full h-48 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500 skeleton" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                         <div class="absolute bottom-4 left-4 text-white">
                             <h3 class="text-lg lg:text-xl font-bold mb-1">Cotton Sarees</h3>
                             <p class="text-xs lg:text-sm opacity-90">Comfortable & Elegant</p>
                         </div>
                     </div>
                 </a>
-                <a href="category.html?category=designer" class="group cursor-pointer" ="fade-up"
-                    -delay="300">
-                    <div
-                        class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-pink-50 to-pink-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
-                        <img src="https://www.manyavar.com/dw/image/v2/BJZV_PRD/on/demandware.static/-/Library-Sites-ManyavarSharedLibrary/default/dw27ddc46f/blog-How-to-Choose-the-Right-Fabric-and-Pattern-for-Your-Saree-A-Guide.jpg"
-                            alt="Designer Sarees"
-                            class="w-full h-48 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500 skeleton"
-                            loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
-                        </div>
+                <a href="category.html?category=designer" class="group cursor-pointer animate-fade-in-up" style="animation-delay: 0.3s">
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-pink-50 to-pink-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
+                        <img src="https://www.manyavar.com/dw/image/v2/BJZV_PRD/on/demandware.static/-/Library-Sites-ManyavarSharedLibrary/default/dw27ddc46f/blog-How-to-Choose-the-Right-Fabric-and-Pattern-for-Your-Saree-A-Guide.jpg" alt="Designer Sarees" class="w-full h-48 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500 skeleton" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                         <div class="absolute bottom-4 left-4 text-white">
                             <h3 class="text-lg lg:text-xl font-bold mb-1">Designer Collection</h3>
                             <p class="text-xs lg:text-sm opacity-90">Contemporary Style</p>
                         </div>
                     </div>
                 </a>
-                <a href="category.html?category=bridal" class="group cursor-pointer" ="fade-up"
-                    -delay="400">
-                    <div
-                        class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-red-50 to-red-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLAouvSQF0mxFpbBIWAiD5-XVyz-xveLetTA&s"
-                            alt="Bridal Sarees"
-                            class="w-full h-48 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500 skeleton"
-                            loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
-                        </div>
+                <a href="category.html?category=bridal" class="group cursor-pointer animate-fade-in-up" style="animation-delay: 0.4s">
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-red-50 to-red-100 hover:shadow-xl transition-all duration-500 card-hover-effect">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLAouvSQF0mxFpbBIWAiD5-XVyz-xveLetTA&s" alt="Bridal Sarees" class="w-full h-48 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500 skeleton" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                         <div class="absolute bottom-4 left-4 text-white">
                             <h3 class="text-lg lg:text-xl font-bold mb-1">Bridal Collection</h3>
                             <p class="text-xs lg:text-sm opacity-90">Special Occasions</p>
@@ -377,210 +310,116 @@
         </div>
     </section>
 
-    <!--  Trending Videos Section -->
+    <!-- Trending Videos Section -->
     <section class="py-8 lg:py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center mb-6" ="fade-up">
+            <div class="flex justify-between items-center mb-6 animate-fade-in-up">
                 <h2 class="text-xl lg:text-2xl font-bold">
                     <span class="text-aktara-red">Trending</span> Saree Videos
                 </h2>
-                <a href="https://instagram.com/aktara.official" target="_blank"
-                    class="text-aktara-red hover:text-red-700 font-medium flex items-center text-sm lg:text-base">
+                <a href="https://instagram.com/aktara.official" target="_blank" class="text-aktara-red hover:text-red-700 font-medium flex items-center text-sm lg:text-base">
                     <i class="fab fa-instagram mr-2"></i>
                     Follow Us
                 </a>
             </div>
-
             <!-- Swiper Container -->
-            <div class="swiper trendingVideosSwiper" ="fade-up" -delay="200">
+            <div class="swiper trendingVideosSwiper animate-fade-in-up" style="animation-delay: 0.2s">
                 <div class="swiper-wrapper">
                     <!-- Video Card 1 -->
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_1.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_1.mp4" autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                <span
-                                    class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
-                                <span
-                                    class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939
-                                    Views</span>
-                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
-                                    class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
+                                <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+                                <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">939 Views</span>
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank" class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <!-- <div class="mt-2 text-sm">
-                                <h3 class="line-clamp-2 text-aktara-black font-medium">Women Peach Tropical Saree</h3>
-                                <p>
-                                    <span class="font-bold">₹1647</span>
-                                    <span class="line-through text-gray-400 text-xs ml-1">₹3295</span>
-                                    <span class="text-green-600 text-xs ml-1">50% Off</span>
-                                </p>
-                            </div> -->
                         </div>
                     </div>
-
                     <!-- Video Card 2 -->
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_2.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_2.mp4" autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                <span
-                                    class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
-                                <span
-                                    class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">1.2K
-                                    Views</span>
-                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
-                                    class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
+                                <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">TRENDING</span>
+                                <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">1.2K Views</span>
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank" class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <!-- <div class="mt-2 text-sm">
-                                <h3 class="line-clamp-2 text-aktara-black font-medium">Royal Blue Silk Saree</h3>
-                                <p>
-                                    <span class="font-bold">₹2999</span>
-                                    <span class="line-through text-gray-400 text-xs ml-1">₹4999</span>
-                                    <span class="text-green-600 text-xs ml-1">40% Off</span>
-                                </p>
-                            </div> -->
                         </div>
                     </div>
-
                     <!-- Video Card 3 -->
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_3.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_3.mp4" autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                <span
-                                    class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">NEW</span>
-                                <span
-                                    class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">856
-                                    Views</span>
-                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
-                                    class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
+                                <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">NEW</span>
+                                <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">856 Views</span>
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank" class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <!-- <div class="mt-2 text-sm">
-                                <h3 class="line-clamp-2 text-aktara-black font-medium">Designer Embroidered Saree</h3>
-                                <p>
-                                    <span class="font-bold">₹3999</span>
-                                    <span class="line-through text-gray-400 text-xs ml-1">₹5999</span>
-                                    <span class="text-green-600 text-xs ml-1">33% Off</span>
-                                </p>
-                            </div> -->
                         </div>
                     </div>
-
                     <!-- Video Card 4 -->
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_4.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_4.mp4" autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                <span
-                                    class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">HOT</span>
-                                <span
-                                    class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">2.1K
-                                    Views</span>
-                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
-                                    class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
+                                <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">HOT</span>
+                                <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">2.1K Views</span>
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank" class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <!-- <div class="mt-2 text-sm">
-                                <h3 class="line-clamp-2 text-aktara-black font-medium">Traditional Cotton Saree</h3>
-                                <p>
-                                    <span class="font-bold">₹1299</span>
-                                    <span class="line-through text-gray-400 text-xs ml-1">₹1999</span>
-                                    <span class="text-green-600 text-xs ml-1">35% Off</span>
-                                </p>
-                            </div> -->
                         </div>
                     </div>
-
                     <!-- Video Card 5 -->
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_5.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_5.mp4" autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                <span
-                                    class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">VIRAL</span>
-                                <span
-                                    class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">5.3K
-                                    Views</span>
-                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
-                                    class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
+                                <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">VIRAL</span>
+                                <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">5.3K Views</span>
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank" class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <!-- <div class="mt-2 text-sm">
-                                <h3 class="line-clamp-2 text-aktara-black font-medium">Festive Golden Saree</h3>
-                                <p>
-                                    <span class="font-bold">₹4999</span>
-                                    <span class="line-through text-gray-400 text-xs ml-1">₹7999</span>
-                                    <span class="text-green-600 text-xs ml-1">37% Off</span>
-                                </p>
-                            </div> -->
                         </div>
                     </div>
-
                     <!-- Video Card 6 -->
                     <div class="swiper-slide">
                         <div class="video-card w-full">
                             <div class="relative aspect-[9/16] rounded-lg overflow-hidden shadow-md">
-                                <video class="w-full h-full object-cover"
-                                    src="video/insta_6.mp4"
-                                    autoplay muted loop playsinline></video>
+                                <video class="w-full h-full object-cover" src="video/insta_6.mp4" autoplay muted loop playsinline></video>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                <span
-                                    class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">LATEST</span>
-                                <span
-                                    class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">1.8K
-                                    Views</span>
-                                <a href="https://instagram.com/reel/aktara.official" target="_blank"
-                                    class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full  hover:bg-white/30 transition-all">
+                                <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">LATEST</span>
+                                <span class="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">1.8K Views</span>
+                                <a href="https://instagram.com/reel/aktara.official" target="_blank" class="absolute top-2 right-2 bg-white/20 backdrop-blur-sm p-1.5 rounded-full hover:bg-white/30 transition-all">
                                     <i class="fab fa-instagram text-white text-sm"></i>
                                 </a>
                             </div>
-                            <!-- <div class="mt-2 text-sm">
-                                <h3 class="line-clamp-2 text-aktara-black font-medium">Bridal Red Silk Saree</h3>
-                                <p>
-                                    <span class="font-bold">₹8999</span>
-                                    <span class="line-through text-gray-400 text-xs ml-1">₹12999</span>
-                                    <span class="text-green-600 text-xs ml-1">30% Off</span>
-                                </p>
-                            </div> -->
                         </div>
                     </div>
                 </div>
-
-                <!-- Pagination -->
-                <!-- <div class="swiper-pagination mt-4"></div> -->
             </div>
         </div>
     </section>
 
-
+    <!-- Rest of the sections remain the same but with animate-fade-in-up classes instead of data-aos -->
     <!-- Heritage Story Section -->
     <section class="py-12 lg:py-16 bg-gradient-to-br from-red-50 to-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div ="fade-right">
+                <div class="animate-fade-in-right">
                     <div class="text-sm font-medium text-aktara-red mb-4 tracking-wider uppercase">OUR HERITAGE</div>
                     <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-6">
                         <span class="text-aktara-red">39 Years</span> of<br>
@@ -588,34 +427,26 @@
                     </h2>
                     <div class="space-y-4 text-gray-700 leading-relaxed text-sm lg:text-base">
                         <p>
-                            Founded in 1985 by master weaver <strong>Smt. Kamala Devi</strong>, Aktara began as a humble
-                            workshop in the heart of Varanasi. What started with a simple dream to preserve India's rich
-                            textile heritage has blossomed into a globally recognized brand.
+                            Founded in 1985 by master weaver <strong>Smt. Kamala Devi</strong>, Aktara began as a humble workshop in the heart of Varanasi. What started with a simple dream to preserve India's rich textile heritage has blossomed into a globally recognized brand.
                         </p>
                         <p>
-                            Our journey is woven with threads of tradition, innovation, and an unwavering commitment to
-                            quality. Each saree tells a story - of skilled artisans who pour their heart into every
-                            thread, of ancient techniques passed down through generations.
+                            Our journey is woven with threads of tradition, innovation, and an unwavering commitment to quality. Each saree tells a story - of skilled artisans who pour their heart into every thread, of ancient techniques passed down through generations.
                         </p>
                         <p>
-                            Today, we work with over <strong>200 master artisans</strong> across India, ensuring fair
-                            wages and preserving traditional crafts for future generations.
+                            Today, we work with over <strong>200 master artisans</strong> across India, ensuring fair wages and preserving traditional crafts for future generations.
                         </p>
                     </div>
                     <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                        <a href="about.html"
-                            class="inline-block bg-aktara-red text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition-colors text-center">
+                        <a href="about.html" class="inline-block bg-aktara-red text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition-colors text-center">
                             Our Story
                         </a>
-                        <a href="contact.html"
-                            class="inline-block border-2 border-aktara-red text-aktara-red px-6 py-3 rounded-full font-medium hover:bg-aktara-red hover:text-white transition-colors text-center">
+                        <a href="contact.html" class="inline-block border-2 border-aktara-red text-aktara-red px-6 py-3 rounded-full font-medium hover:bg-aktara-red hover:text-white transition-colors text-center">
                             Visit Us
                         </a>
                     </div>
                 </div>
-                <div class="relative" ="fade-left">
-                    <img src="/assets/hero.png" alt="Heritage Story"
-                        class="w-full h-auto rounded-2xl shadow-2xl skeleton" loading="lazy">
+                <div class="relative animate-fade-in-left">
+                    <img src="/assets/hero.png" alt="Heritage Story" class="w-full h-auto rounded-2xl shadow-2xl skeleton" loading="lazy">
                     <div class="absolute -bottom-4 -left-4 bg-white p-3 lg:p-4 rounded-xl shadow-lg">
                         <div class="text-xl lg:text-2xl font-bold text-aktara-red mb-1">200+</div>
                         <div class="text-xs lg:text-sm text-gray-600">Master Artisans</div>
@@ -629,368 +460,365 @@
         </div>
     </section>
 
-    <!--  Best Selling Products (No Pricing) -->
-    <section class="py-12 lg:py-16 bg-white" id="products-section">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center mb-8 lg:mb-12" ="fade-up">
-                <div>
-                    <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-2">Best Sellers</h2>
-                    <p class="text-base lg:text-lg text-gray-600">Our customers' favorite picks</p>
-                </div>
-                <a href="category.html"
-                    class="text-aktara-red hover:text-red-700 font-medium flex items-center group text-sm lg:text-base">
-                    View All
-                    <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
-                </a>
+    <!-- Best Selling Products (No Pricing) -->
+<section class="py-12 lg:py-16 bg-white" id="products-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center mb-8 lg:mb-12 animate-fade-in-up">
+            <div>
+                <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-2">Best Sellers</h2>
+                <p class="text-base lg:text-lg text-gray-600">Our customers' favorite picks</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6" id="products-grid">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
-                    -delay="100">
-                    <div class="relative">
-                        <img src="https://lajreedesigner.com/cdn/shop/files/KP-Karishma-Red_5_900x1350_crop_center@2x.jpg?v=1745495600"
-                            alt="Royal Red Silk Saree"
-                            class="w-full h-64 lg:h-80 object-cover group-hover:scale-105 transition-transform duration-300 skeleton"
-                            loading="lazy">
-                        <div
-                            class="absolute top-4 left-4 bg-aktara-red text-white px-3 py-1 rounded-full text-sm font-medium">
-                            Bestseller
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button onclick="toggleWishlistItem(1)"
-                                class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
-                                <i class="fas fa-heart text-aktara-red"></i>
-                            </button>
-                        </div>
+            <a href="category.html" class="text-aktara-red hover:text-red-700 font-medium flex items-center group text-sm lg:text-base">
+                View All
+                <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6" id="products-grid">
+            <!-- Product 1 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect animate-fade-in-up flex flex-col h-full" style="animation-delay: 0.1s">
+                <div class="relative">
+                    <img src="https://lajreedesigner.com/cdn/shop/files/KP-Karishma-Red_5_900x1350_crop_center@2x.jpg?v=1745495600" alt="Royal Red Silk Saree" class="w-full h-64 lg:h-80 object-cover group-hover:scale-105 transition-transform duration-300 skeleton" loading="lazy">
+                    <div class="absolute top-4 left-4 bg-aktara-red text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Bestseller
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Royal Red Silk Saree with
-                            Golden Border</h3>
-                        <div class="flex items-center mb-2">
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button onclick="toggleWishlistItem(1)" class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
+                            <i class="fas fa-heart text-aktara-red"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base line-clamp-2 min-h-[3rem]">Royal Red Silk Saree with Golden Border</h3>
+                        <div class="flex items-center mb-4">
                             <div class="flex text-yellow-400 text-sm">
                                 ★★★★★
                             </div>
                             <span class="text-gray-500 text-sm ml-2">(24)</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">Premium Quality</div>
-                            <a href="product.html?id=1"
-                                class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
-                                View Details
-                            </a>
-                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-sm text-gray-600">Premium Quality</div>
+                        <a href="product.html?id=1" class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            View Details
+                        </a>
                     </div>
                 </div>
-                
-                <!-- Product 2 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
-                    -delay="200">
-                    <div class="relative">
-                        <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSOasMiGNdg35aA_gedyxtQrTdiqiD9CkOB84MO-PfrA5jT7KywRbaBYaYv3K-aai2hUUjG0ds8hdgSliDfV8Tcmp20v_5yjWRTYM_PqL8HyPN2-MbhLUqG"
-                            alt="Blue Cotton Saree"
-                            class="w-full h-64 lg:h-80 object-cover group-hover:scale-105 transition-transform duration-300 skeleton"
-                            loading="lazy">
-                        <div
-                            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button onclick="toggleWishlistItem(2)"
-                                class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
-                                <i class="fas fa-heart text-aktara-red"></i>
-                            </button>
-                        </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect animate-fade-in-up flex flex-col h-full" style="animation-delay: 0.2s">
+                <div class="relative">
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSOasMiGNdg35aA_gedyxtQrTdiqiD9CkOB84MO-PfrA5jT7KywRbaBYaYv3K-aai2hUUjG0ds8hdgSliDfV8Tcmp20v_5yjWRTYM_PqL8HyPN2-MbhLUqG" alt="Blue Cotton Saree" class="w-full h-64 lg:h-80 object-cover group-hover:scale-105 transition-transform duration-300 skeleton" loading="lazy">
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button onclick="toggleWishlistItem(2)" class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
+                            <i class="fas fa-heart text-aktara-red"></i>
+                        </button>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Blue Floral Cotton Saree
-                        </h3>
-                        <div class="flex items-center mb-2">
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base line-clamp-2 min-h-[3rem]">Blue Floral Cotton Saree with Beautiful Patterns</h3>
+                        <div class="flex items-center mb-4">
                             <div class="flex text-yellow-400 text-sm">
                                 ★★★★☆
                             </div>
                             <span class="text-gray-500 text-sm ml-2">(18)</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">Comfortable Wear</div>
-                            <a href="product.html?id=2"
-                                class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
-                                View Details
-                            </a>
-                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-sm text-gray-600">Comfortable Wear</div>
+                        <a href="product.html?id=2" class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            View Details
+                        </a>
                     </div>
                 </div>
-                
-                <!-- Product 3 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
-                    -delay="300">
-                    <div class="relative">
-                        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSxsA-rILRGxU6gC2sCdj0FcqyLFgQRUWS_ISaaYzN_j1rSF5kjNUkIV6VD9fwF6dHHY6ZkCjsUKRp97x5E4Dg_WrIWbNWV0BSzSC9b1wk"
-                            alt="Green Designer Saree"
-                            class="w-full h-64 lg:h-80 object-cover group-hover:scale-105 transition-transform duration-300 skeleton"
-                            loading="lazy">
-                        <div
-                            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button onclick="toggleWishlistItem(3)"
-                                class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
-                                <i class="fas fa-heart text-aktara-red"></i>
-                            </button>
-                        </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect animate-fade-in-up flex flex-col h-full" style="animation-delay: 0.3s">
+                <div class="relative">
+                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSxsA-rILRGxU6gC2sCdj0FcqyLFgQRUWS_ISaaYzN_j1rSF5kjNUkIV6VD9fwF6dHHY6ZkCjsUKRp97x5E4Dg_WrIWbNWV0BSzSC9b1wk" alt="Green Designer Saree" class="w-full h-64 lg:h-80 object-cover group-hover:scale-105 transition-transform duration-300 skeleton" loading="lazy">
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button onclick="toggleWishlistItem(3)" class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
+                            <i class="fas fa-heart text-aktara-red"></i>
+                        </button>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Emerald Designer Saree
-                            with Embroidery</h3>
-                        <div class="flex items-center mb-2">
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base line-clamp-2 min-h-[3rem]">Emerald Designer Saree with Embroidery</h3>
+                        <div class="flex items-center mb-4">
                             <div class="flex text-yellow-400 text-sm">
                                 ★★★★★
                             </div>
                             <span class="text-gray-500 text-sm ml-2">(31)</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">Designer Collection</div>
-                            <a href="product.html?id=3"
-                                class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
-                                View Details
-                            </a>
-                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-sm text-gray-600">Designer Collection</div>
+                        <a href="product.html?id=3" class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            View Details
+                        </a>
                     </div>
                 </div>
-                
-                <!-- Product 4 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
-                    -delay="400">
-                    <div class="relative">
-                        <img src="https://www.banarasee.in/cdn/shop/files/IMG_9630_940x.jpg?v=1683428505"
-                            alt="Pink Bridal Saree"
-                            class="w-full h-64 lg:h-80 object-cover group-hover:scale-105 transition-transform duration-300 skeleton"
-                            loading="lazy">
-                        <div
-                            class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                            New
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button onclick="toggleWishlistItem(4)"
-                                class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
-                                <i class="fas fa-heart text-aktara-red"></i>
-                            </button>
-                        </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect animate-fade-in-up flex flex-col h-full" style="animation-delay: 0.4s">
+                <div class="relative">
+                    <img src="https://www.banarasee.in/cdn/shop/files/IMG_9630_940x.jpg?v=1683428505" alt="Pink Bridal Saree" class="w-full h-64 lg:h-80 object-cover group-hover:scale-105 transition-transform duration-300 skeleton" loading="lazy">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        New
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Pink Silk Bridal Saree
-                            with Silver Work</h3>
-                        <div class="flex items-center mb-2">
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button onclick="toggleWishlistItem(4)" class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
+                            <i class="fas fa-heart text-aktara-red"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base line-clamp-2 min-h-[3rem]">Pink Silk Bridal Saree with Silver Work</h3>
+                        <div class="flex items-center mb-4">
                             <div class="flex text-yellow-400 text-sm">
                                 ★★★★★
                             </div>
                             <span class="text-gray-500 text-sm ml-2">(12)</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">Bridal Special</div>
-                            <a href="product.html?id=4"
-                                class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
-                                View Details
-                            </a>
-                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-sm text-gray-600">Bridal Special</div>
+                        <a href="product.html?id=4" class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            View Details
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Curated Collection -->
-    <section class="py-12 lg:py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 lg:mb-12" ="fade-up">
-                <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-4">Curated for Your Closet</h2>
-                <p class="text-base lg:text-lg text-gray-600">Handpicked sarees that define elegance</p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-                <!-- Featured Item 1 -->
-                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
-                    ="fade-up" -delay="100">
+<!-- Curated Collection -->
+<section class="py-12 lg:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8 lg:mb-12 animate-fade-up">
+            <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-4">Curated for Your Closet</h2>
+            <p class="text-base lg:text-lg text-gray-600">Handpicked sarees that define elegance</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+            <!-- Featured Item 1 -->
+            <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect animate-fade-up flex flex-col h-full" style="animation-delay: 0.1s">
+                <div class="flex-1">
                     <img src="https://images.textilecatalog.in/images/800/catalog/20221126/1669441176802008534-WhatsApp%20Image%202022-11-25%20at%204.10.27%20PM.jpeg"
                         alt="Festive Collection" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
-                    <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2">Festive Collection</h3>
-                    <p class="text-gray-600 mb-4 text-sm lg:text-base">Perfect for celebrations and special occasions
-                    </p>
-                    <a href="category.html?category=festive"
-                        class="inline-block bg-aktara-red text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition-colors">
-                        Explore Collection
-                    </a>
+                    <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2 min-h-[2.5rem] flex items-center justify-center">Festive Collection</h3>
+                    <p class="text-gray-600 mb-6 text-sm lg:text-base line-clamp-2 min-h-[3rem] flex items-center justify-center">Perfect for celebrations and special occasions</p>
                 </div>
-                
-                <!-- Featured Item 2 -->
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
-                    ="fade-up" -delay="200">
-                    <img src="https://www.loomfolks.com/wp-content/uploads/2024/01/Perfect-Smart-Soothing-Ocean-Blue-Cotton-Ikkat-Office-Wear-Formal-Saree1.jpg"
-                        alt="Office Wear" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
-                    <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2">Office Wear</h3>
-                    <p class="text-gray-600 mb-4 text-sm lg:text-base">Professional and comfortable for daily wear</p>
-                    <a href="category.html?category=office"
-                        class="inline-block bg-aktara-red text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition-colors">
-                        Shop Now
-                    </a>
-                </div>
-                
-                <!-- Featured Item 3 -->
-                <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect"
-                    ="fade-up" -delay="300">
-                    <img src="https://www.anantexports.in/cdn/shop/products/WhatsAppImage2022-09-06at3.49.22PM.jpg?v=1662632943&width=1946"
-                        alt="Party Wear" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
-                    <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2">Party Wear</h3>
-                    <p class="text-gray-600 mb-4 text-sm lg:text-base">Glamorous sarees for evening events</p>
-                    <a href="category.html?category=party"
-                        class="inline-block bg-aktara-red text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition-colors">
-                        Discover More
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--  Latest Arrivals (No Pricing) -->
-    <section class="py-12 lg:py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center mb-8 lg:mb-12" ="fade-up">
-                <div>
-                    <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-2">Latest Arrivals</h2>
-                    <p class="text-base lg:text-lg text-gray-600">Fresh designs just added to our collection</p>
-                </div>
-                <a href="category.html?category=new"
-                    class="text-aktara-red hover:text-red-700 font-medium flex items-center text-sm lg:text-base">
-                    View All New
-                    <i class="fas fa-arrow-right ml-2"></i>
+                <a href="category.html?category=festive"
+                    class="inline-block bg-aktara-red text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition-colors mt-auto">
+                    Explore Collection
                 </a>
             </div>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                <!-- New Product 1 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
-                    -delay="100">
-                    <div class="relative">
-                        <img src="https://www.lavanyathelabel.com/cdn/shop/files/lbl101ks886_1_700x.jpg?v=1752668380"
-                            alt="Yellow Chiffon Saree"
-                            class="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                            Just In
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button onclick="toggleWishlistItem(5)"
-                                class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
-                                <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
-                            </button>
-                        </div>
+
+            <!-- Featured Item 2 -->
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect animate-fade-up flex flex-col h-full" style="animation-delay: 0.2s">
+                <div class="flex-1">
+                    <img src="https://www.loomfolks.com/wp-content/uploads/2024/01/Perfect-Smart-Soothing-Ocean-Blue-Cotton-Ikkat-Office-Wear-Formal-Saree1.jpg"
+                        alt="Office Wear" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
+                    <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2 min-h-[2.5rem] flex items-center justify-center">Office Wear</h3>
+                    <p class="text-gray-600 mb-6 text-sm lg:text-base line-clamp-2 min-h-[3rem] flex items-center justify-center">Professional and comfortable for daily wear</p>
+                </div>
+                <a href="category.html?category=office"
+                    class="inline-block bg-aktara-red text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition-colors mt-auto">
+                    Shop Now
+                </a>
+            </div>
+
+            <!-- Featured Item 3 -->
+            <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 lg:p-8 text-center card-hover-effect animate-fade-up flex flex-col h-full" style="animation-delay: 0.3s">
+                <div class="flex-1">
+                    <img src="https://www.anantexports.in/cdn/shop/products/WhatsAppImage2022-09-06at3.49.22PM.jpg?v=1662632943&width=1946"
+                        alt="Party Wear" class="w-full h-48 lg:h-64 object-cover rounded-xl mb-6">
+                    <h3 class="text-xl lg:text-2xl font-bold text-aktara-black mb-2 min-h-[2.5rem] flex items-center justify-center">Party Wear</h3>
+                    <p class="text-gray-600 mb-6 text-sm lg:text-base line-clamp-2 min-h-[3rem] flex items-center justify-center">Glamorous sarees for evening events</p>
+                </div>
+                <a href="category.html?category=party"
+                    class="inline-block bg-aktara-red text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition-colors mt-auto">
+                    Discover More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Arrivals (No Pricing) -->
+<section class="py-12 lg:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center mb-8 lg:mb-12 animate-fade-up">
+            <div>
+                <h2 class="text-2xl lg:text-4xl font-bold text-aktara-black mb-2">Latest Arrivals</h2>
+                <p class="text-base lg:text-lg text-gray-600">Fresh designs just added to our collection</p>
+            </div>
+            <a href="category.html?category=new"
+                class="text-aktara-red hover:text-red-700 font-medium flex items-center text-sm lg:text-base">
+                View All New
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            <!-- New Product 1 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect animate-fade-up flex flex-col h-full" style="animation-delay: 0.1s">
+                <div class="relative">
+                    <img src="https://www.lavanyathelabel.com/cdn/shop/files/lbl101ks886_1_700x.jpg?v=1752668380"
+                        alt="Yellow Chiffon Saree"
+                        class="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Just In
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Sunshine Chiffon Saree
-                        </h3>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">Elegant Design</div>
-                            <button onclick="addToCart(5)"
-                                class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
-                                Add to Cart
-                            </button>
-                        </div>
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button onclick="toggleWishlistItem(5)"
+                            class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
+                            <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
+                        </button>
                     </div>
                 </div>
-                
-                <!-- New Product 2 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
-                    -delay="200">
-                    <div class="relative">
-                        <img src="https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg"
-                            alt="Purple Georgette Saree"
-                            class="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                            Just In
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button onclick="toggleWishlistItem(6)"
-                                class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
-                                <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
-                            </button>
-                        </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-aktara-black mb-4 text-sm lg:text-base line-clamp-2 min-h-[3rem]">Sunshine Chiffon Saree</h3>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Purple Sequin Georgette
-                        </h3>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">Party Special</div>
-                            <button onclick="addToCart(6)"
-                                class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
-                                Add to Cart
-                            </button>
-                        </div>
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-sm text-gray-600">Elegant Design</div>
+                        <button onclick="addToCart(5)"
+                            class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            Add to Cart
+                        </button>
                     </div>
                 </div>
-                
-                <!-- New Product 3 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
-                    -delay="300">
-                    <div class="relative">
-                        <img src="https://resources.indianclothstore.com/productimages/Maroon-Silk-Saree-With-Blouse-18710418042024.jpg"
-                            alt="Maroon Silk Saree"
-                            class="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                            Just In
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button onclick="toggleWishlistItem(7)"
-                                class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
-                                <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
-                            </button>
-                        </div>
+            </div>
+
+            <!-- New Product 2 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect animate-fade-up flex flex-col h-full" style="animation-delay: 0.2s">
+                <div class="relative">
+                    <img src="https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg"
+                        alt="Purple Georgette Saree"
+                        class="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Just In
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Maroon Silk Traditional
-                        </h3>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">Classic Style</div>
-                            <button onclick="addToCart(7)"
-                                class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
-                                Add to Cart
-                            </button>
-                        </div>
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button onclick="toggleWishlistItem(6)"
+                            class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
+                            <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
+                        </button>
                     </div>
                 </div>
-                
-                <!-- New Product 4 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect" ="fade-up"
-                    -delay="400">
-                    <div class="relative">
-                        <img src="https://arvisaa.com/cdn/shop/products/KP-Kalyani-Orange_1_720x.jpg?v=1737618305"
-                            alt="Orange Cotton Saree"
-                            class="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                            Just In
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button onclick="toggleWishlistItem(8)"
-                                class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
-                                <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
-                            </button>
-                        </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-aktara-black mb-4 text-sm lg:text-base line-clamp-2 min-h-[3rem]">Purple Sequin Georgette with Elegant Work</h3>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-aktara-black mb-2 text-sm lg:text-base">Orange Festival Cotton
-                        </h3>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">Festival Ready</div>
-                            <button onclick="addToCart(8)"
-                                class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors">
-                                Add to Cart
-                            </button>
-                        </div>
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-sm text-gray-600">Party Special</div>
+                        <button onclick="addToCart(6)"
+                            class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Product 3 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect animate-fade-up flex flex-col h-full" style="animation-delay: 0.3s">
+                <div class="relative">
+                    <img src="https://resources.indianclothstore.com/productimages/Maroon-Silk-Saree-With-Blouse-18710418042024.jpg"
+                        alt="Maroon Silk Saree"
+                        class="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Just In
+                    </div>
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button onclick="toggleWishlistItem(7)"
+                            class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
+                            <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-aktara-black mb-4 text-sm lg:text-base line-clamp-2 min-h-[3rem]">Maroon Silk Traditional</h3>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-sm text-gray-600">Classic Style</div>
+                        <button onclick="addToCart(7)"
+                            class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Product 4 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden group card-hover-effect animate-fade-up flex flex-col h-full" style="animation-delay: 0.4s">
+                <div class="relative">
+                    <img src="https://arvisaa.com/cdn/shop/products/KP-Kalyani-Orange_1_720x.jpg?v=1737618305"
+                        alt="Orange Cotton Saree"
+                        class="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Just In
+                    </div>
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button onclick="toggleWishlistItem(8)"
+                            class="wishlist-btn bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors shadow-lg">
+                            <i class="fas fa-heart text-gray-400 hover:text-aktara-red"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-aktara-black mb-4 text-sm lg:text-base line-clamp-2 min-h-[3rem]">Orange Festival Cotton</h3>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-sm text-gray-600">Festival Ready</div>
+                        <button onclick="addToCart(8)"
+                            class="bg-aktara-red text-white px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            Add to Cart
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="fixed bottom-6 right-6 bg-aktara-red text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-red-700 transform hover:scale-110 z-50">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Wishlist Modal -->
+<div id="wishlistModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full max-h-96 overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-aktara-black">My Wishlist</h3>
+                <button onclick="toggleWishlist()" class="text-gray-500 hover:text-aktara-red">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="wishlistItems" class="space-y-4">
+                <!-- Wishlist items will be populated here -->
+            </div>
+            <div id="emptyWishlist" class="text-center py-8 hidden">
+                <i class="fas fa-heart text-gray-300 text-4xl mb-4"></i>
+                <p class="text-gray-500">Your wishlist is empty</p>
+                <a href="category.html" class="inline-block mt-4 bg-aktara-red text-white px-6 py-2 rounded-full hover:bg-red-700 transition-colors">
+                    Start Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <!-- Collection Banners -->
     <section class="py-12 lg:py-16 bg-gray-50">
@@ -1011,9 +839,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="banner-image"
-                        style="background-image: url('https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg');">
-                    </div>
+                    
                 </div>
                 
                 <!-- Banner 2 -->
@@ -1031,9 +857,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="banner-image"
-                        style="background-image: url('https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg');">
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -1317,41 +1141,9 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop"
-        class="fixed bottom-6 right-6 bg-aktara-red text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-red-700 transform hover:scale-110 z-50">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Wishlist Modal -->
-    <div id="wishlistModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full max-h-96 overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-bold text-aktara-black">My Wishlist</h3>
-                    <button onclick="toggleWishlist()" class="text-gray-500 hover:text-aktara-red">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-                <div id="wishlistItems" class="space-y-4">
-                    <!-- Wishlist items will be populated here -->
-                </div>
-                <div id="emptyWishlist" class="text-center py-8 hidden">
-                    <i class="fas fa-heart text-gray-300 text-4xl mb-4"></i>
-                    <p class="text-gray-500">Your wishlist is empty</p>
-                    <a href="category.html"
-                        class="inline-block mt-4 bg-aktara-red text-white px-6 py-2 rounded-full hover:bg-red-700 transition-colors">
-                        Start Shopping
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- JavaScript -->
-     <script src="js/common.js"></script>
-     <script src="js/index.js"></script>
-
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>
