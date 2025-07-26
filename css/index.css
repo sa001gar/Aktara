@@ -54,3 +54,53 @@
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
+
+
+/* Additional CSS for consistent card heights and line clamping */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Ensure consistent minimum heights */
+.min-h-\[2\.5rem\] {
+  min-height: 2.5rem;
+}
+
+.min-h-\[3rem\] {
+  min-height: 3rem;
+}
+
+.min-h-\[3\.5rem\] {
+  min-height: 3.5rem;
+}
+
+/* Card hover effects */
+.card-hover-effect {
+  transition: all 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .min-h-\[3rem\] {
+    min-height: 2.5rem;
+  }
+
+  .min-h-\[3\.5rem\] {
+    min-height: 3rem;
+  }
+}

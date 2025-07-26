@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Aktara Sarees</title>
+    <title>Blog - Aktara Sarees</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style type="text/tailwindcss">
@@ -25,55 +25,38 @@
             transform: translateY(0);
         }
 
-        .contact-card {
-            transition: all 0.3s ease;
+        .blog-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
-        .contact-card:hover {
-            transform: translateY(-5px);
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .faq-item {
-            transition: all 0.3s ease;
+        .card-description {
+            flex: 1;
         }
 
-        .faq-item:hover {
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.1);
+        .card-footer {
+            margin-top: auto;
         }
 
-        .faq-button {
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .faq-button:hover {
-            background-color: #fef2f2;
-        }
-
-        .faq-button:active {
-            background-color: #fecaca;
-        }
-
-        .faq-content {
-            max-height: 0;
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            padding: 0 1.5rem;
         }
 
-        .faq-content.open {
-            max-height: 200px;
-            padding: 0 1.5rem 1rem 1.5rem;
-        }
-
-        .faq-toggle {
-            transition: transform 0.3s ease;
-            pointer-events: none;
-            /* Prevent icon from interfering with button clicks */
-        }
-
-        .faq-toggle.open {
-            transform: rotate(180deg);
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -116,7 +99,7 @@
                     <a href="index.html"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">HOME</a>
                     <div class="relative group">
-                        <a href="category.html"
+                        <a href="collections.html"
                             class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors flex items-center">
                             COLLECTIONS
                             <i class="fas fa-chevron-down ml-1 text-xs"></i>
@@ -140,13 +123,14 @@
                         </div>
                     </div>
                     <a href="collections.html?collection=new"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">NEW
                         ARRIVALS</a>
                     <a href="about.html"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">ABOUT</a>
                     <a href="blog.html"
-                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">BLOG</a>
+                        class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium">BLOG</a>
                     <a href="contact.html"
-                        class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium">CONTACT</a>
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
                 </div>
 
                 <!-- Search and Actions -->
@@ -192,13 +176,14 @@
                     <a href="category.html"
                         class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">COLLECTIONS</a>
                     <a href="category.html?category=new"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">NEW
                         ARRIVALS</a>
                     <a href="about.html"
                         class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">ABOUT</a>
                     <a href="blog.html"
-                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">BLOG</a>
+                        class="text-aktara-red border-l-4 border-aktara-red bg-red-50 block px-3 py-2 text-base font-medium">BLOG</a>
                     <a href="contact.html"
-                        class="text-aktara-red border-l-4 border-aktara-red bg-red-50 block px-3 py-2 text-base font-medium">CONTACT</a>
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">CONTACT</a>
                     <div class="flex justify-around py-4 border-t border-gray-200 mt-4">
                         <a href="login.html"
                             class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors">
@@ -237,7 +222,7 @@
                         </svg>
                     </li>
                     <li>
-                        <span class="text-aktara-black font-medium">Contact Us</span>
+                        <span class="text-aktara-black font-medium">Blog</span>
                     </li>
                 </ol>
             </nav>
@@ -247,331 +232,292 @@
     <!-- Page Header with Image Background - Smaller Size -->
     <section class="relative py-12 md:py-16 overflow-hidden"
         style="background: linear-gradient(135deg, rgba(255,0,0,0.9), rgba(204,0,0,0.9)), url('/assets/page_header.jpg'); background-size: cover; background-position: center;">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <div class="fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center fade-in text-white">
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-                    Contact <span class="text-yellow-300">Us</span>
+                    Aktara <span class="text-yellow-300">Blog</span>
                 </h1>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-6 leading-relaxed">
-                    We'd love to hear from you. Get in touch with our team for any questions about our sarees or
-                    services.
+                <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                    Discover the latest trends, styling tips, and stories behind our beautiful sarees.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#contact-form"
-                        class="inline-block bg-white text-aktara-red px-6 py-3 rounded-full text-base font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-                        Send Message
-                    </a>
-                    <a href="#contact-info"
-                        class="inline-block border-2 border-white text-white px-6 py-3 rounded-full text-base font-medium hover:bg-white hover:text-aktara-red transition-all duration-300 transform hover:scale-105">
-                        Get Directions
-                    </a>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Get in Touch Section -->
-    <section id="contact-info" class="py-20 bg-white">
+    <!-- Blog Posts -->
+    <section class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold text-aktara-red mb-6">Get in Touch</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Multiple ways to reach us. Choose what works best for you.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div
-                    class="contact-card bg-white border-2 border-aktara-red text-aktara-red p-8 rounded-2xl shadow-xl fade-in hover:bg-aktara-red hover:text-white transition-all duration-300">
-                    <div
-                        class="w-16 h-16 bg-aktara-red text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-map-marker-alt text-2xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <article
+                    class="blog-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 fade-in flex flex-col h-full">
+                    <div class="relative">
+                        <img src="/assets/hero.png"
+                            alt="Saree Styling Tips" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-aktara-red text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Styling
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-center">Visit Our Store</h3>
-                    <p class="text-center text-sm leading-relaxed">
-                        123 Textile Street<br>
-                        Fashion District<br>
-                        Mumbai, Maharashtra 400001<br>
-                        India
-                    </p>
-                </div>
-
-                <div
-                    class="contact-card bg-white border-2 border-aktara-red text-aktara-red p-8 rounded-2xl shadow-xl fade-in hover:bg-aktara-red hover:text-white transition-all duration-300">
-                    <div
-                        class="w-16 h-16 bg-aktara-red text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-phone text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-center">Call Us</h3>
-                    <p class="text-center text-sm leading-relaxed">
-                        +91 98765 43210<br>
-                        +91 98765 43211<br>
-                        Mon-Sat: 10AM-8PM<br>
-                        Sunday: 11AM-6PM
-                    </p>
-                </div>
-
-                <div
-                    class="contact-card bg-white border-2 border-aktara-red text-aktara-red p-8 rounded-2xl shadow-xl fade-in hover:bg-aktara-red hover:text-white transition-all duration-300">
-                    <div
-                        class="w-16 h-16 bg-aktara-red text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-envelope text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-center">Email Us</h3>
-                    <p class="text-center text-sm leading-relaxed">
-                        info@aktara.com<br>
-                        support@aktara.com<br>
-                        orders@aktara.com<br>
-                        wholesale@aktara.com
-                    </p>
-                </div>
-
-                <div
-                    class="contact-card bg-white border-2 border-aktara-red text-aktara-red p-8 rounded-2xl shadow-xl fade-in hover:bg-aktara-red hover:text-white transition-all duration-300">
-                    <div
-                        class="w-16 h-16 bg-aktara-red text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-clock text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-center">Business Hours</h3>
-                    <p class="text-center text-sm leading-relaxed">
-                        Monday - Saturday<br>
-                        10:00 AM - 8:00 PM<br>
-                        Sunday: 11:00 AM - 6:00 PM<br>
-                        Closed on holidays
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form Section -->
-    <section id="contact-form" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <!-- Form -->
-                <div class="fade-in">
-                    <div class="bg-white p-8 lg:p-12 rounded-2xl shadow-xl h-full">
-                        <h2 class="text-3xl md:text-4xl font-bold text-aktara-black mb-8">Send us a Message</h2>
-                        <form class="space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name
-                                        *</label>
-                                    <input type="text" id="name" required
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
-                                        placeholder="Your full name">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email
-                                        Address *</label>
-                                    <input type="email" id="email" required
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
-                                        placeholder="your.email@example.com">
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone
-                                        Number</label>
-                                    <input type="tel" id="phone"
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
-                                        placeholder="+91 98765 43210">
-                                </div>
-                                <div>
-                                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject
-                                        *</label>
-                                    <select id="subject" required
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors">
-                                        <option value="">Select a subject</option>
-                                        <option value="general">General Inquiry</option>
-                                        <option value="product">Product Question</option>
-                                        <option value="order">Order Support</option>
-                                        <option value="return">Returns & Exchanges</option>
-                                        <option value="wholesale">Wholesale Inquiry</option>
-                                        <option value="custom">Custom Order</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="collection" class="block text-sm font-medium text-gray-700 mb-2">Collection
-                                    of Interest</label>
-                                <select id="collection"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors">
-                                    <option value="">Select a collection</option>
-                                    <option value="silk">Silk Sarees</option>
-                                    <option value="cotton">Cotton Sarees</option>
-                                    <option value="designer">Designer Collection</option>
-                                    <option value="bridal">Bridal Collection</option>
-                                    <option value="festive">Festive Collection</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message
-                                    *</label>
-                                <textarea id="message" required rows="6"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red transition-colors"
-                                    placeholder="Tell us how we can help you..."></textarea>
-                            </div>
-
+                    <div class="card-content p-6 flex flex-col h-full">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>December 15, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-aktara-black mb-3 line-clamp-2 min-h-[3.5rem]">
+                            <a href="blogpost.html" class="hover:text-aktara-red transition-colors">
+                                5 Essential Tips for Styling Your Silk Saree
+                            </a>
+                        </h2>
+                        <p class="card-description text-gray-600 mb-4 leading-relaxed line-clamp-3 flex-grow">
+                            Learn how to style your silk saree for different occasions with these expert tips from our
+                            fashion stylists.
+                        </p>
+                        <div class="card-footer flex items-center justify-between mt-auto">
                             <div class="flex items-center">
-                                <input id="newsletter" type="checkbox"
-                                    class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded">
-                                <label for="newsletter" class="ml-2 block text-sm text-gray-700">
-                                    Subscribe to our newsletter for latest updates and offers
-                                </label>
+                                <img src="https://ui-avatars.com/api/?name=PS&background=FFE0E0&color=FF0000&size=150" alt="Author"
+                                    class="w-8 h-8 rounded-full mr-3">
+                                <span class="text-sm text-gray-600 truncate">Priya Sharma</span>
                             </div>
-
-                            <button type="submit"
-                                class="w-full bg-aktara-red text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-aktara-red transition-all duration-300 transform hover:scale-105">
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Contact Info & Map -->
-                <div class="fade-in">
-                    <div class="space-y-8 h-full flex flex-col">
-                        <!-- Map Placeholder -->
-                        <div class="bg-gray-200 rounded-2xl h-64 flex items-center justify-center flex-grow">
-                            <div class="text-center">
-                                <i class="fas fa-map-marker-alt text-4xl text-gray-400 mb-4"></i>
-                                <p class="text-gray-600">Interactive Map</p>
-                                <p class="text-sm text-gray-500">123 Textile Street, Mumbai</p>
-                            </div>
-                        </div>
-
-                        <!-- Social Media -->
-                        <div class="bg-white p-8 rounded-2xl shadow-xl">
-                            <h3 class="text-2xl font-bold text-aktara-black mb-6">Follow Us</h3>
-                            <div class="grid grid-cols-2 gap-4">
-                                <a href="#"
-                                    class="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                                    <i class="fab fa-twitter text-blue-600 text-xl"></i>
-                                    <span class="font-medium text-gray-700">Twitter</span>
-                                </a>
-                                <a href="#"
-                                    class="flex items-center space-x-3 p-4 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors">
-                                    <i class="fab fa-instagram text-pink-600 text-xl"></i>
-                                    <span class="font-medium text-gray-700">Instagram</span>
-                                </a>
-                                <a href="#"
-                                    class="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                                    <i class="fab fa-facebook text-blue-700 text-xl"></i>
-                                    <span class="font-medium text-gray-700">Facebook</span>
-                                </a>
-                                <a href="#"
-                                    class="flex items-center space-x-3 p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
-                                    <i class="fab fa-whatsapp text-green-600 text-xl"></i>
-                                    <span class="font-medium text-gray-700">WhatsApp</span>
-                                </a>
-                            </div>
+                            <a href="blogpost.html"
+                                class="text-aktara-red hover:text-red-700 font-medium text-sm whitespace-nowrap">
+                                Read More →
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article
+                    class="blog-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 fade-in flex flex-col h-full">
+                    <div class="relative">
+                        <img src="/assets/hero.png"
+                            alt="Saree Styling Tips" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-aktara-red text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Styling
+                        </div>
+                    </div>
+                    <div class="card-content p-6 flex flex-col h-full">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>December 15, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-aktara-black mb-3 line-clamp-2 min-h-[3.5rem]">
+                            <a href="blogpost.html" class="hover:text-aktara-red transition-colors">
+                                5 Essential Tips for Styling Your Silk Saree
+                            </a>
+                        </h2>
+                        <p class="card-description text-gray-600 mb-4 leading-relaxed line-clamp-3 flex-grow">
+                            Learn how to style your silk saree for different occasions with these expert tips from our
+                            fashion stylists.
+                        </p>
+                        <div class="card-footer flex items-center justify-between mt-auto">
+                            <div class="flex items-center">
+                                <img src="https://ui-avatars.com/api/?name=PS&background=FFE0E0&color=FF0000&size=150" alt="Author"
+                                    class="w-8 h-8 rounded-full mr-3">
+                                <span class="text-sm text-gray-600 truncate">Priya Sharma</span>
+                            </div>
+                            <a href="blogpost.html"
+                                class="text-aktara-red hover:text-red-700 font-medium text-sm whitespace-nowrap">
+                                Read More →
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article
+                    class="blog-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 fade-in flex flex-col h-full">
+                    <div class="relative">
+                        <img src="/assets/hero.png"
+                            alt="Saree Styling Tips" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-aktara-red text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Styling
+                        </div>
+                    </div>
+                    <div class="card-content p-6 flex flex-col h-full">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>December 15, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-aktara-black mb-3 line-clamp-2 min-h-[3.5rem]">
+                            <a href="blogpost.html" class="hover:text-aktara-red transition-colors">
+                                5 Essential Tips for Styling Your Silk Saree
+                            </a>
+                        </h2>
+                        <p class="card-description text-gray-600 mb-4 leading-relaxed line-clamp-3 flex-grow">
+                            Learn how to style your silk saree for different occasions with these expert tips from our
+                            fashion stylists.
+                        </p>
+                        <div class="card-footer flex items-center justify-between mt-auto">
+                            <div class="flex items-center">
+                                <img src="https://ui-avatars.com/api/?name=PS&background=FFE0E0&color=FF0000&size=150" alt="Author"
+                                    class="w-8 h-8 rounded-full mr-3">
+                                <span class="text-sm text-gray-600 truncate">Priya Sharma</span>
+                            </div>
+                            <a href="blogpost.html"
+                                class="text-aktara-red hover:text-red-700 font-medium text-sm whitespace-nowrap">
+                                Read More →
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article
+                    class="blog-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 fade-in flex flex-col h-full">
+                    <div class="relative">
+                        <img src="/assets/hero.png"
+                            alt="Saree Styling Tips" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-aktara-red text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Styling
+                        </div>
+                    </div>
+                    <div class="card-content p-6 flex flex-col h-full">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>December 15, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-aktara-black mb-3 line-clamp-2 min-h-[3.5rem]">
+                            <a href="blogpost.html" class="hover:text-aktara-red transition-colors">
+                                5 Essential Tips for Styling Your Silk Saree
+                            </a>
+                        </h2>
+                        <p class="card-description text-gray-600 mb-4 leading-relaxed line-clamp-3 flex-grow">
+                            Learn how to style your silk saree for different occasions with these expert tips from our
+                            fashion stylists.
+                        </p>
+                        <div class="card-footer flex items-center justify-between mt-auto">
+                            <div class="flex items-center">
+                                <img src="https://ui-avatars.com/api/?name=PS&background=FFE0E0&color=FF0000&size=150" alt="Author"
+                                    class="w-8 h-8 rounded-full mr-3">
+                                <span class="text-sm text-gray-600 truncate">Priya Sharma</span>
+                            </div>
+                            <a href="blogpost.html"
+                                class="text-aktara-red hover:text-red-700 font-medium text-sm whitespace-nowrap">
+                                Read More →
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 5 -->
+                <article
+                    class="blog-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 fade-in flex flex-col h-full">
+                    <div class="relative">
+                        <img src="/assets/hero.png"
+                            alt="Saree Styling Tips" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-aktara-red text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Styling
+                        </div>
+                    </div>
+                    <div class="card-content p-6 flex flex-col h-full">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>December 15, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-aktara-black mb-3 line-clamp-2 min-h-[3.5rem]">
+                            <a href="blogpost.html" class="hover:text-aktara-red transition-colors">
+                                5 Essential Tips for Styling Your Silk Saree
+                            </a>
+                        </h2>
+                        <p class="card-description text-gray-600 mb-4 leading-relaxed line-clamp-3 flex-grow">
+                            Learn how to style your silk saree for different occasions with these expert tips from our
+                            fashion stylists.
+                        </p>
+                        <div class="card-footer flex items-center justify-between mt-auto">
+                            <div class="flex items-center">
+                                <img src="https://ui-avatars.com/api/?name=PS&background=FFE0E0&color=FF0000&size=150" alt="Author"
+                                    class="w-8 h-8 rounded-full mr-3">
+                                <span class="text-sm text-gray-600 truncate">Priya Sharma</span>
+                            </div>
+                            <a href="blogpost.html"
+                                class="text-aktara-red hover:text-red-700 font-medium text-sm whitespace-nowrap">
+                                Read More →
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 6 -->
+                <article
+                    class="blog-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 fade-in flex flex-col h-full">
+                    <div class="relative">
+                        <img src="/assets/hero.png"
+                            alt="Saree Styling Tips" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-aktara-red text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Styling
+                        </div>
+                    </div>
+                    <div class="card-content p-6 flex flex-col h-full">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>December 15, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-aktara-black mb-3 line-clamp-2 min-h-[3.5rem]">
+                            <a href="blogpost.html" class="hover:text-aktara-red transition-colors">
+                                5 Essential Tips for Styling Your Silk Saree
+                            </a>
+                        </h2>
+                        <p class="card-description text-gray-600 mb-4 leading-relaxed line-clamp-3 flex-grow">
+                            Learn how to style your silk saree for different occasions with these expert tips from our
+                            fashion stylists.
+                        </p>
+                        <div class="card-footer flex items-center justify-between mt-auto">
+                            <div class="flex items-center">
+                                <img src="https://ui-avatars.com/api/?name=PS&background=FFE0E0&color=FF0000&size=150" alt="Author"
+                                    class="w-8 h-8 rounded-full mr-3">
+                                <span class="text-sm text-gray-600 truncate">Priya Sharma</span>
+                            </div>
+                            <a href="blogpost.html"
+                                class="text-aktara-red hover:text-red-700 font-medium text-sm whitespace-nowrap">
+                                Read More →
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-12 flex justify-center">
+                <nav class="flex items-center space-x-2">
+                    <button class="px-3 py-2 text-gray-500 hover:text-aktara-red transition-colors">
+                        Previous
+                    </button>
+                    <button class="px-3 py-2 bg-aktara-red text-white rounded-md">
+                        1
+                    </button>
+                    <button class="px-3 py-2 text-gray-700 hover:text-aktara-red transition-colors">
+                        2
+                    </button>
+                    <button class="px-3 py-2 text-gray-700 hover:text-aktara-red transition-colors">
+                        3
+                    </button>
+                    <button class="px-3 py-2 text-gray-700 hover:text-aktara-red transition-colors">
+                        Next
+                    </button>
+                </nav>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section with Dropdown -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold text-aktara-black mb-6">Frequently Asked Questions</h2>
-                <p class="text-xl text-gray-600">Quick answers to common questions</p>
-            </div>
-            <div class="max-w-4xl mx-auto space-y-4">
-                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <button
-                        class="faq-button w-full px-6 py-4 text-left flex justify-between items-center transition-colors"
-                        onclick="toggleFAQ(1)">
-                        <span class="text-lg font-semibold text-aktara-black pr-4">What is your return policy?</span>
-                        <i class="fas fa-chevron-down faq-toggle text-aktara-red flex-shrink-0" id="toggle-1"></i>
-                    </button>
-                    <div class="faq-content" id="content-1">
-                        <p class="text-gray-600 leading-relaxed">We offer a 15-day return policy for all our sarees.
-                            Items must be in original condition with tags attached. Custom orders are non-returnable
-                            unless there's a manufacturing defect.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <button
-                        class="faq-button w-full px-6 py-4 text-left flex justify-between items-center transition-colors"
-                        onclick="toggleFAQ(2)">
-                        <span class="text-lg font-semibold text-aktara-black pr-4">Do you offer international
-                            shipping?</span>
-                        <i class="fas fa-chevron-down faq-toggle text-aktara-red flex-shrink-0" id="toggle-2"></i>
-                    </button>
-                    <div class="faq-content" id="content-2">
-                        <p class="text-gray-600 leading-relaxed">Yes, we ship worldwide. International shipping costs
-                            and delivery times vary by location. Express shipping options are available for urgent
-                            orders.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <button
-                        class="faq-button w-full px-6 py-4 text-left flex justify-between items-center transition-colors"
-                        onclick="toggleFAQ(3)">
-                        <span class="text-lg font-semibold text-aktara-black pr-4">How do I care for my saree?</span>
-                        <i class="fas fa-chevron-down faq-toggle text-aktara-red flex-shrink-0" id="toggle-3"></i>
-                    </button>
-                    <div class="faq-content" id="content-3">
-                        <p class="text-gray-600 leading-relaxed">Most of our sarees require dry cleaning for best
-                            results. Specific care instructions are provided with each purchase. Silk sarees should be
-                            stored in breathable fabric bags.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <button
-                        class="faq-button w-full px-6 py-4 text-left flex justify-between items-center transition-colors"
-                        onclick="toggleFAQ(4)">
-                        <span class="text-lg font-semibold text-aktara-black pr-4">Do you offer custom designs?</span>
-                        <i class="fas fa-chevron-down faq-toggle text-aktara-red flex-shrink-0" id="toggle-4"></i>
-                    </button>
-                    <div class="faq-content" id="content-4">
-                        <p class="text-gray-600 leading-relaxed">Yes, we offer custom saree designs and alterations.
-                            Contact us with your requirements for a personalized quote. Custom orders typically take 2-4
-                            weeks to complete.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <button
-                        class="faq-button w-full px-6 py-4 text-left flex justify-between items-center transition-colors"
-                        onclick="toggleFAQ(5)">
-                        <span class="text-lg font-semibold text-aktara-black pr-4">What payment methods do you
-                            accept?</span>
-                        <i class="fas fa-chevron-down faq-toggle text-aktara-red flex-shrink-0" id="toggle-5"></i>
-                    </button>
-                    <div class="faq-content" id="content-5">
-                        <p class="text-gray-600 leading-relaxed">We accept all major credit cards, debit cards, UPI
-                            payments, net banking, and cash on delivery for domestic orders. International customers can
-                            pay via PayPal or international cards.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <button
-                        class="faq-button w-full px-6 py-4 text-left flex justify-between items-center transition-colors"
-                        onclick="toggleFAQ(6)">
-                        <span class="text-lg font-semibold text-aktara-black pr-4">How can I track my order?</span>
-                        <i class="fas fa-chevron-down faq-toggle text-aktara-red flex-shrink-0" id="toggle-6"></i>
-                    </button>
-                    <div class="faq-content" id="content-6">
-                        <p class="text-gray-600 leading-relaxed">Once your order is shipped, you'll receive a tracking
-                            number via email and SMS. You can track your order on our website or directly on the
-                            courier's website.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Footer -->
     <footer class="bg-aktara-black text-white py-12 lg:py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -733,18 +679,11 @@
     <script src="js/common.js"></script>
     <script src="js/index.js"></script>
 
+
     <script>
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('hidden');
-        }
-
-        function toggleFAQ(id) {
-            const content = document.getElementById(`content-${id}`);
-            const toggle = document.getElementById(`toggle-${id}`);
-
-            content.classList.toggle('open');
-            toggle.classList.toggle('open');
         }
 
         // Intersection Observer for fade-in animations

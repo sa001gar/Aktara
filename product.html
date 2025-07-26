@@ -21,10 +21,10 @@
     quantity: 1,
     selectedImage: 0,
     images: [
-        '/placeholder.svg?height=600&width=600&text=Royal+Red+Silk+Front',
-        '/placeholder.svg?height=600&width=600&text=Royal+Red+Silk+Back',
-        '/placeholder.svg?height=600&width=600&text=Royal+Red+Silk+Border',
-        '/placeholder.svg?height=600&width=600&text=Royal+Red+Silk+Fabric'
+        'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center'
     ],
     addToCart() {
         this.cartCount += this.quantity;
@@ -104,9 +104,6 @@
                             </div>
                         </div>
                     </div>
-                    <a href="category.html?category=new"
-                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">NEW
-                        ARRIVALS</a>
                     <a href="about.html"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">ABOUT</a>
                     <a href="contact.html"
@@ -203,8 +200,19 @@
                         </svg>
                     </li>
                     <li>
-                        <a href="category.html"
+                        <a href="collections_catagory.html"
                             class="text-gray-500 hover:text-aktara-red transition-colors">Categories</a>
+                    </li>
+                    <li>
+                        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </li>
+                    <li>
+                        <a href="collections.html"
+                            class="text-gray-500 hover:text-aktara-red transition-colors">Silk Sarees</a>
                     </li>
                     <li>
                         <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -221,234 +229,427 @@
         </div>
     </div>
 
-    <!-- Product Details -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Product Images -->
-            <div class="space-y-4">
-                <div class="aspect-square bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img :src="images[selectedImage]" alt="Royal Red Silk Saree" class="w-full h-full object-cover">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Product Images -->
+        <div class="space-y-4">
+            <div class="aspect-square bg-white rounded-lg shadow-lg overflow-hidden">
+                <img :src="images[selectedImage]" alt="Royal Red Silk Saree" class="w-full h-full object-cover">
+            </div>
+            <div class="grid grid-cols-4 gap-4">
+                <template x-for="(image, index) in images" :key="index">
+                    <div @click="selectedImage = index"
+                        class="aspect-square bg-white rounded-lg shadow overflow-hidden cursor-pointer border-2 transition-colors"
+                        :class="selectedImage === index ? 'border-aktara-red' : 'border-transparent hover:border-aktara-red'">
+                        <img :src="image" :alt="`View ${index + 1}`" class="w-full h-full object-cover">
+                    </div>
+                </template>
+            </div>
+        </div>
+        
+        <!-- Product Info -->
+        <div class="space-y-6">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-bold text-aktara-black mb-2">Royal Red Silk Saree</h1>
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="flex text-yellow-400">
+                        <template x-for="i in 5">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </template>
+                    </div>
+                    <span class="text-gray-600">(147 reviews)</span>
                 </div>
-                <div class="grid grid-cols-4 gap-4">
-                    <template x-for="(image, index) in images" :key="index">
-                        <div @click="selectedImage = index"
-                            class="aspect-square bg-white rounded-lg shadow overflow-hidden cursor-pointer border-2 transition-colors"
-                            :class="selectedImage === index ? 'border-aktara-red' : 'border-transparent hover:border-aktara-red'">
-                            <img :src="image" :alt="`View ${index + 1}`" class="w-full h-full object-cover">
-                        </div>
-                    </template>
+                <div class="flex items-center space-x-4 mb-6">
+                    <span class="text-4xl font-bold text-aktara-red">₹8,999</span>
+                    <span class="text-2xl text-gray-500 line-through">₹12,999</span>
+                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium">31% OFF</span>
                 </div>
             </div>
-
-            <!-- Product Info -->
-            <div class="space-y-6">
-                <div>
-                    <h1 class="text-3xl md:text-4xl font-bold text-aktara-black mb-2">Royal Red Silk Saree</h1>
-                    <div class="flex items-center space-x-4 mb-4">
-                        <div class="flex text-yellow-400">
-                            <template x-for="i in 5">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                            </template>
-                        </div>
-                        <span class="text-gray-600">(147 reviews)</span>
+            
+            <div>
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    Exquisite royal red silk saree with intricate golden border work. Perfect for weddings,
+                    festivals, and special occasions. This timeless piece combines traditional craftsmanship with
+                    contemporary elegance.
+                </p>
+            </div>
+            
+            <!-- Fabric Details -->
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <h3 class="text-lg font-semibold text-aktara-black mb-4">Fabric Details</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <span class="font-medium text-gray-700">Fabric:</span>
+                        <span class="text-gray-600 ml-2">Pure Silk</span>
                     </div>
-                    <div class="flex items-center space-x-4 mb-6">
-                        <span class="text-4xl font-bold text-aktara-red">₹8,999</span>
-                        <span class="text-2xl text-gray-500 line-through">₹12,999</span>
-                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium">31% OFF</span>
+                    <div>
+                        <span class="font-medium text-gray-700">Work:</span>
+                        <span class="text-gray-600 ml-2">Golden Border</span>
                     </div>
-                </div>
-
-                <div>
-                    <p class="text-gray-700 text-lg leading-relaxed">
-                        Exquisite royal red silk saree with intricate golden border work. Perfect for weddings,
-                        festivals, and special occasions. This timeless piece combines traditional craftsmanship with
-                        contemporary elegance.
-                    </p>
-                </div>
-
-                <!-- Fabric Details -->
-                <div class="bg-gray-100 p-6 rounded-lg">
-                    <h3 class="text-lg font-semibold text-aktara-black mb-4">Fabric Details</h3>
-                    <div class="grid grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <span class="font-medium text-gray-700">Fabric:</span>
-                            <span class="text-gray-600 ml-2">Pure Silk</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-700">Work:</span>
-                            <span class="text-gray-600 ml-2">Golden Border</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-700">Length:</span>
-                            <span class="text-gray-600 ml-2">5.5 meters</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-700">Blouse:</span>
-                            <span class="text-gray-600 ml-2">0.8 meters</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-700">Care:</span>
-                            <span class="text-gray-600 ml-2">Dry Clean Only</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-700">Origin:</span>
-                            <span class="text-gray-600 ml-2">Handwoven</span>
-                        </div>
+                    <div>
+                        <span class="font-medium text-gray-700">Length:</span>
+                        <span class="text-gray-600 ml-2">5.5 meters</span>
+                    </div>
+                    <div>
+                        <span class="font-medium text-gray-700">Blouse:</span>
+                        <span class="text-gray-600 ml-2">0.8 meters</span>
+                    </div>
+                    <div>
+                        <span class="font-medium text-gray-700">Care:</span>
+                        <span class="text-gray-600 ml-2">Dry Clean Only</span>
+                    </div>
+                    <div>
+                        <span class="font-medium text-gray-700">Origin:</span>
+                        <span class="text-gray-600 ml-2">Handwoven</span>
                     </div>
                 </div>
-
-                <!-- Quantity and Add to Cart -->
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-4">
-                        <span class="font-medium text-aktara-black">Quantity:</span>
-                        <div class="flex items-center border border-gray-300 rounded-md">
-                            <button @click="quantity = Math.max(1, quantity - 1)"
-                                class="px-3 py-2 text-gray-600 hover:text-aktara-red transition-colors">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4">
-                                    </path>
-                                </svg>
-                            </button>
-                            <span x-text="quantity"
-                                class="px-4 py-2 border-l border-r border-gray-300 min-w-[3rem] text-center"></span>
-                            <button @click="quantity = Math.min(10, quantity + 1)"
-                                class="px-3 py-2 text-gray-600 hover:text-aktara-red transition-colors">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 4v16m8-8H4"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button @click="addToCart()"
-                            class="flex-1 bg-aktara-red text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-red-700 transition-colors">
-                            Add to Cart
+            </div>
+            
+            <!-- Quantity and Add to Cart -->
+            <div class="space-y-4">
+                <div class="flex items-center space-x-4">
+                    <span class="font-medium text-aktara-black">Quantity:</span>
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button @click="quantity = Math.max(1, quantity - 1)"
+                            class="px-3 py-2 text-gray-600 hover:text-aktara-red transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                            </svg>
                         </button>
-                        <button
-                            class="flex-1 border-2 border-aktara-red text-aktara-red px-8 py-3 rounded-md text-lg font-medium hover:bg-aktara-red hover:text-white transition-colors">
-                            Buy Now
+                        <span x-text="quantity" class="px-4 py-2 border-l border-r border-gray-300 min-w-[3rem] text-center"></span>
+                        <button @click="quantity = Math.min(10, quantity + 1)"
+                            class="px-3 py-2 text-gray-600 hover:text-aktara-red transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
                         </button>
                     </div>
                 </div>
-
-                <!-- Additional Info -->
-                <div class="border-t pt-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                        <div class="flex items-center space-x-2">
-                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span class="text-gray-700">Free Shipping</span>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span class="text-gray-700">15 Day Return</span>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
-                                </path>
-                            </svg>
-                            <span class="text-gray-700">Secure Payment</span>
-                        </div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button @click="addToCart()"
+                        class="flex-1 bg-aktara-red text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-red-700 transition-colors">
+                        Add to Cart
+                    </button>
+                    <button
+                        class="flex-1 border-2 border-aktara-red text-aktara-red px-8 py-3 rounded-md text-lg font-medium hover:bg-aktara-red hover:text-white transition-colors">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Additional Info -->
+            <div class="border-t pt-6">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-700">Free Shipping</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-gray-700">15 Day Return</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                        <span class="text-gray-700">Secure Payment</span>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Related Products -->
-        <div class="mt-16">
-            <h2 class="text-2xl md:text-3xl font-bold text-aktara-black mb-8">Related Products</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                    <div class="relative">
-                        <img src="/placeholder.svg?height=300&width=300&text=Blue+Silk+Saree" alt="Blue Silk Saree"
-                            class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+    <!-- Product Details Tabs -->
+    <div class="mt-16" x-data="{ activeTab: 'description' }">
+        <!-- Tab Navigation -->
+        <div class="border-b border-gray-200">
+            <nav class="flex space-x-8">
+                <button @click="activeTab = 'description'"
+                    :class="activeTab === 'description' ? 'border-aktara-red text-aktara-red' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                    class="py-4 px-1 border-b-2 font-medium text-sm transition-colors">
+                    Description
+                </button>
+                <button @click="activeTab = 'additional'"
+                    :class="activeTab === 'additional' ? 'border-aktara-red text-aktara-red' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                    class="py-4 px-1 border-b-2 font-medium text-sm transition-colors">
+                    Additional Information
+                </button>
+                <button @click="activeTab = 'reviews'"
+                    :class="activeTab === 'reviews' ? 'border-aktara-red text-aktara-red' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                    class="py-4 px-1 border-b-2 font-medium text-sm transition-colors">
+                    Reviews (3)
+                </button>
+            </nav>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="py-8">
+            <!-- Description Tab -->
+            <div x-show="activeTab === 'description'" x-transition>
+                <div class="prose max-w-none">
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est as erdiet, a malesuada sem rutrum. Sed quam odio, porta a finibus quis, sagittis aliquet leo. Nunc ornare asmetus urna, eu luctusi velit placerat ut. Cras at porttitor lectus. Ut dapibus aliquam nibh, in imperdiet libero tincidunt sit amet. Morbi sodales fermeni nibh nec facilisis. Morbi pharetra varius velit, eget varius libero finibus quis, ut ornare.
+                    </p>
+                    
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start">
+                            <span class="text-aktara-red mr-2">•</span>
+                            <span class="text-gray-700">Aenean auctor sem ac ex efficitur</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-aktara-red mr-2">•</span>
+                            <span class="text-gray-700">Non mattis odio bibendum</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-aktara-red mr-2">•</span>
+                            <span class="text-gray-700">Sed vitae enim at tortor finibus</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-aktara-red mr-2">•</span>
+                            <span class="text-gray-700">Integer facilisis eleifend vehicula</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-aktara-red mr-2">•</span>
+                            <span class="text-gray-700">In hac habitasse platea dictumst</span>
+                        </li>
+                    </ul>
+                    
+                    <p class="text-gray-700 leading-relaxed">
+                        Sed molestie orci sem, at semper est molestie ac. Suspendisse cursus feugiat erat, eu posuere massa. Nullam posuere nibh as endisse et dui euismod, rhoncus eros non, imperdiet ipsum.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Additional Information Tab -->
+            <div x-show="activeTab === 'additional'" x-transition>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold text-aktara-black mb-4">Specifications</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between py-2 border-b border-gray-200">
+                                <span class="font-medium text-gray-700">HEIGHT</span>
+                                <div class="text-right">
+                                    <span class="text-gray-600">Inches (34.6)</span>
+                                    <span class="text-gray-500 text-sm ml-2">CM (88)</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-gray-200">
+                                <span class="font-medium text-gray-700">WIDTH</span>
+                                <div class="text-right">
+                                    <span class="text-gray-600">Inches (71.7 X 89.4)</span>
+                                    <span class="text-gray-500 text-sm ml-2">CM (182 X 227)</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-gray-200">
+                                <span class="font-medium text-gray-700">DEPTH</span>
+                                <div class="text-right">
+                                    <span class="text-gray-600">Inches (35.8)</span>
+                                    <span class="text-gray-500 text-sm ml-2">CM (91)</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-gray-200">
+                                <span class="font-medium text-gray-700">INTERNAL</span>
+                                <div class="text-right">
+                                    <span class="text-gray-600">Inches (57.1 X 68.1)</span>
+                                    <span class="text-gray-500 text-sm ml-2">CM (145 X 173)</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between py-2">
+                                <span class="font-medium text-gray-700">COLOR</span>
+                                <div class="flex space-x-2">
+                                    <div class="w-6 h-6 rounded-full bg-yellow-600 border-2 border-gray-300"></div>
+                                    <div class="w-6 h-6 rounded-full bg-yellow-400 border-2 border-gray-300"></div>
+                                    <div class="w-6 h-6 rounded-full bg-gray-600 border-2 border-gray-300"></div>
+                                    <div class="w-6 h-6 rounded-full bg-black border-2 border-gray-300"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Blue Silk Saree</h3>
-                        <p class="text-gray-600 text-sm mb-4">Pure silk with silver border</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-aktara-red">₹5,499</span>
-                            <button
-                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
-                                View Details
-                            </button>
+                    <div>
+                        <h3 class="text-lg font-semibold text-aktara-black mb-4">Care Instructions</h3>
+                        <div class="space-y-3 text-gray-700">
+                            <p>• Dry clean only</p>
+                            <p>• Store in a cool, dry place</p>
+                            <p>• Avoid direct sunlight</p>
+                            <p>• Handle with care to preserve embroidery</p>
+                            <p>• Iron on low heat if needed</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                    <div class="relative">
-                        <img src="/placeholder.svg?height=300&width=300&text=Green+Silk+Saree" alt="Green Silk Saree"
-                            class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Green Silk Saree</h3>
-                        <p class="text-gray-600 text-sm mb-4">Silk with golden work</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-aktara-red">₹4,799</span>
-                            <button
-                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
-                                View Details
-                            </button>
+            <!-- Reviews Tab -->
+            <div x-show="activeTab === 'reviews'" x-transition>
+                <div class="space-y-8">
+                    <!-- Review 1 -->
+                    <div class="flex space-x-4">
+                        <img src="https://ui-avatars.com/api/?name=AS&background=FFE0E0&color=FF0000&size=150" alt="Abubokkor Siddik" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-aktara-black">Abubokkor Siddik</h4>
+                                    <div class="flex items-center space-x-2">
+                                        <div class="flex text-yellow-400">
+                                            ★★★★★
+                                        </div>
+                                        <span class="text-gray-500 text-sm">(5.0)</span>
+                                    </div>
+                                </div>
+                                <button class="text-aktara-red hover:text-red-700 text-sm font-medium px-4 py-2 border border-aktara-red rounded-full hover:bg-aktara-red hover:text-white transition-colors">
+                                    Reply
+                                </button>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">April 14, 2023</p>
+                            <p class="text-gray-700">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has asbobeen the industry's standard dummy repeat predefined chunks as</p>
                         </div>
                     </div>
-                </div>
 
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                    <div class="relative">
-                        <img src="/placeholder.svg?height=300&width=300&text=Maroon+Silk+Saree" alt="Maroon Silk Saree"
-                            class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Maroon Silk Saree</h3>
-                        <p class="text-gray-600 text-sm mb-4">Bridal collection with embroidery</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-aktara-red">₹8,999</span>
-                            <button
-                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
-                                View Details
-                            </button>
+                    <!-- Review 2 -->
+                    <div class="flex space-x-4">
+                        <img src="https://ui-avatars.com/api/?name=DP&background=FFE0E0&color=FF0000&size=150" alt="Davidthy Phillips" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-aktara-black">Davidthy Phillips</h4>
+                                    <div class="flex items-center space-x-2">
+                                        <div class="flex text-yellow-400">
+                                            ★★★★★
+                                        </div>
+                                        <span class="text-gray-500 text-sm">(5.0)</span>
+                                    </div>
+                                </div>
+                                <button class="text-aktara-red hover:text-red-700 text-sm font-medium px-4 py-2 border border-aktara-red rounded-full hover:bg-aktara-red hover:text-white transition-colors">
+                                    Reply
+                                </button>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">April 14, 2023</p>
+                            <p class="text-gray-700">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has asbobeen the industry's standard dummy repeat predefined chunks as</p>
                         </div>
                     </div>
-                </div>
 
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                    <div class="relative">
-                        <img src="/placeholder.svg?height=300&width=300&text=Orange+Silk+Saree" alt="Orange Silk Saree"
-                            class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-aktara-black mb-2">Orange Silk Saree</h3>
-                        <p class="text-gray-600 text-sm mb-4">Festival collection</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-aktara-red">₹3,999</span>
-                            <button
-                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
-                                View Details
-                            </button>
+                    <!-- Review 3 -->
+                    <div class="flex space-x-4">
+                        <img src="https://ui-avatars.com/api/?name=EA&background=FFE0E0&color=FF0000&size=150" alt="Elliot Alderson" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-aktara-black">Elliot Alderson</h4>
+                                    <div class="flex items-center space-x-2">
+                                        <div class="flex text-yellow-400">
+                                            ★★★★★
+                                        </div>
+                                        <span class="text-gray-500 text-sm">(5.0)</span>
+                                    </div>
+                                </div>
+                                <button class="text-aktara-red hover:text-red-700 text-sm font-medium px-4 py-2 border border-aktara-red rounded-full hover:bg-aktara-red hover:text-white transition-colors">
+                                    Reply
+                                </button>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">April 14, 2023</p>
+                            <p class="text-gray-700">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has asbobeen the industry's standard dummy repeat predefined chunks as</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Related Products -->
+    <div class="mt-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-aktara-black mb-8">Related Products</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Product Card 1 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
+                        alt="Blue Silk Saree"
+                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-aktara-black mb-2 line-clamp-2 min-h-[3.5rem]">Blue Silk Saree</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 min-h-[2.5rem]">Pure silk with silver border</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="text-2xl font-bold text-aktara-red">₹5,499</span>
+                        <button class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
+                        alt="Green Silk Saree"
+                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-aktara-black mb-2 line-clamp-2 min-h-[3.5rem]">Green Silk Saree with Extended Name for Testing</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 min-h-[2.5rem]">Silk with golden work and intricate embroidery details</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="text-2xl font-bold text-aktara-red">₹4,799</span>
+                        <button class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
+                        alt="Maroon Silk Saree"
+                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-aktara-black mb-2 line-clamp-2 min-h-[3.5rem]">Maroon Silk Saree</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 min-h-[2.5rem]">Bridal collection</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="text-2xl font-bold text-aktara-red">₹8,999</span>
+                        <button class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
+                        alt="Orange Silk Saree"
+                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-aktara-black mb-2 line-clamp-2 min-h-[3.5rem]">Orange Silk Saree for Festival Celebrations</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 min-h-[2.5rem]">Festival collection with beautiful patterns and traditional designs</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="text-2xl font-bold text-aktara-red">₹3,999</span>
+                        <button class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors whitespace-nowrap">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
     <!-- Footer -->
@@ -469,30 +670,34 @@
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                             </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                             </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                                <path
+                                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z" />
                             </svg>
                         </a>
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                             </svg>
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Quick Links -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
@@ -511,7 +716,7 @@
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Categories -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Categories</h3>
@@ -530,7 +735,7 @@
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Party Wear</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Customer Service -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
@@ -549,7 +754,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <!-- Bottom Footer -->
             <div class="border-t border-gray-700 mt-12 pt-8">
                 <div class="flex flex-col lg:flex-row justify-between items-center">
@@ -597,6 +802,8 @@
             </div>
         </div>
     </footer>
+
+
 
 </body>
 

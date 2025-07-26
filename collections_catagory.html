@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections - Aktara Sarees</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style type="text/tailwindcss">
+        @theme {
+            --color-aktara-red: #FF0000;
+            --color-aktara-black: #000000;
+        }
+    </style>
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-hover-effect {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <!-- Top Bar -->
+        <div class="bg-gray-100 text-sm py-2 hidden md:block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <div class="flex space-x-4 text-gray-600">
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-phone text-aktara-red"></i>
+                        +91 98765 43210
+                    </span>
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-envelope text-aktara-red"></i>
+                        info@aktara.in
+                    </span>
+                </div>
+                <div class="flex space-x-4 text-gray-600">
+                    <a href="#" class="hover:text-aktara-red transition-colors">Track Order</a>
+                    <a href="#" class="hover:text-aktara-red transition-colors">Size Guide</a>
+                    <a href="#" class="hover:text-aktara-red transition-colors">Free Shipping on ₹2999+</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo_new.png" alt="Aktara Logo" class="h-10 md:h-12 lg:h-14">
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">HOME</a>
+                    <div class="relative group">
+                        <a href="collections.html"
+                            class="text-aktara-red border-b-2 border-aktara-red px-3 py-2 text-sm font-medium flex items-center">
+                            COLLECTIONS
+                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div
+                            class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="py-2">
+                                <a href="collections.html?collection=silk"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Silk
+                                    Sarees</a>
+                                <a href="collections.html?collection=cotton"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Cotton
+                                    Sarees</a>
+                                <a href="collections.html?collection=designer"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Designer
+                                    Collection</a>
+                                <a href="collections.html?collection=bridal"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Bridal
+                                    Collection</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="collections.html?collection=new"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">NEW
+                        ARRIVALS</a>
+                    <a href="about.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">ABOUT</a>
+                    <a href="blog.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">BLOG</a>
+                    <a href="contact.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
+                </div>
+
+                <!-- Search and Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search sarees..."
+                            class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red">
+                        <i class="fas fa-search absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
+                    </div>
+                    <a href="login.html" class="text-aktara-black hover:text-aktara-red transition-colors">
+                        <i class="fas fa-user text-xl"></i>
+                    </a>
+                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                    <a href="cart.html" class="relative text-aktara-black hover:text-aktara-red transition-colors">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-aktara-black hover:text-aktara-red p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t shadow-lg">
+                    <div class="px-3 py-2">
+                        <input type="text" placeholder="Search sarees..."
+                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                        <i class="fas fa-search absolute left-6 top-4.5 text-gray-400"></i>
+                    </div>
+                    <a href="index.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">HOME</a>
+                    <a href="category.html"
+                        class="text-aktara-red border-l-4 border-aktara-red bg-red-50 block px-3 py-2 text-base font-medium">COLLECTIONS</a>
+                    <a href="category.html?category=new"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">NEW
+                        ARRIVALS</a>
+                    <a href="about.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">ABOUT</a>
+                    <a href="blog.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">BLOG</a>
+                    <a href="contact.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-2 text-base font-medium">CONTACT</a>
+                    <div class="flex justify-around py-4 border-t border-gray-200 mt-4">
+                        <a href="login.html"
+                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors">
+                            <i class="fas fa-user text-xl mb-1"></i>
+                            <span class="text-xs">Account</span>
+                        </a>
+                        <button
+                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors">
+                            <i class="fas fa-heart text-xl mb-1"></i>
+                            <span class="text-xs">Wishlist</span>
+                        </button>
+                        <a href="cart.html"
+                            class="flex flex-col items-center text-aktara-black hover:text-aktara-red transition-colors">
+                            <i class="fas fa-shopping-bag text-xl mb-1"></i>
+                            <span class="text-xs">Cart</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="flex items-center space-x-4">
+                    <li>
+                        <a href="index.html" class="text-gray-500 hover:text-aktara-red transition-colors">Home</a>
+                    </li>
+                    <li>
+                        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </li>
+                    <li>
+                        <span class="text-aktara-black font-medium">Collections</span>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Page Header with Image Background - Smaller Size -->
+    <section class="relative py-12 md:py-16 overflow-hidden"
+        style="background: linear-gradient(135deg, rgba(255,0,0,0.9), rgba(204,0,0,0.9)), url('/assets/page_header.jpg'); background-size: cover; background-position: center;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <div class="fade-in">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+                    Premium <span class="text-yellow-300">Collections</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-6 leading-relaxed">
+                    Discover our exquisite collection of handwoven sarees, carefully curated for your convenience.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#products"
+                        class="inline-block bg-white text-aktara-red px-6 py-3 rounded-full text-base font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+                        Browse Collections
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Stats -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="fade-in stats-counter">
+                    <div class="text-4xl font-bold text-aktara-red mb-2">12+</div>
+                    <div class="text-gray-600 font-medium">Categories</div>
+                </div>
+                <div class="fade-in stats-counter">
+                    <div class="text-4xl font-bold text-aktara-red mb-2">500+</div>
+                    <div class="text-gray-600 font-medium">Designs</div>
+                </div>
+                <div class="fade-in stats-counter">
+                    <div class="text-4xl font-bold text-aktara-red mb-2">50+</div>
+                    <div class="text-gray-600 font-medium">Artisans</div>
+                </div>
+                <div class="fade-in stats-counter">
+                    <div class="text-4xl font-bold text-aktara-red mb-2">25+</div>
+                    <div class="text-gray-600 font-medium">States</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Filter Tags -->
+    <section class="py-8 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-6">
+                <h3 class="text-lg font-semibold text-aktara-black mb-4">Quick Filters</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button
+                        class="filter-tag bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:bg-aktara-red hover:text-white transition-all duration-300 shadow-sm"
+                        onclick="filterCategories('all')">
+                        All Categories
+                    </button>
+                    <button
+                        class="filter-tag bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:bg-aktara-red hover:text-white transition-all duration-300 shadow-sm"
+                        onclick="filterCategories('traditional')">
+                        Traditional
+                    </button>
+                    <button
+                        class="filter-tag bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:bg-aktara-red hover:text-white transition-all duration-300 shadow-sm"
+                        onclick="filterCategories('contemporary')">
+                        Contemporary
+                    </button>
+                    <button
+                        class="filter-tag bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:bg-aktara-red hover:text-white transition-all duration-300 shadow-sm"
+                        onclick="filterCategories('bridal')">
+                        Bridal
+                    </button>
+                    <button
+                        class="filter-tag bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:bg-aktara-red hover:text-white transition-all duration-300 shadow-sm"
+                        onclick="filterCategories('casual')">
+                        Casual Wear
+                    </button>
+                    <button
+                        class="filter-tag bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:bg-aktara-red hover:text-white transition-all duration-300 shadow-sm"
+                        onclick="filterCategories('premium')">
+                        Premium
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Categories Section -->
+    <section id="categories" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-aktara-black mb-4">Our Collection Categories</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">From traditional handwoven masterpieces to
+                    contemporary designer collections, discover the perfect saree for every occasion.</p>
+            </div>
+
+            <!-- Categories Grid -->
+            <div id="categoriesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Silk Sarees Category -->
+                <div class="category-card category-item bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect fade-in"
+                    data-type="traditional premium">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1727934404073-797950f15a76?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hhcmVlfGVufDB8fDB8fHww"
+                            alt="Silk Sarees Collection" class="w-full h-full object-cover">
+                        <div class="category-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <h3 class="text-2xl font-bold mb-2">Silk Sarees</h3>
+                                <p class="text-sm mb-4">Premium silk collections</p>
+                                <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs">150+
+                                    Designs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h4 class="font-semibold text-aktara-black">Silk Collection</h4>
+                                <p class="text-sm text-gray-600">Luxurious silk sarees</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500">Starting from</div>
+                                <div class="text-lg font-bold text-aktara-red">₹8,999</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-1">
+                                <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-blue-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                                <span class="text-xs text-gray-500 ml-2">+20 colors</span>
+                            </div>
+                            <a href="collections.html?category=silk"
+                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cotton Sarees Category -->
+                <div class="category-card category-item bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect fade-in"
+                    data-type="traditional casual">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1727934404459-48ba939f9e11?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hhcmVlfGVufDB8fDB8fHww"
+                            alt="Cotton Sarees Collection" class="w-full h-full object-cover">
+                        <div class="category-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <h3 class="text-2xl font-bold mb-2">Cotton Sarees</h3>
+                                <p class="text-sm mb-4">Comfortable daily wear</p>
+                                <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs">200+
+                                    Designs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h4 class="font-semibold text-aktara-black">Cotton Collection</h4>
+                                <p class="text-sm text-gray-600">Breathable & comfortable</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500">Starting from</div>
+                                <div class="text-lg font-bold text-aktara-red">₹2,999</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-1">
+                                <span class="w-3 h-3 bg-pink-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-purple-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-indigo-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-teal-500 rounded-full"></span>
+                                <span class="text-xs text-gray-500 ml-2">+25 colors</span>
+                            </div>
+                            <a href="collections.html?category=cotton"
+                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Designer Sarees Category -->
+                <div class="category-card category-item bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect fade-in"
+                    data-type="contemporary premium">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
+                            alt="Designer Sarees Collection" class="w-full h-full object-cover">
+                        <div class="category-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <h3 class="text-2xl font-bold mb-2">Designer Sarees</h3>
+                                <p class="text-sm mb-4">Contemporary designs</p>
+                                <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs">80+
+                                    Designs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h4 class="font-semibold text-aktara-black">Designer Collection</h4>
+                                <p class="text-sm text-gray-600">Modern & trendy</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500">Starting from</div>
+                                <div class="text-lg font-bold text-aktara-red">₹12,999</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-1">
+                                <span class="w-3 h-3 bg-emerald-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-amber-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-rose-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-violet-500 rounded-full"></span>
+                                <span class="text-xs text-gray-500 ml-2">+15 colors</span>
+                            </div>
+                            <a href="collections.html?category=designer"
+                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bridal Sarees Category -->
+                <div class="category-card category-item bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect fade-in"
+                    data-type="bridal premium">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1727934404073-797950f15a76?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hhcmVlfGVufDB8fDB8fHww"
+                            alt="Bridal Sarees Collection" class="w-full h-full object-cover">
+                        <div class="category-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <h3 class="text-2xl font-bold mb-2">Bridal Sarees</h3>
+                                <p class="text-sm mb-4">Wedding special</p>
+                                <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs">60+
+                                    Designs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h4 class="font-semibold text-aktara-black">Bridal Collection</h4>
+                                <p class="text-sm text-gray-600">Perfect for weddings</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500">Starting from</div>
+                                <div class="text-lg font-bold text-aktara-red">₹18,999</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-1">
+                                <span class="w-3 h-3 bg-red-600 rounded-full"></span>
+                                <span class="w-3 h-3 bg-pink-600 rounded-full"></span>
+                                <span class="w-3 h-3 bg-orange-600 rounded-full"></span>
+                                <span class="w-3 h-3 bg-yellow-600 rounded-full"></span>
+                                <span class="text-xs text-gray-500 ml-2">+12 colors</span>
+                            </div>
+                            <a href="collections.html?category=bridal"
+                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Party Wear Category -->
+                <div class="category-card category-item bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect fade-in"
+                    data-type="contemporary casual">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
+                            alt="Party Wear Sarees" class="w-full h-full object-cover">
+                        <div class="category-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <h3 class="text-2xl font-bold mb-2">Party Wear</h3>
+                                <p class="text-sm mb-4">Glamorous occasions</p>
+                                <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs">90+
+                                    Designs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h4 class="font-semibold text-aktara-black">Party Collection</h4>
+                                <p class="text-sm text-gray-600">Glamorous & stylish</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500">Starting from</div>
+                                <div class="text-lg font-bold text-aktara-red">₹7,999</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-1">
+                                <span class="w-3 h-3 bg-purple-600 rounded-full"></span>
+                                <span class="w-3 h-3 bg-blue-600 rounded-full"></span>
+                                <span class="w-3 h-3 bg-green-600 rounded-full"></span>
+                                <span class="w-3 h-3 bg-black rounded-full"></span>
+                                <span class="text-xs text-gray-500 ml-2">+18 colors</span>
+                            </div>
+                            <a href="collections.html?category=party"
+                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Festival Collection -->
+                <div class="category-card category-item bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect fade-in"
+                    data-type="traditional casual">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1727934404459-48ba939f9e11?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hhcmVlfGVufDB8fDB8fHww"
+                            alt="Festival Sarees" class="w-full h-full object-cover">
+                        <div class="category-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <h3 class="text-2xl font-bold mb-2">Festival Wear</h3>
+                                <p class="text-sm mb-4">Celebration ready</p>
+                                <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs">120+
+                                    Designs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h4 class="font-semibold text-aktara-black">Festival Collection</h4>
+                                <p class="text-sm text-gray-600">Perfect for celebrations</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500">Starting from</div>
+                                <div class="text-lg font-bold text-aktara-red">₹4,999</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-1">
+                                <span class="w-3 h-3 bg-orange-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                                <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                                <span class="text-xs text-gray-500 ml-2">+22 colors</span>
+                            </div>
+                            <a href="collections.html?category=festival"
+                                class="bg-aktara-red text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section id="featured" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-aktara-black mb-4">Featured Collections</h2>
+                <p class="text-lg text-gray-600">Handpicked collections that showcase the best of our artistry</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Featured Collection 1 -->
+                <div class="bg-gradient-to-r from-aktara-red to-red-600 rounded-2xl p-8 text-white card-hover-effect">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Heritage Collection</h3>
+                            <p class="text-red-100">Traditional handwoven masterpieces</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">40+</div>
+                            <div class="text-sm text-red-100">Designs</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-sm text-red-100">Starting from ₹15,999</div>
+                        <a href="collections.html?featured=heritage"
+                            class="bg-white text-aktara-red px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors">
+                            Explore Heritage
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Featured Collection 2 -->
+                <div
+                    class="bg-gradient-to-r from-purple-600 to-purple-700 rounded-2xl p-8 text-white card-hover-effect">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Modern Fusion</h3>
+                            <p class="text-purple-100">Contemporary meets traditional</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">25+</div>
+                            <div class="text-sm text-purple-100">Designs</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-sm text-purple-100">Starting from ₹9,999</div>
+                        <a href="collections.html?featured=fusion"
+                            class="bg-white text-purple-600 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors">
+                            Explore Fusion
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Can't Find What You're Looking For?</h2>
+                <p class="text-xl text-gray-300 mb-8">Our experts can help you find the perfect saree or create a custom
+                    design just for you.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html"
+                        class="bg-aktara-red text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-red-700 transition-colors">
+                        Contact Expert
+                    </a>
+                    <a href="custom.html"
+                        class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-gray-900 transition-colors">
+                        Custom Design
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-aktara-black text-white py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- Brand Section with Logo -->
+                <div class="lg:col-span-2">
+                    <!--  Logo -->
+                    <div class="flex items-center mb-6">
+                        <img src="assets/logo.jpg" alt="" class="w-auto h-16 rounded-lg mr-3">
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md text-sm lg:text-base">
+                        Premium handwoven sarees for every occasion. Crafted with love, delivered with care. Experience
+                        the perfect blend of tradition and contemporary style.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-aktara-red transition-colors">Home</a>
+                        </li>
+                        <li><a href="category.html" class="text-gray-300 hover:text-aktara-red transition-colors">All
+                                Sarees</a></li>
+                        <li><a href="category.html?category=new"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">New Arrivals</a></li>
+                        <li><a href="category.html?category=bestseller"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Bestsellers</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-aktara-red transition-colors">About
+                                Us</a></li>
+                        <li><a href="contact.html"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Categories</h3>
+                    <ul class="space-y-3">
+                        <li><a href="category.html?category=cotton"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Cotton Sarees</a></li>
+                        <li><a href="category.html?category=silk"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Silk Sarees</a></li>
+                        <li><a href="category.html?category=designer"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Designer Sarees</a></li>
+                        <li><a href="category.html?category=bridal"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Bridal Collection</a></li>
+                        <li><a href="category.html?category=festive"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Festive Wear</a></li>
+                        <li><a href="category.html?category=party"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Party Wear</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Size Guide</a>
+                        </li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Care
+                                Instructions</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Shipping Info</a>
+                        </li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Returns &
+                                Exchange</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Track Your
+                                Order</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-700 mt-12 pt-8">
+                <div class="flex flex-col lg:flex-row justify-between items-center">
+                    <div class="text-gray-300 text-sm mb-4 lg:mb-0 text-center lg:text-left">
+                        &copy; 2024 Aktara. All rights reserved. |
+                        <a href="#" class="hover:text-aktara-red transition-colors">Privacy Policy</a> |
+                        <a href="#" class="hover:text-aktara-red transition-colors">Terms of Service</a>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-300 text-sm">We Accept:</span>
+                        <div class="flex space-x-2">
+                            <!-- Visa SVG -->
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="32" height="10" viewBox="0 0 32 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.3 0.2L10.9 9.6H8.7L7.4 3.6C7.3 3.2 7.1 2.9 6.8 2.7C6.2 2.4 5.4 2.1 4.7 1.9L4.9 0.2H9.2C9.7 0.2 10.1 0.5 10.2 1L11.1 5.8L13.7 0.2H13.3ZM15.9 9.6H13.8L15.2 0.2H17.3L15.9 9.6ZM22.8 6.1C22.8 4.6 20.5 4.5 20.5 3.6C20.5 3.3 20.8 3 21.4 3C22.2 3 22.9 3.2 23.5 3.5L24 1.1C23.4 0.9 22.6 0.7 21.7 0.7C19.7 0.7 18.3 1.8 18.3 3.4C18.3 4.6 19.4 5.3 20.2 5.7C21 6.1 21.3 6.4 21.3 6.8C21.3 7.4 20.6 7.7 19.9 7.7C19 7.7 18.1 7.4 17.4 7L16.9 9.4C17.7 9.8 18.8 10 19.8 10C22.1 10 23.5 8.9 22.8 6.1ZM31.8 9.6H30L28.2 0.2H26.4C26 0.2 25.7 0.4 25.5 0.7L22.2 9.6H24.5L25 8.2H27.7L28 9.6H31.8ZM25.7 6.4L26.7 3.6L27.3 6.4H25.7Z"
+                                        fill="#1A1F71" />
+                                </svg>
+                            </div>
+                            <!-- Mastercard SVG -->
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="24" height="15" viewBox="0 0 24 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="8" cy="7.5" r="7" fill="#EB001B" />
+                                    <circle cx="16" cy="7.5" r="7" fill="#F79E1B" />
+                                    <path
+                                        d="M12 2.5C13.5 3.8 14.5 5.5 14.5 7.5C14.5 9.5 13.5 11.2 12 12.5C10.5 11.2 9.5 9.5 9.5 7.5C9.5 5.5 10.5 3.8 12 2.5Z"
+                                        fill="#FF5F00" />
+                                </svg>
+                            </div>
+                            <!-- UPI SVG -->
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="28" height="14" viewBox="0 0 28 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="14" cy="7" r="7" fill="#FF6600" />
+                                    <text x="14" y="9.5" font-family="Arial, sans-serif" font-size="4.5"
+                                        font-weight="bold" fill="white" text-anchor="middle">UPI</text>
+                                    <path d="M19 4L21 7L19 10" stroke="white" stroke-width="1" fill="none" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop"
+        class="fixed bottom-6 right-6 bg-aktara-red text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-red-700 transform hover:scale-110 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="js/common.js"></script>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        function filterCategories(filterType) {
+            const categories = document.querySelectorAll('.category-item');
+
+            // Update active filter button
+            document.querySelectorAll('.filter-tag').forEach(btn => {
+                btn.classList.remove('bg-aktara-red', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700');
+            });
+
+            event.target.classList.remove('bg-white', 'text-gray-700');
+            event.target.classList.add('bg-aktara-red', 'text-white');
+
+            categories.forEach(category => {
+                if (filterType === 'all') {
+                    category.style.display = 'block';
+                } else {
+                    const categoryTypes = category.dataset.type.split(' ');
+                    if (categoryTypes.includes(filterType)) {
+                        category.style.display = 'block';
+                    } else {
+                        category.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set "All Categories" as active by default
+            document.querySelector('.filter-tag').classList.remove('bg-white', 'text-gray-700');
+            document.querySelector('.filter-tag').classList.add('bg-aktara-red', 'text-white');
+        });
+    </script>
+</body>
+
+</html>
