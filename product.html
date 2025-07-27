@@ -233,14 +233,14 @@
         <!-- Product Images -->
         <div class="space-y-4">
             <div class="aspect-square bg-white rounded-lg shadow-lg overflow-hidden">
-                <img :src="images[selectedImage]" alt="Royal Red Silk Saree" class="w-full h-full object-cover">
+                <img :src="images[selectedImage]" alt="Royal Red Silk Saree" class="w-full h-full object-contain">
             </div>
             <div class="grid grid-cols-4 gap-4">
                 <template x-for="(image, index) in images" :key="index">
                     <div @click="selectedImage = index"
                         class="aspect-square bg-white rounded-lg shadow overflow-hidden cursor-pointer border-2 transition-colors"
                         :class="selectedImage === index ? 'border-aktara-red' : 'border-transparent hover:border-aktara-red'">
-                        <img :src="image" :alt="`View ${index + 1}`" class="w-full h-full object-cover">
+                        <img :src="image" :alt="`View ${index + 1}`" class="w-full h-full object-contain">
                     </div>
                 </template>
             </div>
@@ -780,7 +780,7 @@
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
                         alt="Blue Silk Saree"
-                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex-1">
@@ -801,7 +801,7 @@
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
                         alt="Green Silk Saree"
-                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex-1">
@@ -822,7 +822,7 @@
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
                         alt="Maroon Silk Saree"
-                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex-1">
@@ -843,7 +843,7 @@
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
                         alt="Orange Silk Saree"
-                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex-1">
