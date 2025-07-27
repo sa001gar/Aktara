@@ -37,7 +37,7 @@ function initTrendingSwiper() {
                     },
                     on: {
                         init: function() {
-                            console.log('Swiper initialized successfully');
+                            // console.log('Swiper initialized successfully');
                             swiperInitialized = true;
                         }
                     }
@@ -55,7 +55,7 @@ function initTrendingSwiper() {
 
 // Initialize index page functionality
 function initIndexPage() {
-    console.log('Initializing index page...');
+    // console.log('Initializing index page...');
     
     // Initialize Swiper
     initTrendingSwiper();
@@ -66,10 +66,10 @@ document.addEventListener('DOMContentLoaded', initIndexPage);
 
 // Also initialize when window is loaded (fallback)
 window.addEventListener('load', () => {
-    console.log('Window loaded, ensuring functionality...');
+    // console.log('Window loaded, ensuring functionality...');
     
     if (!swiperInitialized) {
-        console.log('Reinitializing Swiper...');
+        // console.log('Reinitializing Swiper...');
         initTrendingSwiper();
     }
 });
