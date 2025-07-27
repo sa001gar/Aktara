@@ -356,7 +356,7 @@ function toggleMobileMenu() {
 
 // Initialize common functionality
 function initCommon() {
-  console.log("Initializing common functionality...")
+  // console.log("Initializing common functionality...")
 
   // Scroll progress
   const scrollProgress = document.getElementById("scrollProgress")
@@ -428,7 +428,7 @@ function initCommon() {
   // Clear search cache periodically
   setInterval(() => searchCache.clear(), 5 * 60 * 1000)
 
-  console.log("Common functionality initialized successfully")
+  // console.log("Common functionality initialized successfully")
 }
 
 // Initialize when DOM is loaded
