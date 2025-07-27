@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Royal Red Silk Saree - Aktara</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="js/browser@4.js"></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style type="text/tailwindcss">
         @theme {
@@ -60,7 +60,6 @@
                     <a href="#" class="hover:text-aktara-red transition-colors">Track Order</a>
                     <a href="#" class="hover:text-aktara-red transition-colors">Size Guide</a>
                     <a href="#" class="hover:text-aktara-red transition-colors">Free Shipping on ₹2999+</a>
-                </div>
             </div>
         </div>
 
@@ -234,14 +233,14 @@
         <!-- Product Images -->
         <div class="space-y-4">
             <div class="aspect-square bg-white rounded-lg shadow-lg overflow-hidden">
-                <img :src="images[selectedImage]" alt="Royal Red Silk Saree" class="w-full h-full object-cover">
+                <img :src="images[selectedImage]" alt="Royal Red Silk Saree" class="w-full h-full object-contain">
             </div>
             <div class="grid grid-cols-4 gap-4">
                 <template x-for="(image, index) in images" :key="index">
                     <div @click="selectedImage = index"
                         class="aspect-square bg-white rounded-lg shadow overflow-hidden cursor-pointer border-2 transition-colors"
                         :class="selectedImage === index ? 'border-aktara-red' : 'border-transparent hover:border-aktara-red'">
-                        <img :src="image" :alt="`View ${index + 1}`" class="w-full h-full object-cover">
+                        <img :src="image" :alt="`View ${index + 1}`" class="w-full h-full object-contain">
                     </div>
                 </template>
             </div>
@@ -476,21 +475,8 @@
             </div>
 
             <!-- Reviews Tab -->
-           <div x-data="{ activeTab: 'reviews' }">
-            <!-- Tab Navigation -->
-            <div class="border-b border-gray-200 mb-6">
-                <nav class="-mb-px flex space-x-8">
-                    <button @click="activeTab = 'reviews'" 
-                            :class="activeTab === 'reviews' ? 'border-aktara-red text-aktara-red' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
-                            class="whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm transition-colors">
-                        Reviews
-                    </button>
-                </nav>
-            </div>
-
-            <!-- Reviews Content -->
-            <div x-show="activeTab === 'reviews'" x-transition>
-                <div class="space-y-6">
+        <!-- Reviews Tab -->
+        <div x-show="activeTab === 'reviews'" x-transition>
                     <!-- Review 1 -->
                     <div x-data="{ showReplyForm: false }" class="border-b border-gray-100 pb-6 last:border-b-0">
                         <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0">
@@ -794,7 +780,7 @@
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
                         alt="Blue Silk Saree"
-                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex-1">
@@ -815,7 +801,7 @@
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
                         alt="Green Silk Saree"
-                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex-1">
@@ -836,7 +822,7 @@
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
                         alt="Maroon Silk Saree"
-                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex-1">
@@ -857,7 +843,7 @@
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop&crop=center"
                         alt="Orange Silk Saree"
-                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex-1">

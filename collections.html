@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories - Aktara Sarees</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="js/browser@4.js"></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -317,68 +317,165 @@
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Header with Filters -->
+         <!-- Header with Filters -->
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
             <div>
                 <h1 class="text-2xl md:text-3xl font-bold text-aktara-black">Silk Sarees</h1>
-                <p class="text-gray-600 mt-1">9 products found</p>
+                <p class="text-gray-600 mt-1" id="productCount">9 products found</p>
             </div>
-            
+
             <!-- Desktop Filter Dropdowns -->
             <div class="hidden lg:flex items-center space-x-4">
                 <!-- Category Filter Dropdown -->
-                <div class="relative">
-                    <button class="flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                <div class="relative dropdown" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open"
+                        class="flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-aktara-red">
                         <span>Category</span>
+                        <span x-show="filters.category.length > 0"
+                            class="bg-aktara-red text-white text-xs rounded-full px-2 py-1"
+                            x-text="filters.category.length"></span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
                         </svg>
                     </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border z-10">
+                        <div class="py-2">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="checkbox" x-model="filters.category" value="cotton"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">Cotton</span>
+                            </label>
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="checkbox" x-model="filters.category" value="silk"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">Silk</span>
+                            </label>
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="checkbox" x-model="filters.category" value="designer"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">Designer</span>
+                            </label>
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="checkbox" x-model="filters.category" value="bridal"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">Bridal</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                
+
                 <!-- Price Range Filter Dropdown -->
-                <div class="relative">
-                    <button class="flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                <div class="relative dropdown" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open"
+                        class="flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-aktara-red">
                         <span>Price Range</span>
+                        <span x-show="filters.priceRange"
+                            class="bg-aktara-red text-white text-xs rounded-full px-2 py-1">1</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
                         </svg>
                     </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border z-10">
+                        <div class="py-2">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="radio" x-model="filters.priceRange" value="under-2000" name="desktop-price"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">Under ₹2,000</span>
+                            </label>
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="radio" x-model="filters.priceRange" value="2000-5000" name="desktop-price"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">₹2,000 - ₹5,000</span>
+                            </label>
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="radio" x-model="filters.priceRange" value="5000-10000" name="desktop-price"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">₹5,000 - ₹10,000</span>
+                            </label>
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="radio" x-model="filters.priceRange" value="above-10000"
+                                    name="desktop-price" class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">Above ₹10,000</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                
+
                 <!-- Fabric Filter Dropdown -->
-                <div class="relative">
-                    <button class="flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                <div class="relative dropdown" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open"
+                        class="flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-aktara-red">
                         <span>Fabric</span>
+                        <span x-show="filters.fabric.length > 0"
+                            class="bg-aktara-red text-white text-xs rounded-full px-2 py-1"
+                            x-text="filters.fabric.length"></span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
                         </svg>
                     </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border z-10">
+                        <div class="py-2">
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="checkbox" x-model="filters.fabric" value="cotton"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">Cotton</span>
+                            </label>
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="checkbox" x-model="filters.fabric" value="silk"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">Silk</span>
+                            </label>
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="checkbox" x-model="filters.fabric" value="chiffon"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">Chiffon</span>
+                            </label>
+                            <label class="flex items-center px-4 py-2 hover:bg-gray-50">
+                                <input type="checkbox" x-model="filters.fabric" value="georgette"
+                                    class="text-aktara-red focus:ring-aktara-red" @change="applyFilters()">
+                                <span class="ml-2 text-gray-700">Georgette</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                
+
                 <!-- Clear Filters Button -->
-                <button class="bg-aktara-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">
+                <button @click="clearFilters()"
+                    x-show="filters.category.length > 0 || filters.priceRange || filters.fabric.length > 0"
+                    class="bg-aktara-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">
                     Clear All
                 </button>
             </div>
-            
+
             <!-- Mobile Filter Button -->
-            <button class="lg:hidden flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 w-full sm:w-auto justify-center">
+            <button @click="mobileFiltersOpen = true"
+                class="lg:hidden flex items-center space-x-2 bg-white border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 w-full sm:w-auto justify-center">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                    </path>
                 </svg>
                 <span>Filters</span>
+                <span x-show="filters.category.length > 0 || filters.priceRange || filters.fabric.length > 0"
+                    class="bg-aktara-red text-white text-xs rounded-full px-2 py-1"
+                    x-text="filters.category.length + (filters.priceRange ? 1 : 0) + filters.fabric.length"></span>
             </button>
         </div>
 
         <!-- Products Grid with Equal Heights -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <!-- Product 1 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full" data-category="silk" data-fabric="silk" data-price="8999">
                 <div class="relative flex-shrink-0">
-                    <img src="https://lajreedesigner.com/cdn/shop/files/KP-Karishma-Red_5_900x1350_crop_center@2x.jpg?v=1745495600"
+                    <img src="/assets/image1.jpg"
                          alt="Royal Red Silk Saree"
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                         class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
                          loading="lazy">
                     <div class="absolute top-4 right-4 bg-aktara-red text-white px-2 py-1 rounded text-sm font-medium">
                         Best Seller
@@ -409,11 +506,11 @@
             </div>
 
             <!-- Product 2 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full" data-category="cotton" data-fabric="cotton" data-price="3999">
                 <div class="relative flex-shrink-0">
-                    <img src="https://www.teejh.com/cdn/shop/products/TES223_1_720x.jpg?v=1666258983"
+                    <img src="/assets/image2.jpg"
                          alt="Blue Floral Cotton Saree"
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                         class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
                          loading="lazy">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
@@ -440,11 +537,11 @@
             </div>
 
             <!-- Product 3 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full" data-category="designer" data-fabric="silk" data-price="12999">
                 <div class="relative flex-shrink-0">
-                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSxsA-rILRGxU6gC2sCdj0FcqyLFgQRUWS_ISaaYzN_j1rSF5kjNUkIV6VD9fwF6dHHY6ZkCjsUKRp97x5E4Dg_WrIWbNWV0BSzSC9b1wk"
+                    <img src="/assets/image3.jpg"
                          alt="Emerald Designer Saree"
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                         class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
                          loading="lazy">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
@@ -471,11 +568,11 @@
             </div>
 
             <!-- Product 4 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full" data-category="bridal" data-fabric="silk" data-price="18999">
                 <div class="relative flex-shrink-0">
-                    <img src="https://www.banarasee.in/cdn/shop/files/IMG_9630_940x.jpg?v=1683428505"
+                    <img src="/assets/image3.jpg"
                          alt="Pink Silk Bridal Saree"
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                         class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
                          loading="lazy">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
@@ -502,11 +599,11 @@
             </div>
 
             <!-- Product 5 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full" data-category="designer" data-fabric="chiffon" data-price="5499">
                 <div class="relative flex-shrink-0">
-                    <img src="https://www.lavanyathelabel.com/cdn/shop/files/lbl101ks886_1_700x.jpg?v=1752668380"
+                    <img src="/assets/image3.jpg"
                          alt="Sunshine Chiffon Saree"
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                         class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
                          loading="lazy">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
@@ -533,11 +630,11 @@
             </div>
 
             <!-- Product 6 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full" data-category="designer" data-fabric="georgette" data-price="7999">
                 <div class="relative flex-shrink-0">
-                    <img src="https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg"
+                    <img src="/assets/image2.jpg"
                          alt="Purple Sequin Georgette"
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                         class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
                          loading="lazy">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
@@ -564,11 +661,11 @@
             </div>
 
             <!-- Product 7 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full" data-category="silk" data-fabric="silk" data-price="8999">
                 <div class="relative flex-shrink-0">
-                    <img src="https://resources.indianclothstore.com/productimages/Maroon-Silk-Saree-With-Blouse-18710418042024.jpg"
+                    <img src="/assets/image2.jpg"
                          alt="Maroon Silk Traditional"
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                         class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
                          loading="lazy">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
@@ -595,11 +692,11 @@
             </div>
 
             <!-- Product 8 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full" data-category="cotton" data-fabric="cotton" data-price="2999">
                 <div class="relative flex-shrink-0">
-                    <img src="https://arvisaa.com/cdn/shop/products/KP-Kalyani-Orange_1_720x.jpg?v=1737618305"
+                    <img src="/assets/image2.jpg"
                          alt="Orange Festival Cotton"
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                         class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
                          loading="lazy">
                     <div class="absolute top-4 right-4 bg-aktara-red text-white px-2 py-1 rounded text-sm font-medium">
                         New
@@ -629,11 +726,11 @@
             </div>
 
             <!-- Product 9 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full" data-category="bridal" data-fabric="silk" data-price="22999">
                 <div class="relative flex-shrink-0">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLAouvSQF0mxFpbBIWAiD5-XVyz-xveLetTA&s"
+                    <img src="/assets/image3.jpg"
                          alt="Golden Bridal Silk Saree"
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                         class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
                          loading="lazy">
                     <div class="absolute top-4 right-4 bg-aktara-red text-white px-2 py-1 rounded text-sm font-medium">
                         Premium
@@ -664,7 +761,7 @@
         </div>
 
         <!-- No Results Message -->
-        <div class="text-center py-12 hidden">
+        <div id="noResults" class="text-center py-12 hidden">
             <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.5-1.006-6-2.709V15a7.963 7.963 0 01-2-5.291A7.963 7.963 0 016 4a7.963 7.963 0 016 0 7.963 7.963 0 016 5.291z">
@@ -730,4 +827,124 @@
                         <a href="#"
                             class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-aktara-red transition-colors">Home</a>
+                        </li>
+                        <li><a href="collections_catagory.html" class="text-gray-300 hover:text-aktara-red transition-colors">All
+                                Sarees</a></li>
+                        <li><a href="collections_catagory.html?category=new"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">New Arrivals</a></li>
+                        <li><a href="collections_catagory.html?category=bestseller"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Bestsellers</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-aktara-red transition-colors">About
+                                Us</a></li>
+                        <li><a href="contact.html"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Categories</h3>
+                    <ul class="space-y-3">
+                        <li><a href="collections_catagory.html?category=cotton"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Cotton Sarees</a></li>
+                        <li><a href="collections_catagory.html?category=silk"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Silk Sarees</a></li>
+                        <li><a href="collections_catagory.html?category=designer"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Designer Sarees</a></li>
+                        <li><a href="collections_catagory.html?category=bridal"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Bridal Collection</a></li>
+                        <li><a href="collections_catagory.html?category=festive"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Festive Wear</a></li>
+                        <li><a href="collections_catagory.html?category=party"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Party Wear</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Size Guide</a>
+                        </li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Care
+                                Instructions</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Shipping Info</a>
+                        </li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Returns &
+                                Exchange</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Track Your
+                                Order</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-700 mt-12 pt-8">
+                <div class="flex flex-col lg:flex-row justify-between items-center">
+                    <div class="text-gray-300 text-sm mb-4 lg:mb-0 text-center lg:text-left">
+                        &copy; 2024 Aktara. All rights reserved. |
+                        <a href="#" class="hover:text-aktara-red transition-colors">Privacy Policy</a> |
+                        <a href="#" class="hover:text-aktara-red transition-colors">Terms of Service</a>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-300 text-sm">We Accept:</span>
+                        <div class="flex space-x-2">
+                            <!-- Visa SVG -->
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="32" height="10" viewBox="0 0 32 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.3 0.2L10.9 9.6H8.7L7.4 3.6C7.3 3.2 7.1 2.9 6.8 2.7C6.2 2.4 5.4 2.1 4.7 1.9L4.9 0.2H9.2C9.7 0.2 10.1 0.5 10.2 1L11.1 5.8L13.7 0.2H13.3ZM15.9 9.6H13.8L15.2 0.2H17.3L15.9 9.6ZM22.8 6.1C22.8 4.6 20.5 4.5 20.5 3.6C20.5 3.3 20.8 3 21.4 3C22.2 3 22.9 3.2 23.5 3.5L24 1.1C23.4 0.9 22.6 0.7 21.7 0.7C19.7 0.7 18.3 1.8 18.3 3.4C18.3 4.6 19.4 5.3 20.2 5.7C21 6.1 21.3 6.4 21.3 6.8C21.3 7.4 20.6 7.7 19.9 7.7C19 7.7 18.1 7.4 17.4 7L16.9 9.4C17.7 9.8 18.8 10 19.8 10C22.1 10 23.5 8.9 22.8 6.1ZM31.8 9.6H30L28.2 0.2H26.4C26 0.2 25.7 0.4 25.5 0.7L22.2 9.6H24.5L25 8.2H27.7L28 9.6H31.8ZM25.7 6.4L26.7 3.6L27.3 6.4H25.7Z"
+                                        fill="#1A1F71" />
+                                </svg>
+                            </div>
+                            <!-- Mastercard SVG -->
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="24" height="15" viewBox="0 0 24 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="8" cy="7.5" r="7" fill="#EB001B" />
+                                    <circle cx="16" cy="7.5" r="7" fill="#F79E1B" />
+                                    <path
+                                        d="M12 2.5C13.5 3.8 14.5 5.5 14.5 7.5C14.5 9.5 13.5 11.2 12 12.5C10.5 11.2 9.5 9.5 9.5 7.5C9.5 5.5 10.5 3.8 12 2.5Z"
+                                        fill="#FF5F00" />
+                                </svg>
+                            </div>
+                            <!-- UPI SVG -->
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="28" height="14" viewBox="0 0 28 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="14" cy="7" r="7" fill="#FF6600" />
+                                    <text x="14" y="9.5" font-family="Arial, sans-serif" font-size="4.5"
+                                        font-weight="bold" fill="white" text-anchor="middle">UPI</text>
+                                    <path d="M19 4L21 7L19 10" stroke="white" stroke-width="1" fill="none" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   
+    <script src="js/common.js"></script>
+    </body>
+    </html>
