@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Aktara | Premium Handwoven Sarees</title>
+    <link rel="icon" href="/public/images/favicon.ico" type="image/x-icon">
+    <meta name="description"
+        content="Manage your Aktara account, view orders, track shipments, and update your profile information.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-aktara-red: #FF0000;
+            --color-aktara-black: #000000;
+        }
+    </style>
+
+    <style>
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #FF0000, #ff4444);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav-premium {
+            background: linear-gradient(135deg, #ffffff 0%, #fef7f7 100%);
+        }
+
+        /* Search Results */
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 50;
+            display: none;
+        }
+
+        .search-loading {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #FF0000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Dashboard Sidebar */
+        .dashboard-sidebar {
+            background: linear-gradient(135deg, #ffffff 0%, #fef7f7 100%);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-item {
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-item:hover {
+            background: linear-gradient(135deg, #fff0f0 0%, #ffe5e5 100%);
+            transform: translateX(5px);
+        }
+
+        .sidebar-item.active {
+            background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+            color: white;
+            border-left: 4px solid #990000;
+        }
+
+        .sidebar-item.active:hover {
+            transform: none;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fef7f7 100%);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Order Status Badges */
+        .status-delivered {
+            background: #10b981;
+        }
+
+        .status-shipped {
+            background: #3b82f6;
+        }
+
+        .status-processing {
+            background: #f59e0b;
+        }
+
+        .status-cancelled {
+            background: #ef4444;
+        }
+
+        /* Profile Avatar */
+        .profile-avatar {
+            background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+        }
+
+        /* Mobile Dashboard */
+        @media (max-width: 1024px) {
+            .dashboard-sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 280px;
+                transform: translateX(-100%);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            .dashboard-sidebar.mobile-open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .sidebar-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /* Content sections */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        /* Order tracking */
+        .order-timeline {
+            position: relative;
+        }
+
+        .order-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e5e7eb;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #e5e7eb;
+        }
+
+        .timeline-dot.completed {
+            background: #10b981;
+        }
+
+        .timeline-dot.current {
+            background: #FF0000;
+        }
+
+        /* Mobile hamburger menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #FF0000;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 1024px) {
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <!-- Top Bar -->
+        <div class="bg-gray-100 text-sm py-2 hidden md:block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <div class="flex space-x-4 text-gray-600">
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-phone text-aktara-red"></i>
+                        +91 98765 43210
+                    </span>
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-envelope text-aktara-red"></i>
+                        info@aktara.in
+                    </span>
+                </div>
+                <div class="flex space-x-4 text-gray-600">
+                    <a href="#" class="hover:text-aktara-red transition-colors">Track Order</a>
+                    <a href="#" class="hover:text-aktara-red transition-colors">Size Guide</a>
+                    <a href="#" class="hover:text-aktara-red transition-colors">Free Shipping on ₹2999+</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex items-center space-x-4">
+                    <!-- Mobile Hamburger Menu -->
+                    <div class="hamburger lg:hidden" onclick="toggleMobileSidebar()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="flex-shrink-0">
+                        <a href="index.html" class="flex items-center">
+                            <img src="assets/logo_new.png" alt="Aktara Logo" class="h-10 md:h-12 lg:h-14">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">HOME</a>
+                    <div class="relative group">
+                        <a href="category.html"
+                            class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors flex items-center">
+                            COLLECTIONS
+                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div
+                            class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="py-2">
+                                <a href="category.html?category=silk"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Silk
+                                    Sarees</a>
+                                <a href="category.html?category=cotton"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Cotton
+                                    Sarees</a>
+                                <a href="category.html?category=designer"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Designer
+                                    Collection</a>
+                                <a href="category.html?category=bridal"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">Bridal
+                                    Collection</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="about.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">ABOUT</a>
+                    <a href="contact.html"
+                        class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
+                </div>
+
+                <!-- Enhanced Search and Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search sarees..."
+                            class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red"
+                            autocomplete="off">
+                        <i class="fas fa-search absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
+
+                        <div id="searchResults" class="search-results">
+                            <div id="searchLoading" class="search-loading hidden">
+                                <div class="search-spinner"></div>
+                                <span class="ml-2 text-gray-600">Searching...</span>
+                            </div>
+                            <div id="searchResultsList"></div>
+                        </div>
+                    </div>
+
+                    <!-- User Dropdown -->
+                    <div class="relative group">
+                        <button
+                            class="flex items-center space-x-2 text-aktara-red border-b-2 border-aktara-red transition-colors">
+                            <div
+                                class="w-8 h-8 profile-avatar rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                P
+                            </div>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="py-2">
+                                <a href="dashboard.html"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">
+                                    <i class="fas fa-user mr-2"></i>My Account
+                                </a>
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">
+                                    <i class="fas fa-box mr-2"></i>My Orders
+                                </a>
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">
+                                    <i class="fas fa-heart mr-2"></i>Wishlist
+                                </a>
+                                <div class="border-t border-gray-100"></div>
+                                <a href="login.html"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="relative text-aktara-black hover:text-aktara-red transition-colors"
+                        onclick="toggleWishlist()">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span id="wishlistCount"
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </button>
+                    <a href="cart.html" class="relative text-aktara-black hover:text-aktara-red transition-colors">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span
+                            class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-aktara-black hover:text-aktara-red p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="md:hidden hidden">
+                <div class="mobile-nav-premium px-2 pt-2 pb-3 space-y-1 border-t shadow-lg">
+                    <div class="px-3 py-2">
+                        <div class="relative">
+                            <input type="text" id="mobileSearchInput" placeholder="Search sarees..."
+                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red"
+                                autocomplete="off">
+                            <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Mobile User Info -->
+                    <div class="px-3 py-3 border-b border-gray-200">
+                        <div class="flex items-center space-x-3">
+                            <div
+                                class="w-10 h-10 profile-avatar rounded-full flex items-center justify-center text-white font-bold">
+                                P
+                            </div>
+                            <div>
+                                <p class="font-medium text-aktara-black">Priya Sharma</p>
+                                <p class="text-sm text-gray-600">priya@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="index.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-home mr-3"></i>Home
+                    </a>
+                    <a href="category.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-th-large mr-3"></i>Collections
+                    </a>
+                    <a href="dashboard.html"
+                        class="text-aktara-red block px-3 py-3 text-base font-medium border-l-4 border-aktara-red bg-red-50">
+                        <i class="fas fa-user mr-3"></i>My Account
+                    </a>
+                    <a href="login.html"
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
+                        <i class="fas fa-sign-out-alt mr-3"></i>Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
+        <div class="flex gap-8">
+
+            <!-- Sidebar -->
+            <div class="dashboard-sidebar w-80 lg:w-1/4 rounded-lg p-6 lg:sticky lg:top-24 h-fit" id="dashboardSidebar">
+                <!-- Close button for mobile -->
+                <div class="lg:hidden flex justify-between items-center mb-6 pb-4 border-b">
+                    <h2 class="text-lg font-bold text-aktara-black">Menu</h2>
+                    <button onclick="closeMobileSidebar()" class="text-gray-500 hover:text-aktara-red">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- User Profile Header -->
+                <div class="text-center mb-6 pb-6 border-b border-gray-200">
+                    <div
+                        class="w-20 h-20 profile-avatar rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-3">
+                        P
+                    </div>
+                    <h3 class="font-bold text-aktara-black text-lg">Priya Sharma</h3>
+                    <p class="text-gray-600 text-sm">priya@example.com</p>
+                    <div class="flex items-center justify-center mt-2 text-sm text-green-600">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        Verified Account
+                    </div>
+                </div>
+
+                <!-- Navigation Menu -->
+                <nav class="space-y-2">
+                    <button onclick="showSection('overview')"
+                        class="sidebar-item active w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3">
+                        <i class="fas fa-tachometer-alt w-5"></i>
+                        <span>Account Overview</span>
+                    </button>
+                    <button onclick="showSection('profile')"
+                        class="sidebar-item w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3">
+                        <i class="fas fa-user w-5"></i>
+                        <span>Profile Information</span>
+                    </button>
+                    <button onclick="showSection('orders')"
+                        class="sidebar-item w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3">
+                        <i class="fas fa-box w-5"></i>
+                        <span>My Orders</span>
+                        <span class="ml-auto bg-aktara-red text-white text-xs px-2 py-1 rounded-full">5</span>
+                    </button>
+                    <button onclick="showSection('wishlist')"
+                        class="sidebar-item w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3">
+                        <i class="fas fa-heart w-5"></i>
+                        <span>My Wishlist</span>
+                        <span class="ml-auto bg-gray-500 text-white text-xs px-2 py-1 rounded-full">3</span>
+                    </button>
+                    <button onclick="showSection('addresses')"
+                        class="sidebar-item w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3">
+                        <i class="fas fa-map-marker-alt w-5"></i>
+                        <span>Address Book</span>
+                    </button>
+                    <button onclick="showSection('payments')"
+                        class="sidebar-item w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3">
+                        <i class="fas fa-credit-card w-5"></i>
+                        <span>Payment Methods</span>
+                    </button>
+                    <button onclick="showSection('notifications')"
+                        class="sidebar-item w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3">
+                        <i class="fas fa-bell w-5"></i>
+                        <span>Notifications</span>
+                    </button>
+                    <button onclick="showSection('settings')"
+                        class="sidebar-item w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3">
+                        <i class="fas fa-cog w-5"></i>
+                        <span>Account Settings</span>
+                    </button>
+                    <div class="border-t border-gray-200 pt-4 mt-4">
+                        <a href="login.html"
+                            class="sidebar-item w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 text-red-600 hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt w-5"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 lg:w-3/4">
+
+                <!-- Account Overview Section -->
+                <div id="overview" class="content-section active">
+                    <div class="mb-6">
+                        <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black mb-2">Account Overview</h1>
+                        <p class="text-gray-600">Welcome back, Priya! Here's what's happening with your account.</p>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8">
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6 text-center">
+                            <div
+                                class="w-10 h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-box text-blue-600 text-lg lg:text-xl"></i>
+                            </div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-aktara-black">5</h3>
+                            <p class="text-gray-600 text-xs lg:text-sm">Total Orders</p>
+                        </div>
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6 text-center">
+                            <div
+                                class="w-10 h-10 lg:w-12 lg:h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-rupee-sign text-green-600 text-lg lg:text-xl"></i>
+                            </div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-aktara-black">₹45,230</h3>
+                            <p class="text-gray-600 text-xs lg:text-sm">Total Spent</p>
+                        </div>
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6 text-center">
+                            <div
+                                class="w-10 h-10 lg:w-12 lg:h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-heart text-aktara-red text-lg lg:text-xl"></i>
+                            </div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-aktara-black">3</h3>
+                            <p class="text-gray-600 text-xs lg:text-sm">Wishlist Items</p>
+                        </div>
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6 text-center">
+                            <div
+                                class="w-10 h-10 lg:w-12 lg:h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-star text-purple-600 text-lg lg:text-xl"></i>
+                            </div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-aktara-black">Gold</h3>
+                            <p class="text-gray-600 text-xs lg:text-sm">Member Status</p>
+                        </div>
+                    </div>
+
+                    <!-- Recent Orders -->
+                    <div class="dashboard-card rounded-lg p-4 lg:p-6 mb-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg lg:text-xl font-bold text-aktara-black">Recent Orders</h2>
+                            <button onclick="showSection('orders')"
+                                class="text-aktara-red hover:text-red-700 text-sm font-medium">View All</button>
+                        </div>
+                        <div class="space-y-4">
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-gray-200 rounded-lg gap-4">
+                                <div class="flex items-center space-x-4">
+                                    <img src="/placeholder.svg?height=60&width=60" alt="Saree"
+                                        class="w-12 h-12 lg:w-15 lg:h-15 object-cover rounded">
+                                    <div>
+                                        <h3 class="font-medium text-aktara-black text-sm lg:text-base">Banarasi Silk
+                                            Saree - Red</h3>
+                                        <p class="text-xs lg:text-sm text-gray-600">Order #AKT2024001</p>
+                                        <p class="text-xs lg:text-sm text-gray-600">Ordered on Jan 15, 2024</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span
+                                        class="status-delivered text-white text-xs px-3 py-1 rounded-full">Delivered</span>
+                                    <p class="text-sm font-medium text-aktara-black mt-1">₹8,999</p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-gray-200 rounded-lg gap-4">
+                                <div class="flex items-center space-x-4">
+                                    <img src="/placeholder.svg?height=60&width=60" alt="Saree"
+                                        class="w-12 h-12 lg:w-15 lg:h-15 object-cover rounded">
+                                    <div>
+                                        <h3 class="font-medium text-aktara-black text-sm lg:text-base">Cotton Handloom
+                                            Saree - Blue</h3>
+                                        <p class="text-xs lg:text-sm text-gray-600">Order #AKT2024002</p>
+                                        <p class="text-xs lg:text-sm text-gray-600">Ordered on Jan 20, 2024</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span
+                                        class="status-shipped text-white text-xs px-3 py-1 rounded-full">Shipped</span>
+                                    <p class="text-sm font-medium text-aktara-black mt-1">₹3,499</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                            <h3 class="text-lg font-bold text-aktara-black mb-4">Quick Actions</h3>
+                            <div class="space-y-3">
+                                <button onclick="showSection('orders')"
+                                    class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-red-50 hover:border-aktara-red transition-colors">
+                                    <i class="fas fa-truck mr-3 text-aktara-red"></i>Track Your Orders
+                                </button>
+                                <button onclick="showSection('wishlist')"
+                                    class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-red-50 hover:border-aktara-red transition-colors">
+                                    <i class="fas fa-heart mr-3 text-aktara-red"></i>View Wishlist
+                                </button>
+                                <button onclick="openModal('addAddressModal')"
+                                    class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-red-50 hover:border-aktara-red transition-colors">
+                                    <i class="fas fa-plus mr-3 text-aktara-red"></i>Add New Address
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                            <h3 class="text-lg font-bold text-aktara-black mb-4">Account Health</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-600">Profile Completion</span>
+                                    <span class="text-green-600 font-medium">95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                    Email Verified
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                    Phone Verified
+                                </div>
+                                <div class="flex items-center text-sm text-orange-600">
+                                    <i class="fas fa-exclamation-circle text-orange-600 mr-2"></i>
+                                    Add alternate phone number
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Information Section -->
+                <div id="profile" class="content-section">
+                    <div class="mb-6">
+                        <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black mb-2">Profile Information</h1>
+                        <p class="text-gray-600">Manage your personal information and account preferences.</p>
+                    </div>
+
+                    <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                    <input type="text" value="Priya"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                    <input type="text" value="Sharma"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                <input type="email" value="priya@example.com"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" value="+91 98765 43210"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
+                                <input type="date" value="1990-05-15"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                                <select
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                                    <option value="female" selected>Female</option>
+                                    <option value="male">Male</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4">
+                                <button type="button"
+                                    class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">Cancel</button>
+                                <button type="submit"
+                                    class="px-6 py-3 bg-aktara-red text-white rounded-lg hover:bg-red-700 transition-colors">Save
+                                    Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Orders Section -->
+                <div id="orders" class="content-section">
+                    <div class="mb-6">
+                        <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black mb-2">My Orders</h1>
+                        <p class="text-gray-600">Track and manage all your orders in one place.</p>
+                    </div>
+
+                    <!-- Order Filters -->
+                    <div class="dashboard-card rounded-lg p-4 mb-6">
+                        <div class="flex flex-wrap gap-2 lg:gap-4">
+                            <button class="px-3 py-2 lg:px-4 bg-aktara-red text-white rounded-lg text-sm">All
+                                Orders</button>
+                            <button
+                                class="px-3 py-2 lg:px-4 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Processing</button>
+                            <button
+                                class="px-3 py-2 lg:px-4 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Shipped</button>
+                            <button
+                                class="px-3 py-2 lg:px-4 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Delivered</button>
+                            <button
+                                class="px-3 py-2 lg:px-4 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Cancelled</button>
+                        </div>
+                    </div>
+
+                    <!-- Orders List -->
+                    <div class="space-y-6">
+                        <!-- Order 1 -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
+                                <div>
+                                    <h3 class="font-bold text-aktara-black">Order #AKT2024001</h3>
+                                    <p class="text-sm text-gray-600">Placed on January 15, 2024</p>
+                                </div>
+                                <span
+                                    class="status-delivered text-white text-xs px-3 py-1 rounded-full">Delivered</span>
+                            </div>
+
+                            <div
+                                class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
+                                <img src="/placeholder.svg?height=80&width=80" alt="Saree"
+                                    class="w-16 h-16 lg:w-20 lg:h-20 object-cover rounded">
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-aktara-black">Banarasi Silk Saree - Red</h4>
+                                    <p class="text-sm text-gray-600">Color: Red | Size: Free Size</p>
+                                    <p class="text-sm text-gray-600">Qty: 1</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-aktara-black">₹8,999</p>
+                                </div>
+                            </div>
+
+                            <div class="border-t pt-4">
+                                <div
+                                    class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                    <div class="text-sm text-gray-600">
+                                        <p>Delivered on January 18, 2024</p>
+                                        <p>Your item has been delivered</p>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                                        <button
+                                            class="px-4 py-2 border border-aktara-red text-aktara-red rounded-lg text-sm hover:bg-red-50">Rate
+                                            & Review</button>
+                                        <button
+                                            class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Buy
+                                            Again</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order 2 -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
+                                <div>
+                                    <h3 class="font-bold text-aktara-black">Order #AKT2024002</h3>
+                                    <p class="text-sm text-gray-600">Placed on January 20, 2024</p>
+                                </div>
+                                <span class="status-shipped text-white text-xs px-3 py-1 rounded-full">Shipped</span>
+                            </div>
+
+                            <div
+                                class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
+                                <img src="/placeholder.svg?height=80&width=80" alt="Saree"
+                                    class="w-16 h-16 lg:w-20 lg:h-20 object-cover rounded">
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-aktara-black">Cotton Handloom Saree - Blue</h4>
+                                    <p class="text-sm text-gray-600">Color: Blue | Size: Free Size</p>
+                                    <p class="text-sm text-gray-600">Qty: 1</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-aktara-black">₹3,499</p>
+                                </div>
+                            </div>
+
+                            <!-- Order Tracking -->
+                            <div class="border-t pt-4">
+                                <h5 class="font-medium text-aktara-black mb-3">Order Tracking</h5>
+                                <div class="order-timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot completed"></div>
+                                        <div>
+                                            <p class="font-medium text-sm">Order Confirmed</p>
+                                            <p class="text-xs text-gray-600">Jan 20, 2024 - 10:30 AM</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot completed"></div>
+                                        <div>
+                                            <p class="font-medium text-sm">Order Shipped</p>
+                                            <p class="text-xs text-gray-600">Jan 21, 2024 - 2:15 PM</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot current"></div>
+                                        <div>
+                                            <p class="font-medium text-sm">Out for Delivery</p>
+                                            <p class="text-xs text-gray-600">Expected: Jan 23, 2024</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-4 gap-4">
+                                    <div class="text-sm text-gray-600">
+                                        <p>Expected delivery: January 23, 2024</p>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                                        <button
+                                            class="px-4 py-2 border border-aktara-red text-aktara-red rounded-lg text-sm hover:bg-red-50">Track
+                                            Order</button>
+                                        <button onclick="openModal('cancelOrderModal')"
+                                            class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Cancel
+                                            Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wishlist Section -->
+                <div id="wishlist" class="content-section">
+                    <div class="mb-6">
+                        <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black mb-2">My Wishlist</h1>
+                        <p class="text-gray-600">Save your favorite sarees for later purchase.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                        <!-- Wishlist Item 1 -->
+                        <div class="dashboard-card rounded-lg p-4">
+                            <div class="relative mb-4">
+                                <img src="/placeholder.svg?height=200&width=200" alt="Saree"
+                                    class="w-full h-40 lg:h-48 object-cover rounded">
+                                <button onclick="openModal('removeWishlistModal')"
+                                    class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                                    <i class="fas fa-heart text-aktara-red"></i>
+                                </button>
+                            </div>
+                            <h3 class="font-medium text-aktara-black mb-2 text-sm lg:text-base">Designer Silk Saree -
+                                Golden</h3>
+                            <p class="text-xs lg:text-sm text-gray-600 mb-2">Premium Collection</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-aktara-black text-sm lg:text-base">₹12,999</span>
+                                <button
+                                    class="px-3 py-2 lg:px-4 bg-aktara-red text-white rounded-lg text-xs lg:text-sm hover:bg-red-700">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Wishlist Item 2 -->
+                        <div class="dashboard-card rounded-lg p-4">
+                            <div class="relative mb-4">
+                                <img src="/placeholder.svg?height=200&width=200" alt="Saree"
+                                    class="w-full h-40 lg:h-48 object-cover rounded">
+                                <button onclick="openModal('removeWishlistModal')"
+                                    class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                                    <i class="fas fa-heart text-aktara-red"></i>
+                                </button>
+                            </div>
+                            <h3 class="font-medium text-aktara-black mb-2 text-sm lg:text-base">Handwoven Cotton Saree -
+                                Green</h3>
+                            <p class="text-xs lg:text-sm text-gray-600 mb-2">Eco-Friendly Collection</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-aktara-black text-sm lg:text-base">₹2,799</span>
+                                <button
+                                    class="px-3 py-2 lg:px-4 bg-aktara-red text-white rounded-lg text-xs lg:text-sm hover:bg-red-700">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Wishlist Item 3 -->
+                        <div class="dashboard-card rounded-lg p-4">
+                            <div class="relative mb-4">
+                                <img src="/placeholder.svg?height=200&width=200" alt="Saree"
+                                    class="w-full h-40 lg:h-48 object-cover rounded">
+                                <button onclick="openModal('removeWishlistModal')"
+                                    class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                                    <i class="fas fa-heart text-aktara-red"></i>
+                                </button>
+                            </div>
+                            <h3 class="font-medium text-aktara-black mb-2 text-sm lg:text-base">Bridal Silk Saree -
+                                Purple</h3>
+                            <p class="text-xs lg:text-sm text-gray-600 mb-2">Bridal Collection</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-aktara-black text-sm lg:text-base">₹18,999</span>
+                                <button
+                                    class="px-3 py-2 lg:px-4 bg-aktara-red text-white rounded-lg text-xs lg:text-sm hover:bg-red-700">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Book Section -->
+                <div id="addresses" class="content-section">
+                    <div class="mb-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <div>
+                                <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black mb-2">Address Book</h1>
+                                <p class="text-gray-600">Manage your delivery addresses.</p>
+                            </div>
+                            <button onclick="openModal('addAddressModal')"
+                                class="px-4 py-2 bg-aktara-red text-white rounded-lg hover:bg-red-700">
+                                <i class="fas fa-plus mr-2"></i>Add New Address
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+                        <!-- Address 1 -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-bold text-aktara-black">Home</h3>
+                                    <span
+                                        class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Default</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button onclick="openModal('editAddressModal')"
+                                        class="text-aktara-red hover:text-red-700">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="openModal('deleteAddressModal')"
+                                        class="text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-gray-600 text-sm">
+                                <p class="font-medium">Priya Sharma</p>
+                                <p>123, MG Road, Sector 15</p>
+                                <p>Gurgaon, Haryana - 122001</p>
+                                <p>Phone: +91 98765 43210</p>
+                            </div>
+                        </div>
+
+                        <!-- Address 2 -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-bold text-aktara-black">Office</h3>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button onclick="openModal('editAddressModal')"
+                                        class="text-aktara-red hover:text-red-700">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="openModal('deleteAddressModal')"
+                                        class="text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-gray-600 text-sm">
+                                <p class="font-medium">Priya Sharma</p>
+                                <p>456, Cyber City, DLF Phase 2</p>
+                                <p>Gurgaon, Haryana - 122002</p>
+                                <p>Phone: +91 98765 43210</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods Section -->
+                <div id="payments" class="content-section">
+                    <div class="mb-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <div>
+                                <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black mb-2">Payment Methods</h1>
+                                <p class="text-gray-600">Manage your saved payment methods.</p>
+                            </div>
+                            <button onclick="openModal('addPaymentModal')"
+                                class="px-4 py-2 bg-aktara-red text-white rounded-lg hover:bg-red-700">
+                                <i class="fas fa-plus mr-2"></i>Add Payment Method
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Credit Card -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-8 bg-blue-600 rounded flex items-center justify-center">
+                                        <i class="fas fa-credit-card text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-aktara-black">**** **** **** 1234</p>
+                                        <p class="text-sm text-gray-600">Expires 12/26</p>
+                                    </div>
+                                    <span
+                                        class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Default</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button onclick="openModal('editPaymentModal')"
+                                        class="text-aktara-red hover:text-red-700">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="openModal('deletePaymentModal')"
+                                        class="text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- UPI -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-8 bg-orange-600 rounded flex items-center justify-center">
+                                        <i class="fas fa-mobile-alt text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-aktara-black">priya@paytm</p>
+                                        <p class="text-sm text-gray-600">UPI ID</p>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button onclick="openModal('editPaymentModal')"
+                                        class="text-aktara-red hover:text-red-700">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="openModal('deletePaymentModal')"
+                                        class="text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications Section -->
+                <div id="notifications" class="content-section">
+                    <div class="mb-6">
+                        <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black mb-2">Notifications</h1>
+                        <p class="text-gray-600">Manage your notification preferences.</p>
+                    </div>
+
+                    <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                        <div class="space-y-6">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-medium text-aktara-black">Order Updates</h3>
+                                    <p class="text-sm text-gray-600">Get notified about order status changes</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" checked class="sr-only peer">
+                                    <div
+                                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-aktara-red">
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-medium text-aktara-black">Promotional Emails</h3>
+                                    <p class="text-sm text-gray-600">Receive offers and new collection updates</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" checked class="sr-only peer">
+                                    <div
+                                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-aktara-red">
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-medium text-aktara-black">SMS Notifications</h3>
+                                    <p class="text-sm text-gray-600">Get SMS updates for important notifications</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer">
+                                    <div
+                                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-aktara-red">
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-medium text-aktara-black">Wishlist Alerts</h3>
+                                    <p class="text-sm text-gray-600">Get notified when wishlist items go on sale</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" checked class="sr-only peer">
+                                    <div
+                                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-aktara-red">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t">
+                            <button class="px-6 py-3 bg-aktara-red text-white rounded-lg hover:bg-red-700">Save
+                                Preferences</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Section -->
+                <div id="settings" class="content-section">
+                    <div class="mb-6">
+                        <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black mb-2">Account Settings</h1>
+                        <p class="text-gray-600">Manage your account security and preferences.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Change Password -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                            <h3 class="text-lg font-bold text-aktara-black mb-4">Change Password</h3>
+                            <form class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+                                    <input type="password"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                                    <input type="password"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Confirm New
+                                        Password</label>
+                                    <input type="password"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                                </div>
+                                <button type="submit"
+                                    class="px-6 py-3 bg-aktara-red text-white rounded-lg hover:bg-red-700">Update
+                                    Password</button>
+                            </form>
+                        </div>
+
+                        <!-- Two-Factor Authentication -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                <div>
+                                    <h3 class="text-lg font-bold text-aktara-black">Two-Factor Authentication</h3>
+                                    <p class="text-sm text-gray-600">Add an extra layer of security to your account</p>
+                                </div>
+                                <button
+                                    class="px-4 py-2 border border-aktara-red text-aktara-red rounded-lg hover:bg-red-50">Enable</button>
+                            </div>
+                        </div>
+
+                        <!-- Delete Account -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6 border-red-200">
+                            <h3 class="text-lg font-bold text-red-600 mb-2">Delete Account</h3>
+                            <p class="text-sm text-gray-600 mb-4">Once you delete your account, there is no going back.
+                                Please be certain.</p>
+                            <button onclick="openModal('deleteAccountModal')"
+                                class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Delete
+                                Account</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+
+    <!-- Add Address Modal -->
+    <div id="addAddressModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-aktara-black">Add New Address</h2>
+                <button onclick="closeModal('addAddressModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                        <input type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Address Line 1</label>
+                    <input type="text"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Address Line 2 (Optional)</label>
+                    <input type="text"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                        <input type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                        <select
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            <option>Select State</option>
+                            <option>Delhi</option>
+                            <option>Haryana</option>
+                            <option>Punjab</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">PIN Code</label>
+                        <input type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Address Type</label>
+                    <select
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                        <option>Home</option>
+                        <option>Office</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="defaultAddress"
+                        class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded">
+                    <label for="defaultAddress" class="ml-2 block text-sm text-gray-700">Set as default address</label>
+                </div>
+                <div class="flex justify-end space-x-4 pt-4">
+                    <button type="button" onclick="closeModal('addAddressModal')"
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                    <button type="submit" class="px-6 py-3 bg-aktara-red text-white rounded-lg hover:bg-red-700">Save
+                        Address</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Address Modal -->
+    <div id="editAddressModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-aktara-black">Edit Address</h2>
+                <button onclick="closeModal('editAddressModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                        <input type="text" value="Priya Sharma"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel" value="+91 98765 43210"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Address Line 1</label>
+                    <input type="text" value="123, MG Road, Sector 15"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Address Line 2 (Optional)</label>
+                    <input type="text"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                        <input type="text" value="Gurgaon"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                        <select
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            <option>Haryana</option>
+                            <option>Delhi</option>
+                            <option>Punjab</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">PIN Code</label>
+                        <input type="text" value="122001"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Address Type</label>
+                    <select
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                        <option selected>Home</option>
+                        <option>Office</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="editDefaultAddress" checked
+                        class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded">
+                    <label for="editDefaultAddress" class="ml-2 block text-sm text-gray-700">Set as default
+                        address</label>
+                </div>
+                <div class="flex justify-end space-x-4 pt-4">
+                    <button type="button" onclick="closeModal('editAddressModal')"
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                    <button type="submit" class="px-6 py-3 bg-aktara-red text-white rounded-lg hover:bg-red-700">Update
+                        Address</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Address Modal -->
+    <div id="deleteAddressModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-aktara-black">Delete Address</h2>
+                <button onclick="closeModal('deleteAddressModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-trash text-red-600 text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Are you sure?</h3>
+                <p class="text-gray-600 mb-6">This address will be permanently deleted. This action cannot be undone.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <button onclick="closeModal('deleteAddressModal')"
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                    <button class="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700">Delete Address</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Payment Modal -->
+    <div id="addPaymentModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-aktara-black">Add Payment Method</h2>
+                <button onclick="closeModal('addPaymentModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <div class="flex space-x-4 mb-4">
+                    <button onclick="showPaymentType('card')" id="cardTab"
+                        class="px-4 py-2 bg-aktara-red text-white rounded-lg text-sm">Credit/Debit Card</button>
+                    <button onclick="showPaymentType('upi')" id="upiTab"
+                        class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">UPI</button>
+                </div>
+
+                <!-- Card Form -->
+                <div id="cardForm" class="payment-form">
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+                            <input type="text" placeholder="1234 5678 9012 3456"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Cardholder Name</label>
+                            <input type="text" placeholder="Name on card"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Expiry Date</label>
+                                <input type="text" placeholder="MM/YY"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                                <input type="text" placeholder="123"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="defaultPayment"
+                                class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded">
+                            <label for="defaultPayment" class="ml-2 block text-sm text-gray-700">Set as default payment
+                                method</label>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- UPI Form -->
+                <div id="upiForm" class="payment-form hidden">
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">UPI ID</label>
+                            <input type="text" placeholder="yourname@paytm"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="defaultUPI"
+                                class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded">
+                            <label for="defaultUPI" class="ml-2 block text-sm text-gray-700">Set as default payment
+                                method</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="flex justify-end space-x-4">
+                <button onclick="closeModal('addPaymentModal')"
+                    class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button class="px-6 py-3 bg-aktara-red text-white rounded-lg hover:bg-red-700">Add Payment
+                    Method</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Payment Modal -->
+    <div id="editPaymentModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-aktara-black">Edit Payment Method</h2>
+                <button onclick="closeModal('editPaymentModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+                    <input type="text" value="**** **** **** 1234"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Cardholder Name</label>
+                    <input type="text" value="Priya Sharma"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Expiry Date</label>
+                        <input type="text" value="12/26"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                        <input type="text" placeholder="123"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="editDefaultPayment" checked
+                        class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded">
+                    <label for="editDefaultPayment" class="ml-2 block text-sm text-gray-700">Set as default payment
+                        method</label>
+                </div>
+                <div class="flex justify-end space-x-4 pt-4">
+                    <button type="button" onclick="closeModal('editPaymentModal')"
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                    <button type="submit" class="px-6 py-3 bg-aktara-red text-white rounded-lg hover:bg-red-700">Update
+                        Payment Method</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Payment Modal -->
+    <div id="deletePaymentModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-aktara-black">Delete Payment Method</h2>
+                <button onclick="closeModal('deletePaymentModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-credit-card text-red-600 text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Remove Payment Method?</h3>
+                <p class="text-gray-600 mb-6">This payment method will be removed from your account. You can add it back
+                    anytime.</p>
+                <div class="flex justify-center space-x-4">
+                    <button onclick="closeModal('deletePaymentModal')"
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                    <button class="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700">Remove Payment
+                        Method</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Order Modal -->
+    <div id="cancelOrderModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-aktara-black">Cancel Order</h2>
+                <button onclick="closeModal('cancelOrderModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div>
+                <p class="text-gray-600 mb-4">Please select a reason for cancelling your order:</p>
+                <div class="space-y-3 mb-6">
+                    <label class="flex items-center">
+                        <input type="radio" name="cancelReason"
+                            class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300">
+                        <span class="ml-2 text-sm text-gray-700">Changed my mind</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="cancelReason"
+                            class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300">
+                        <span class="ml-2 text-sm text-gray-700">Found better price elsewhere</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="cancelReason"
+                            class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300">
+                        <span class="ml-2 text-sm text-gray-700">Delivery taking too long</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="cancelReason"
+                            class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300">
+                        <span class="ml-2 text-sm text-gray-700">Other</span>
+                    </label>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Additional Comments (Optional)</label>
+                    <textarea rows="3"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red"
+                        placeholder="Please provide additional details..."></textarea>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button onclick="closeModal('cancelOrderModal')"
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Keep
+                        Order</button>
+                    <button class="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700">Cancel Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Remove Wishlist Modal -->
+    <div id="removeWishlistModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-aktara-black">Remove from Wishlist</h2>
+                <button onclick="closeModal('removeWishlistModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-heart text-red-600 text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Remove from Wishlist?</h3>
+                <p class="text-gray-600 mb-6">This item will be removed from your wishlist. You can add it back anytime.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <button onclick="closeModal('removeWishlistModal')"
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                    <button class="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700">Remove from
+                        Wishlist</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Account Modal -->
+    <div id="deleteAccountModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-red-600">Delete Account</h2>
+                <button onclick="closeModal('deleteAccountModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div>
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2 text-center">Are you absolutely sure?</h3>
+                <p class="text-gray-600 mb-4 text-center">This action cannot be undone. This will permanently delete
+                    your account and remove all your data from our servers.</p>
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                    <h4 class="font-medium text-red-800 mb-2">This will delete:</h4>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>• Your profile and account information</li>
+                        <li>• Order history and tracking data</li>
+                        <li>• Saved addresses and payment methods</li>
+                        <li>• Wishlist and preferences</li>
+                    </ul>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Type "DELETE" to confirm</label>
+                    <input type="text" placeholder="DELETE"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <div class="flex justify-center space-x-4">
+                    <button onclick="closeModal('deleteAccountModal')"
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                    <button class="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700">Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-aktara-black text-white py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- Brand Section with Logo -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <img src="assets/logo.jpg" alt="Aktara Logo" class="w-auto h-16 rounded-lg mr-3">
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md text-sm lg:text-base">
+                        Premium handwoven sarees for every occasion. Crafted with love, delivered with care. Experience
+                        the perfect blend of tradition and contemporary style.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 p-3 rounded-full text-gray-300 hover:text-aktara-red hover:bg-gray-700 transition-all duration-300 transform hover:scale-110">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-aktara-red transition-colors">Home</a>
+                        </li>
+                        <li><a href="category.html" class="text-gray-300 hover:text-aktara-red transition-colors">All
+                                Sarees</a></li>
+                        <li><a href="category.html?category=new"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">New Arrivals</a></li>
+                        <li><a href="category.html?category=bestseller"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Bestsellers</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-aktara-red transition-colors">About
+                                Us</a></li>
+                        <li><a href="contact.html"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Categories</h3>
+                    <ul class="space-y-3">
+                        <li><a href="category.html?category=cotton"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Cotton Sarees</a></li>
+                        <li><a href="category.html?category=silk"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Silk Sarees</a></li>
+                        <li><a href="category.html?category=designer"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Designer Sarees</a></li>
+                        <li><a href="category.html?category=bridal"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Bridal Collection</a></li>
+                        <li><a href="category.html?category=festive"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Festive Wear</a></li>
+                        <li><a href="category.html?category=party"
+                                class="text-gray-300 hover:text-aktara-red transition-colors">Party Wear</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Size Guide</a>
+                        </li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Care
+                                Instructions</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Shipping Info</a>
+                        </li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Returns &
+                                Exchange</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">Track Your
+                                Order</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-aktara-red transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-700 mt-12 pt-8">
+                <div class="flex flex-col lg:flex-row justify-between items-center">
+                    <div class="text-gray-300 text-sm mb-4 lg:mb-0 text-center lg:text-left">
+                        &copy; 2024 Aktara. All rights reserved. |
+                        <a href="#" class="hover:text-aktara-red transition-colors">Privacy Policy</a> |
+                        <a href="#" class="hover:text-aktara-red transition-colors">Terms of Service</a>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-300 text-sm">We Accept:</span>
+                        <div class="flex space-x-2">
+                            <!-- Payment Icons -->
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="32" height="10" viewBox="0 0 32 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.3 0.2L10.9 9.6H8.7L7.4 3.6C7.3 3.2 7.1 2.9 6.8 2.7C6.2 2.4 5.4 2.1 4.7 1.9L4.9 0.2H9.2C9.7 0.2 10.1 0.5 10.2 1L11.1 5.8L13.7 0.2H13.3ZM15.9 9.6H13.8L15.2 0.2H17.3L15.9 9.6ZM22.8 6.1C22.8 4.6 20.5 4.5 20.5 3.6C20.5 3.3 20.8 3 21.4 3C22.2 3 22.9 3.2 23.5 3.5L24 1.1C23.4 0.9 22.6 0.7 21.7 0.7C19.7 0.7 18.3 1.8 18.3 3.4C18.3 4.6 19.4 5.3 20.2 5.7C21 6.1 21.3 6.4 21.3 6.8C21.3 7.4 20.6 7.7 19.9 7.7C19 7.7 18.1 7.4 17.4 7L16.9 9.4C17.7 9.8 18.8 10 19.8 10C22.1 10 23.5 8.9 22.8 6.1ZM31.8 9.6H30L28.2 0.2H26.4C26 0.2 25.7 0.4 25.5 0.7L22.2 9.6H24.5L25 8.2H27.7L28 9.6H31.8ZM25.7 6.4L26.7 3.6L27.3 6.4H25.7Z"
+                                        fill="#1A1F71" />
+                                </svg>
+                            </div>
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="24" height="15" viewBox="0 0 24 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="8" cy="7.5" r="7" fill="#EB001B" />
+                                    <circle cx="16" cy="7.5" r="7" fill="#F79E1B" />
+                                    <path
+                                        d="M12 2.5C13.5 3.8 14.5 5.5 14.5 7.5C14.5 9.5 13.5 11.2 12 12.5C10.5 11.2 9.5 9.5 9.5 7.5C9.5 5.5 10.5 3.8 12 2.5Z"
+                                        fill="#FF5F00" />
+                                </svg>
+                            </div>
+                            <div class="bg-white rounded px-3 py-2 flex items-center justify-center h-8 w-12">
+                                <svg width="28" height="14" viewBox="0 0 28 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="14" cy="7" r="7" fill="#FF6600" />
+                                    <text x="14" y="9.5" font-family="Arial, sans-serif" font-size="4.5"
+                                        font-weight="bold" fill="white" text-anchor="middle">UPI</text>
+                                    <path d="M19 4L21 7L19 10" stroke="white" stroke-width="1" fill="none" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop"
+        class="fixed bottom-6 right-6 bg-aktara-red text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-red-700 transform hover:scale-110 z-50">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+        </svg>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Mobile sidebar toggle
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('dashboardSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            sidebar.classList.toggle('mobile-open');
+            overlay.classList.toggle('active');
+        }
+
+        function closeMobileSidebar() {
+            const sidebar = document.getElementById('dashboardSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            sidebar.classList.remove('mobile-open');
+            overlay.classList.remove('active');
+        }
+
+        // Show different sections
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all sidebar items
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            sidebarItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked sidebar item
+            event.target.classList.add('active');
+
+            // Close mobile sidebar after selection
+            closeMobileSidebar();
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Payment type toggle
+        function showPaymentType(type) {
+            const cardForm = document.getElementById('cardForm');
+            const upiForm = document.getElementById('upiForm');
+            const cardTab = document.getElementById('cardTab');
+            const upiTab = document.getElementById('upiTab');
+
+            if (type === 'card') {
+                cardForm.classList.remove('hidden');
+                upiForm.classList.add('hidden');
+                cardTab.classList.add('bg-aktara-red', 'text-white');
+                cardTab.classList.remove('border', 'border-gray-300', 'text-gray-700');
+                upiTab.classList.remove('bg-aktara-red', 'text-white');
+                upiTab.classList.add('border', 'border-gray-300', 'text-gray-700');
+            } else {
+                upiForm.classList.remove('hidden');
+                cardForm.classList.add('hidden');
+                upiTab.classList.add('bg-aktara-red', 'text-white');
+                upiTab.classList.remove('border', 'border-gray-300', 'text-gray-700');
+                cardTab.classList.remove('bg-aktara-red', 'text-white');
+                cardTab.classList.add('border', 'border-gray-300', 'text-gray-700');
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function (event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Wishlist toggle
+        function toggleWishlist() {
+            console.log('Wishlist toggled');
+        }
+
+        // Scroll progress bar
+        window.addEventListener('scroll', function () {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const mobileSearchInput = document.getElementById('mobileSearchInput');
+
+        function handleSearch(input) {
+            const query = input.value.trim();
+            if (query.length > 2) {
+                console.log('Searching for:', query);
+            }
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', function () {
+                handleSearch(this);
+            });
+        }
+
+        if (mobileSearchInput) {
+            mobileSearchInput.addEventListener('input', function () {
+                handleSearch(this);
+            });
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function (event) {
+            const sidebar = document.getElementById('dashboardSidebar');
+            const hamburger = document.querySelector('.hamburger');
+
+            if (window.innerWidth <= 1024 &&
+                !sidebar.contains(event.target) &&
+                !hamburger.contains(event.target) &&
+                sidebar.classList.contains('mobile-open')) {
+                closeMobileSidebar();
+            }
+        });
+    </script>
+</body>
+
+</html>

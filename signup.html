@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Aktara | Premium Handwoven Sarees</title>
+    <title>Sign Up - Aktara | Create Your Account</title>
     <link rel="icon" href="/public/images/favicon.ico" type="image/x-icon">
     <meta name="description"
-        content="Sign in to your Aktara account to access premium handwoven sarees, track orders, and manage your wishlist.">
+        content="Create your Aktara account to access premium handwoven sarees, exclusive offers, and personalized shopping experience.">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -91,6 +91,51 @@
             100% {
                 transform: rotate(360deg);
             }
+        }
+
+        /* Password strength indicator */
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+            background-color: #f3f4f6;
+        }
+
+        .strength-weak {
+            background-color: #ef4444;
+            width: 33%;
+        }
+
+        .strength-medium {
+            background-color: #f59e0b;
+            width: 66%;
+        }
+
+        .strength-strong {
+            background-color: #10b981;
+            width: 100%;
+        }
+
+        /* Form validation styles */
+        .field-error {
+            border-color: #ef4444 !important;
+        }
+
+        .field-success {
+            border-color: #10b981 !important;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .success-message {
+            color: #10b981;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
         }
     </style>
 </head>
@@ -183,7 +228,7 @@
                             <div id="searchResultsList"></div>
                         </div>
                     </div>
-                    <a href="login.html" class="text-aktara-red border-b-2 border-aktara-red transition-colors">
+                    <a href="login.html" class="text-aktara-black hover:text-aktara-red transition-colors">
                         <i class="fas fa-user text-xl"></i>
                     </a>
                     <button class="relative text-aktara-black hover:text-aktara-red transition-colors"
@@ -248,7 +293,7 @@
                         <i class="fas fa-envelope mr-3"></i>Contact
                     </a>
                     <a href="login.html"
-                        class="text-aktara-red block px-3 py-3 text-base font-medium border-l-4 border-aktara-red bg-red-50">
+                        class="text-aktara-black hover:text-aktara-red block px-3 py-3 text-base font-medium hover:bg-red-50 transition-all">
                         <i class="fas fa-user mr-3"></i>Login
                     </a>
                     <div class="flex justify-around py-4 border-t border-gray-200 mt-4">
@@ -269,32 +314,66 @@
         </div>
     </nav>
 
+    <!-- Main Signup Section -->
     <main class="min-h-screen hero-gradient flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full">
             <div class="form-container rounded-2xl p-8">
+                <!-- Signup Header -->
                 <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-aktara-black mb-2">Welcome Back</h2>
-                    <p class="text-gray-600">Sign in to your account to continue</p>
+                    <!-- <div class="mb-4">
+                        <i class="fas fa-user-plus text-4xl text-aktara-red"></i>
+                    </div> -->
+                    <h1 class="text-3xl font-bold text-aktara-black mb-2">Create Your Account</h1>
+                    <p class="text-gray-600">Join Aktara family and discover premium handwoven sarees</p>
                 </div>
 
-                <form class="space-y-6" onsubmit="handleLogin(event)">
+                <!-- Signup Form -->
+                <form id="signupForm" class="space-y-6" onsubmit="handleSignup(event)" novalidate>
+                    <!-- Full Name Field -->
                     <div>
-                        <label for="login-email" class="block text-sm font-medium text-gray-700 mb-2">Email
-                            Address</label>
-                        <input id="login-email" name="email" type="email" required
+                        <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-user mr-2 text-aktara-red"></i>Full Name
+                        </label>
+                        <input id="fullName" name="fullName" type="text" required
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red transition-colors"
-                            placeholder="Enter your email">
+                            placeholder="Enter your full name" oninput="validateField(this)">
+                        <div id="fullNameError" class="error-message hidden"></div>
                     </div>
+
+                    <!-- Email Field -->
                     <div>
-                        <label for="login-password"
-                            class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-envelope mr-2 text-aktara-red"></i>Email Address
+                        </label>
+                        <input id="email" name="email" type="email" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red transition-colors"
+                            placeholder="Enter your email address" oninput="validateField(this)">
+                        <div id="emailError" class="error-message hidden"></div>
+                    </div>
+
+                    <!-- Phone Number Field -->
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-phone mr-2 text-aktara-red"></i>Phone Number
+                        </label>
+                        <input id="phone" name="phone" type="tel" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red transition-colors"
+                            placeholder="Enter your phone number" oninput="validateField(this)">
+                        <div id="phoneError" class="error-message hidden"></div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-lock mr-2 text-aktara-red"></i>Create Password
+                        </label>
                         <div class="relative">
-                            <input id="login-password" name="password" type="password" required
+                            <input id="password" name="password" type="password" required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red transition-colors pr-12"
-                                placeholder="Enter your password">
+                                placeholder="Create a strong password" oninput="validatePassword(this.value)">
                             <button type="button"
                                 class="password-toggle absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                                onclick="togglePassword('login-password', this)">
+                                onclick="togglePassword('password', this)">
                                 <svg class="eye-open w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -310,43 +389,95 @@
                                 </svg>
                             </button>
                         </div>
+                        <!-- Password Strength Indicator -->
+                        <div class="password-strength" id="passwordStrength"></div>
+                        <div id="passwordError" class="error-message hidden"></div>
+                        <p class="text-xs text-gray-500 mt-2">Password must be at least 8 characters with uppercase,
+                            lowercase, number and special character</p>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input id="remember-me" name="remember-me" type="checkbox"
-                                class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded">
-                            <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
+
+                    <!-- Confirm Password Field -->
+                    <div>
+                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-lock mr-2 text-aktara-red"></i>Confirm Password
+                        </label>
+                        <div class="relative">
+                            <input id="confirmPassword" name="confirmPassword" type="password" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red transition-colors pr-12"
+                                placeholder="Confirm your password" oninput="validatePasswordMatch()">
+                            <button type="button"
+                                class="password-toggle absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                onclick="togglePassword('confirmPassword', this)">
+                                <svg class="eye-open w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                    </path>
+                                </svg>
+                                <svg class="eye-closed w-5 h-5 hidden" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7 .525-1.666 1.558-3.169 2.857-4.333M15 12a3 3 0 11-6 0 3 3 0 016 0zm6.142-3.142a10.035 10.035 0 012.402 3.142C20.268 16.057 16.477 19 12 19c-.99 0-1.953-.138-2.864-.403M2 2l20 20">
+                                    </path>
+                                </svg>
+                            </button>
                         </div>
-                        <a href="#"
-                            class="text-sm font-medium text-aktara-red hover:text-red-700 transition-colors">Forgot
-                            password?</a>
+                        <div id="confirmPasswordError" class="error-message hidden"></div>
+                        <div id="passwordMatchMessage" class="success-message hidden"></div>
                     </div>
-                    <button type="submit"
-                        class="w-full py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-aktara-red hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-aktara-red transition-all duration-300 transform hover:scale-105">Sign
-                        In</button>
+
+                    <!-- Terms and Conditions -->
+                    <div class="flex items-start">
+                        <input id="terms" name="terms" type="checkbox" required
+                            class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded mt-1">
+                        <label for="terms" class="ml-2 block text-sm text-gray-700">
+                            I agree to the <a href="#"
+                                class="text-aktara-red hover:text-red-700 font-medium underline">Terms of Service</a>
+                            and <a href="#" class="text-aktara-red hover:text-red-700 font-medium underline">Privacy
+                                Policy</a>
+                        </label>
+                    </div>
+
+                    <!-- Newsletter Subscription -->
+                    <div class="flex items-start">
+                        <input id="newsletter" name="newsletter" type="checkbox"
+                            class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300 rounded mt-1">
+                        <label for="newsletter" class="ml-2 block text-sm text-gray-700">
+                            Subscribe to our newsletter for exclusive offers, new arrivals, and saree care tips
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn"
+                        class="w-full py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-aktara-red hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-aktara-red transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-user-plus mr-2"></i>Create My Account
+                    </button>
                 </form>
 
+                <!-- Login Link -->
                 <div class="mt-6 text-center">
                     <p class="text-sm text-gray-600">
-                        Don't have an account?
-                        <a href="signup.html"
-                            class="font-medium text-aktara-red hover:text-red-700 transition-colors">Create one here</a>
+                        Already have an account?
+                        <a href="login.html"
+                            class="font-medium text-aktara-red hover:text-red-700 transition-colors underline">Sign in
+                            here</a>
                     </p>
                 </div>
 
-                <!-- Social Login Options -->
+                <!-- Social Signup Options -->
                 <div class="mt-6">
                     <div class="relative">
                         <div class="absolute inset-0 flex items-center">
                             <div class="w-full border-t border-gray-300"></div>
                         </div>
                         <div class="relative flex justify-center text-sm">
-                            <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                            <span class="px-2 bg-white text-gray-500">Or sign up with</span>
                         </div>
                     </div>
 
                     <div class="mt-6 grid grid-cols-2 gap-3">
-                        <button
+                        <button type="button"
                             class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors">
                             <svg class="w-5 h-5" viewBox="0 0 24 24">
                                 <path fill="#4285F4"
@@ -361,7 +492,7 @@
                             <span class="ml-2">Google</span>
                         </button>
 
-                        <button
+                        <button type="button"
                             class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors">
                             <svg class="w-5 h-5" fill="#1877F2" viewBox="0 0 24 24">
                                 <path
@@ -556,22 +687,208 @@
             }
         }
 
-        // Handle login form submission
-        function handleLogin(event) {
+        // Field validation
+        function validateField(field) {
+            const fieldName = field.name;
+            const value = field.value.trim();
+            const errorElement = document.getElementById(fieldName + 'Error');
+
+            // Remove previous styling
+            field.classList.remove('field-error', 'field-success');
+            errorElement.classList.add('hidden');
+
+            let isValid = true;
+            let errorMessage = '';
+
+            switch (fieldName) {
+                case 'fullName':
+                    if (value.length < 2) {
+                        isValid = false;
+                        errorMessage = 'Full name must be at least 2 characters long';
+                    } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+                        isValid = false;
+                        errorMessage = 'Full name should only contain letters and spaces';
+                    }
+                    break;
+
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = 'Please enter a valid email address';
+                    }
+                    break;
+
+                case 'phone':
+                    const phoneRegex = /^[+]?[\d\s\-$$$$]{10,}$/;
+                    if (!phoneRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = 'Please enter a valid phone number';
+                    }
+                    break;
+            }
+
+            if (!isValid) {
+                field.classList.add('field-error');
+                errorElement.textContent = errorMessage;
+                errorElement.classList.remove('hidden');
+            } else if (value.length > 0) {
+                field.classList.add('field-success');
+            }
+
+            return isValid;
+        }
+
+        // Password strength checker
+        function validatePassword(password) {
+            const strengthIndicator = document.getElementById('passwordStrength');
+            const errorElement = document.getElementById('passwordError');
+            const passwordField = document.getElementById('password');
+
+            // Remove previous styling
+            passwordField.classList.remove('field-error', 'field-success');
+            errorElement.classList.add('hidden');
+
+            let strength = 0;
+            let errors = [];
+
+            // Check password criteria
+            if (password.length >= 8) strength++;
+            else errors.push('at least 8 characters');
+
+            if (/[a-z]/.test(password)) strength++;
+            else errors.push('lowercase letter');
+
+            if (/[A-Z]/.test(password)) strength++;
+            else errors.push('uppercase letter');
+
+            if (/[0-9]/.test(password)) strength++;
+            else errors.push('number');
+
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            else errors.push('special character');
+
+            // Update strength indicator
+            strengthIndicator.className = 'password-strength';
+            if (password.length === 0) {
+                // No styling for empty password
+            } else if (strength < 3) {
+                strengthIndicator.classList.add('strength-weak');
+                passwordField.classList.add('field-error');
+                errorElement.textContent = 'Password needs: ' + errors.join(', ');
+                errorElement.classList.remove('hidden');
+            } else if (strength < 5) {
+                strengthIndicator.classList.add('strength-medium');
+                passwordField.classList.add('field-error');
+                errorElement.textContent = 'Password needs: ' + errors.join(', ');
+                errorElement.classList.remove('hidden');
+            } else {
+                strengthIndicator.classList.add('strength-strong');
+                passwordField.classList.add('field-success');
+            }
+
+            // Recheck password match if confirm password has value
+            if (document.getElementById('confirmPassword').value) {
+                validatePasswordMatch();
+            }
+
+            return strength >= 5;
+        }
+
+        // Password match checker
+        function validatePasswordMatch() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const confirmField = document.getElementById('confirmPassword');
+            const errorElement = document.getElementById('confirmPasswordError');
+            const successElement = document.getElementById('passwordMatchMessage');
+
+            // Remove previous styling
+            confirmField.classList.remove('field-error', 'field-success');
+            errorElement.classList.add('hidden');
+            successElement.classList.add('hidden');
+
+            if (confirmPassword.length > 0) {
+                if (password === confirmPassword) {
+                    confirmField.classList.add('field-success');
+                    successElement.textContent = 'Passwords match ✓';
+                    successElement.classList.remove('hidden');
+                    return true;
+                } else {
+                    confirmField.classList.add('field-error');
+                    errorElement.textContent = 'Passwords do not match';
+                    errorElement.classList.remove('hidden');
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        // Handle signup form submission
+        function handleSignup(event) {
             event.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
 
-            // Add your login logic here
-            console.log('Login attempt:', { email, password });
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
 
-            // For demo purposes, show an alert
-            alert('Login functionality would be implemented here');
+            // Validate all fields
+            let isFormValid = true;
+
+            // Validate individual fields
+            const fields = ['fullName', 'email', 'phone'];
+            fields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                if (!validateField(field)) {
+                    isFormValid = false;
+                }
+            });
+
+            // Validate password
+            if (!validatePassword(data.password)) {
+                isFormValid = false;
+            }
+
+            // Validate password match
+            if (!validatePasswordMatch()) {
+                isFormValid = false;
+            }
+
+            // Check terms acceptance
+            if (!data.terms) {
+                alert('Please accept the Terms of Service and Privacy Policy to continue.');
+                isFormValid = false;
+            }
+
+            if (!isFormValid) {
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Creating Account...';
+            submitBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+
+                // Add your actual signup logic here
+                console.log('Signup data:', data);
+
+                // For demo purposes, show success message
+                alert('Account created successfully! Please check your email for verification.');
+
+                // Optionally redirect to login page
+                // window.location.href = 'login.html';
+            }, 2000);
         }
 
         // Wishlist toggle
         function toggleWishlist() {
-            // Add wishlist functionality here
             console.log('Wishlist toggled');
         }
 
@@ -604,14 +921,13 @@
             });
         });
 
-        // Search functionality (basic implementation)
+        // Search functionality
         const searchInput = document.getElementById('searchInput');
         const mobileSearchInput = document.getElementById('mobileSearchInput');
 
         function handleSearch(input) {
             const query = input.value.trim();
             if (query.length > 2) {
-                // Implement search logic here
                 console.log('Searching for:', query);
             }
         }
