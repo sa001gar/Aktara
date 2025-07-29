@@ -284,6 +284,49 @@
                 display: flex;
             }
         }
+
+        /* Star Rating */
+        .star-rating {
+            display: flex;
+            gap: 4px;
+        }
+
+        .star {
+            font-size: 24px;
+            color: #d1d5db;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .star.active,
+        .star:hover {
+            color: #fbbf24;
+        }
+
+        .star.active~.star {
+            color: #d1d5db;
+        }
+
+        /* Filter buttons */
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #FF0000;
+            color: white;
+            border-color: #FF0000;
+        }
+
+        .filter-btn:not(.active) {
+            background: white;
+            color: #374151;
+            border-color: #d1d5db;
+        }
+
+        .filter-btn:not(.active):hover {
+            background: #f9fafb;
+        }
     </style>
 </head>
 
@@ -386,39 +429,14 @@
                         </div>
                     </div>
 
-                    <!-- User Dropdown -->
-                    <div class="relative group">
-                        <button
-                            class="flex items-center space-x-2 text-aktara-red border-b-2 border-aktara-red transition-colors">
-                            <div
-                                class="w-8 h-8 profile-avatar rounded-full flex items-center justify-center text-white text-sm font-bold">
-                                P
-                            </div>
-                            <i class="fas fa-chevron-down text-xs"></i>
-                        </button>
+                    <!-- Direct Profile Link -->
+                    <a href="dashboard.html"
+                        class="flex items-center space-x-2 text-aktara-red border-b-2 border-aktara-red transition-colors">
                         <div
-                            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                            <div class="py-2">
-                                <a href="dashboard.html"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">
-                                    <i class="fas fa-user mr-2"></i>My Account
-                                </a>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">
-                                    <i class="fas fa-box mr-2"></i>My Orders
-                                </a>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">
-                                    <i class="fas fa-heart mr-2"></i>Wishlist
-                                </a>
-                                <div class="border-t border-gray-100"></div>
-                                <a href="login.html"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-aktara-red">
-                                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
-                                </a>
-                            </div>
+                            class="w-8 h-8 profile-avatar rounded-full flex items-center justify-center text-white text-sm font-bold">
+                            P
                         </div>
-                    </div>
+                    </a>
 
                     <button class="relative text-aktara-black hover:text-aktara-red transition-colors"
                         onclick="toggleWishlist()">
@@ -450,20 +468,6 @@
                                 class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red"
                                 autocomplete="off">
                             <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
-                        </div>
-                    </div>
-
-                    <!-- Mobile User Info -->
-                    <div class="px-3 py-3 border-b border-gray-200">
-                        <div class="flex items-center space-x-3">
-                            <div
-                                class="w-10 h-10 profile-avatar rounded-full flex items-center justify-center text-white font-bold">
-                                P
-                            </div>
-                            <div>
-                                <p class="font-medium text-aktara-black">Priya Sharma</p>
-                                <p class="text-sm text-gray-600">priya@example.com</p>
-                            </div>
                         </div>
                     </div>
 
@@ -781,23 +785,24 @@
                     <!-- Order Filters -->
                     <div class="dashboard-card rounded-lg p-4 mb-6">
                         <div class="flex flex-wrap gap-2 lg:gap-4">
-                            <button class="px-3 py-2 lg:px-4 bg-aktara-red text-white rounded-lg text-sm">All
+                            <button onclick="filterOrders('all')"
+                                class="filter-btn active px-3 py-2 lg:px-4 border rounded-lg text-sm">All
                                 Orders</button>
-                            <button
-                                class="px-3 py-2 lg:px-4 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Processing</button>
-                            <button
-                                class="px-3 py-2 lg:px-4 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Shipped</button>
-                            <button
-                                class="px-3 py-2 lg:px-4 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Delivered</button>
-                            <button
-                                class="px-3 py-2 lg:px-4 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Cancelled</button>
+                            <button onclick="filterOrders('processing')"
+                                class="filter-btn px-3 py-2 lg:px-4 border rounded-lg text-sm">Processing</button>
+                            <button onclick="filterOrders('shipped')"
+                                class="filter-btn px-3 py-2 lg:px-4 border rounded-lg text-sm">Shipped</button>
+                            <button onclick="filterOrders('delivered')"
+                                class="filter-btn px-3 py-2 lg:px-4 border rounded-lg text-sm">Delivered</button>
+                            <button onclick="filterOrders('cancelled')"
+                                class="filter-btn px-3 py-2 lg:px-4 border rounded-lg text-sm">Cancelled</button>
                         </div>
                     </div>
 
                     <!-- Orders List -->
-                    <div class="space-y-6">
-                        <!-- Order 1 -->
-                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                    <div class="space-y-6" id="ordersList">
+                        <!-- Order 1 - Delivered -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6 order-item" data-status="delivered">
                             <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
                                 <div>
                                     <h3 class="font-bold text-aktara-black">Order #AKT2024001</h3>
@@ -829,7 +834,7 @@
                                         <p>Your item has been delivered</p>
                                     </div>
                                     <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
-                                        <button
+                                        <button onclick="openModal('reviewModal')"
                                             class="px-4 py-2 border border-aktara-red text-aktara-red rounded-lg text-sm hover:bg-red-50">Rate
                                             & Review</button>
                                         <button
@@ -840,8 +845,8 @@
                             </div>
                         </div>
 
-                        <!-- Order 2 -->
-                        <div class="dashboard-card rounded-lg p-4 lg:p-6">
+                        <!-- Order 2 - Shipped -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6 order-item" data-status="shipped">
                             <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
                                 <div>
                                     <h3 class="font-bold text-aktara-black">Order #AKT2024002</h3>
@@ -864,45 +869,101 @@
                                 </div>
                             </div>
 
-                            <!-- Order Tracking -->
                             <div class="border-t pt-4">
-                                <h5 class="font-medium text-aktara-black mb-3">Order Tracking</h5>
-                                <div class="order-timeline">
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot completed"></div>
-                                        <div>
-                                            <p class="font-medium text-sm">Order Confirmed</p>
-                                            <p class="text-xs text-gray-600">Jan 20, 2024 - 10:30 AM</p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot completed"></div>
-                                        <div>
-                                            <p class="font-medium text-sm">Order Shipped</p>
-                                            <p class="text-xs text-gray-600">Jan 21, 2024 - 2:15 PM</p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot current"></div>
-                                        <div>
-                                            <p class="font-medium text-sm">Out for Delivery</p>
-                                            <p class="text-xs text-gray-600">Expected: Jan 23, 2024</p>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div
                                     class="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-4 gap-4">
                                     <div class="text-sm text-gray-600">
                                         <p>Expected delivery: January 23, 2024</p>
                                     </div>
                                     <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
-                                        <button
+                                        <a href="trackorder.html?order=AKT2024002"
                                             class="px-4 py-2 border border-aktara-red text-aktara-red rounded-lg text-sm hover:bg-red-50">Track
-                                            Order</button>
+                                            Order</a>
                                         <button onclick="openModal('cancelOrderModal')"
                                             class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Cancel
                                             Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order 3 - Processing -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6 order-item" data-status="processing">
+                            <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
+                                <div>
+                                    <h3 class="font-bold text-aktara-black">Order #AKT2024003</h3>
+                                    <p class="text-sm text-gray-600">Placed on January 25, 2024</p>
+                                </div>
+                                <span
+                                    class="status-processing text-white text-xs px-3 py-1 rounded-full">Processing</span>
+                            </div>
+
+                            <div
+                                class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
+                                <img src="/placeholder.svg?height=80&width=80" alt="Saree"
+                                    class="w-16 h-16 lg:w-20 lg:h-20 object-cover rounded">
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-aktara-black">Designer Silk Saree - Green</h4>
+                                    <p class="text-sm text-gray-600">Color: Green | Size: Free Size</p>
+                                    <p class="text-sm text-gray-600">Qty: 1</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-aktara-black">₹12,999</p>
+                                </div>
+                            </div>
+
+                            <div class="border-t pt-4">
+                                <div
+                                    class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                    <div class="text-sm text-gray-600">
+                                        <p>Order is being processed</p>
+                                        <p>Expected to ship by January 27, 2024</p>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                                        <button onclick="openModal('cancelOrderModal')"
+                                            class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Cancel
+                                            Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order 4 - Cancelled -->
+                        <div class="dashboard-card rounded-lg p-4 lg:p-6 order-item" data-status="cancelled">
+                            <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
+                                <div>
+                                    <h3 class="font-bold text-aktara-black">Order #AKT2024004</h3>
+                                    <p class="text-sm text-gray-600">Placed on January 10, 2024</p>
+                                </div>
+                                <span
+                                    class="status-cancelled text-white text-xs px-3 py-1 rounded-full">Cancelled</span>
+                            </div>
+
+                            <div
+                                class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
+                                <img src="/placeholder.svg?height=80&width=80" alt="Saree"
+                                    class="w-16 h-16 lg:w-20 lg:h-20 object-cover rounded">
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-aktara-black">Cotton Saree - Yellow</h4>
+                                    <p class="text-sm text-gray-600">Color: Yellow | Size: Free Size</p>
+                                    <p class="text-sm text-gray-600">Qty: 1</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-aktara-black">₹2,499</p>
+                                </div>
+                            </div>
+
+                            <div class="border-t pt-4">
+                                <div
+                                    class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                    <div class="text-sm text-gray-600">
+                                        <p>Order cancelled on January 12, 2024</p>
+                                        <p>Refund processed to original payment method</p>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                                        <button
+                                            class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Buy
+                                            Again</button>
                                     </div>
                                 </div>
                             </div>
@@ -1255,6 +1316,109 @@
     </div>
 
     <!-- Modals -->
+
+    <!-- Review Rating Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-aktara-black">Rate & Review Product</h2>
+                <button onclick="closeModal('reviewModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Product Info -->
+            <div class="flex items-center space-x-4 mb-6 p-4 bg-gray-50 rounded-lg">
+                <img src="/placeholder.svg?height=80&width=80" alt="Saree" class="w-16 h-16 object-cover rounded">
+                <div>
+                    <h3 class="font-medium text-aktara-black">Banarasi Silk Saree - Red</h3>
+                    <p class="text-sm text-gray-600">Order #AKT2024001</p>
+                </div>
+            </div>
+
+            <form class="space-y-6">
+                <!-- Star Rating -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Overall Rating</label>
+                    <div class="star-rating" id="starRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2" id="ratingText">Click to rate</p>
+                </div>
+
+                <!-- Review Title -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Review Title</label>
+                    <input type="text" placeholder="Summarize your review in a few words"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                </div>
+
+                <!-- Review Text -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Your Review</label>
+                    <textarea rows="4" placeholder="Tell others about your experience with this product..."
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red"></textarea>
+                </div>
+
+                <!-- Rating Categories -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Quality</label>
+                        <select
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            <option value="">Select rating</option>
+                            <option value="5">Excellent</option>
+                            <option value="4">Very Good</option>
+                            <option value="3">Good</option>
+                            <option value="2">Fair</option>
+                            <option value="1">Poor</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Value for Money</label>
+                        <select
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aktara-red">
+                            <option value="">Select rating</option>
+                            <option value="5">Excellent</option>
+                            <option value="4">Very Good</option>
+                            <option value="3">Good</option>
+                            <option value="2">Fair</option>
+                            <option value="1">Poor</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Recommend -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Would you recommend this
+                        product?</label>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center">
+                            <input type="radio" name="recommend" value="yes"
+                                class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300">
+                            <span class="ml-2 text-sm text-gray-700">Yes</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="recommend" value="no"
+                                class="h-4 w-4 text-aktara-red focus:ring-aktara-red border-gray-300">
+                            <span class="ml-2 text-sm text-gray-700">No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-4 pt-4">
+                    <button type="button" onclick="closeModal('reviewModal')"
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                    <button type="submit" class="px-6 py-3 bg-aktara-red text-white rounded-lg hover:bg-red-700">Submit
+                        Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Add Address Modal -->
     <div id="addAddressModal" class="modal">
@@ -1907,11 +2071,80 @@
             closeMobileSidebar();
         }
 
+        // Order filters functionality
+        function filterOrders(status) {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const orderItems = document.querySelectorAll('.order-item');
+
+            // Update active filter button
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Show/hide orders based on filter
+            orderItems.forEach(item => {
+                if (status === 'all') {
+                    item.style.display = 'block';
+                } else {
+                    const orderStatus = item.getAttribute('data-status');
+                    if (orderStatus === status) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Star rating functionality
+        function initStarRating() {
+            const stars = document.querySelectorAll('.star');
+            const ratingText = document.getElementById('ratingText');
+            let currentRating = 0;
+
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    currentRating = index + 1;
+                    updateStars(currentRating);
+                    updateRatingText(currentRating);
+                });
+
+                star.addEventListener('mouseover', () => {
+                    updateStars(index + 1);
+                });
+            });
+
+            document.getElementById('starRating').addEventListener('mouseleave', () => {
+                updateStars(currentRating);
+            });
+
+            function updateStars(rating) {
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.classList.add('active');
+                    } else {
+                        star.classList.remove('active');
+                    }
+                });
+            }
+
+            function updateRatingText(rating) {
+                const texts = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+                ratingText.textContent = texts[rating] || 'Click to rate';
+            }
+        }
+
         // Modal functions
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Initialize star rating if review modal
+            if (modalId === 'reviewModal') {
+                setTimeout(initStarRating, 100);
+            }
         }
 
         function closeModal(modalId) {
