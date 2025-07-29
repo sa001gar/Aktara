@@ -1,30 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Aktara | Premium Handwoven Sarees</title>
     <meta name="description"
         content="Complete your purchase securely. Fast checkout with multiple payment options for your favorite sarees.">
-
     <!-- Tailwind CSS -->
     <script src="js/browser@4.js"></script>
-
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style type="text/tailwindcss">
         @theme {
             --color-aktara-red: #FF0000;
             --color-aktara-black: #000000;
         }
     </style>
-
     <style>
         .scroll-progress {
             position: fixed;
@@ -36,48 +30,39 @@
             transform-origin: 0%;
             z-index: 9999;
         }
-
         .checkout-step {
             transition: all 0.3s ease;
         }
-
         .checkout-step.active {
             background: linear-gradient(135deg, #FF0000, #CC0000);
             color: white;
         }
-
         .checkout-step.completed {
             background: #10B981;
             color: white;
         }
-
         .mobile-nav-premium {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 248, 0.95));
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 0, 0, 0.1);
         }
-
         .payment-method {
             transition: all 0.3s ease;
             cursor: pointer;
         }
-
         .payment-method:hover {
             border-color: #FF0000;
             box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.1);
         }
-
         .payment-method.selected {
             border-color: #FF0000;
             background-color: #FEF2F2;
         }
-
         .place-order-btn {
             background: linear-gradient(135deg, #FF0000 0%, #CC0000 50%, #990000 100%);
             position: relative;
             overflow: hidden;
         }
-
         .place-order-btn::before {
             content: '';
             position: absolute;
@@ -88,28 +73,40 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             animation: shimmer 3s infinite;
         }
-
         @keyframes shimmer {
             0% {
                 left: -100%;
             }
-
             100% {
                 left: 100%;
             }
         }
-
         .form-input:focus {
             border-color: #FF0000;
             box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
         }
+        .login-toggle {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .login-toggle:hover {
+            color: #CC0000;
+        }
+        .login-form {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .login-form.active {
+            max-height: 200px;
+            margin-top: 1rem;
+        }
     </style>
 </head>
-
 <body class="bg-gray-50">
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
-    
+        
     <!-- Navigation -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <!-- Top Bar -->
@@ -132,7 +129,7 @@
                 </div>
             </div>
         </div>
-        
+                
         <!-- Main Navigation -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
@@ -142,7 +139,7 @@
                         <img src="assets/logo_new.png" alt="" class="h-10 md:h-12 lg:h-14">
                     </a>
                 </div>
-                
+                                
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <a href="index.html"
@@ -179,17 +176,17 @@
                     <a href="contact.html"
                         class="text-aktara-black hover:text-aktara-red px-3 py-2 text-sm font-medium transition-colors">CONTACT</a>
                 </div>
-                
+                                
                 <!--  Search and Actions -->
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="relative">
-                        <input type="text" 
-                               id="searchInput"
+                        <input type="text"
+                                id="searchInput"
                                placeholder="Search sarees..."
                                class="w-48 lg:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red focus:border-aktara-red"
                                autocomplete="off">
                         <i class="fas fa-search absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
-                        
+                                                
                         <!-- Search Results Dropdown -->
                         <div id="searchResults" class="search-results">
                             <div id="searchLoading" class="search-loading hidden">
@@ -214,7 +211,7 @@
                             class="absolute -top-2 -right-2 bg-aktara-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                     </a>
                 </div>
-                
+                                
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button onclick="toggleMobileMenu()" class="text-aktara-black hover:text-aktara-red p-2">
@@ -222,19 +219,19 @@
                     </button>
                 </div>
             </div>
-            
+                        
             <!--  Mobile Navigation -->
             <div id="mobileMenu" class="md:hidden hidden">
                 <div class="mobile-nav-premium px-2 pt-2 pb-3 space-y-1 border-t shadow-lg">
                     <div class="px-3 py-2">
                         <div class="relative">
-                            <input type="text" 
-                                   id="mobileSearchInput"
+                            <input type="text"
+                                    id="mobileSearchInput"
                                    placeholder="Search sarees..."
                                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-aktara-red"
                                    autocomplete="off">
                             <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
-                            
+                                                        
                             <!-- Mobile Search Results -->
                             <div id="mobileSearchResults" class="search-results">
                                 <div id="mobileSearchLoading" class="search-loading hidden">
@@ -330,11 +327,56 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Checkout Form -->
             <div class="lg:col-span-2 space-y-8">
-                <!-- Contact Information -->
+                <!-- Existing Customer Login -->
+                <div class="bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-medium text-aktara-black">
+                            <i class="fas fa-sign-in-alt mr-2 text-aktara-red"></i>
+                            Existing Customer?
+                        </h3>
+                        <button onclick="toggleLoginForm()" class="login-toggle text-aktara-red font-medium hover:underline">
+                            <span id="loginToggleText">Click here to login</span>
+                            <i id="loginToggleIcon" class="fas fa-chevron-down ml-1 transition-transform"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <div id="loginForm" class="login-form">
+                        <div class="bg-red-50 rounded-lg p-4">
+                            <p class="text-sm text-gray-600 mb-4">If you have an account, sign in with your email address.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+                                <div class="md:col-span-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                    <input type="email" id="loginEmail"
+                                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                        placeholder="Enter your email">
+                                </div>
+                                <div class="md:col-span-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                                    <input type="password" id="loginPassword"
+                                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all"
+                                        placeholder="Enter your password">
+                                </div>
+                                <div class="md:col-span-4">
+                                    <button onclick="handleLogin()" 
+                                        class="w-full bg-aktara-red text-white py-3 px-6 rounded-lg font-medium hover:bg-red-700 transition-colors">
+                                        <i class="fas fa-sign-in-alt mr-2"></i>
+                                        Login
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <a href="#" class="text-sm text-aktara-red hover:underline">Forgot your password?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guest Checkout -->
                 <div class="bg-white rounded-2xl shadow-lg p-6" data-aos="fade-right">
                     <h2 class="text-xl font-bold text-aktara-black mb-6 flex items-center">
                         <i class="fas fa-user mr-3 text-aktara-red"></i>
-                        Contact Information
+                        Guest Checkout
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
@@ -529,7 +571,6 @@
             <div class="lg:col-span-1">
                 <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24" data-aos="fade-left">
                     <h2 class="text-xl font-bold text-aktara-black mb-6">Order Summary</h2>
-
                     <!-- Order Items -->
                     <div class="space-y-4 mb-6">
                         <div class="flex items-center space-x-4">
@@ -560,9 +601,7 @@
                             </div>
                         </div>
                     </div>
-
                     <hr class="border-gray-200 mb-6">
-
                     <!-- Price Breakdown -->
                     <div class="space-y-3 mb-6">
                         <div class="flex justify-between text-sm">
@@ -587,20 +626,17 @@
                             <span class="text-aktara-red">₹24,597</span>
                         </div>
                     </div>
-
                     <!-- Place Order Button -->
                     <button onclick="placeOrder()"
                         class="place-order-btn w-full bg-aktara-red text-white py-4 rounded-lg font-medium text-center hover:bg-red-700 transition-all duration-300 transform hover:scale-105 mb-4">
                         <i class="fas fa-lock mr-2"></i>
                         Place Order - ₹24,597
                     </button>
-
                     <!-- Security Info -->
                     <div class="text-center text-xs text-gray-500 mb-4">
                         <i class="fas fa-shield-alt text-green-500 mr-1"></i>
                         Your payment information is secure and encrypted
                     </div>
-
                     <!-- Terms -->
                     <div class="text-xs text-gray-500 text-center">
                         By placing your order, you agree to our
@@ -642,7 +678,6 @@
                         </a>
                     </div>
                 </div>
-
                 <!-- Quick Links -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
@@ -661,7 +696,6 @@
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Contact</a></li>
                     </ul>
                 </div>
-
                 <!-- Categories -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Categories</h3>
@@ -680,7 +714,6 @@
                                 class="text-gray-300 hover:text-aktara-red transition-colors">Party Wear</a></li>
                     </ul>
                 </div>
-
                 <!-- Customer Service -->
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Customer Service</h3>
@@ -699,7 +732,6 @@
                     </ul>
                 </div>
             </div>
-
             <!-- Bottom Footer -->
             <div class="border-t border-gray-700 mt-12 pt-8">
                 <div class="flex flex-col lg:flex-row justify-between items-center">
@@ -787,6 +819,58 @@
             mobileMenu.classList.toggle('hidden');
         }
 
+        // Toggle login form
+        function toggleLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+            const toggleText = document.getElementById('loginToggleText');
+            const toggleIcon = document.getElementById('loginToggleIcon');
+            
+            if (loginForm.classList.contains('active')) {
+                loginForm.classList.remove('active');
+                toggleText.textContent = 'Click here to login';
+                toggleIcon.style.transform = 'rotate(0deg)';
+            } else {
+                loginForm.classList.add('active');
+                toggleText.textContent = 'Hide login form';
+                toggleIcon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Handle login
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password.');
+                return;
+            }
+            
+            // Simulate login process
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Logging in...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                
+                // Simulate successful login - hide login form and pre-fill contact info
+                document.getElementById('loginForm').classList.remove('active');
+                document.getElementById('loginToggleText').textContent = 'Logged in successfully';
+                document.getElementById('loginToggleIcon').style.display = 'none';
+                
+                // Pre-fill email in contact information
+                const contactEmailInput = document.querySelector('input[type="email"][placeholder="Enter email address"]');
+                if (contactEmailInput) {
+                    contactEmailInput.value = email;
+                }
+                
+                alert('Login successful! Your information has been pre-filled.');
+            }, 2000);
+        }
+
         // Payment method selection
         document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
             radio.addEventListener('change', function () {
@@ -794,7 +878,6 @@
                 document.querySelectorAll('.payment-method').forEach(method => {
                     method.classList.remove('selected');
                 });
-
                 // Add selected class to chosen payment method
                 this.closest('.payment-method').classList.add('selected');
             });
@@ -901,5 +984,4 @@
         });
     </script>
 </body>
-
 </html>
