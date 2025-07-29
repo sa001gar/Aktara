@@ -364,12 +364,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex items-center space-x-4">
-                    <!-- Mobile Hamburger Menu -->
-                    <div class="hamburger lg:hidden" onclick="toggleMobileSidebar()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+                    
 
                     <div class="flex-shrink-0">
                         <a href="index.html" class="flex items-center">
@@ -492,9 +487,12 @@
         </div>
     </nav>
 
+    
+
     <!-- Dashboard Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
         <div class="flex gap-8">
+
 
             <!-- Sidebar -->
             <div class="dashboard-sidebar w-80 lg:w-1/4 rounded-lg p-6 lg:sticky lg:top-24 h-fit" id="dashboardSidebar">
@@ -579,9 +577,15 @@
 
                 <!-- Account Overview Section -->
                 <div id="overview" class="content-section active">
-                    <div class="mb-6">
-                        <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black mb-2">Account Overview</h1>
-                        <p class="text-gray-600">Welcome back, Priya! Here's what's happening with your account.</p>
+                    <div class="flex flex-row items-start mb-6">
+                        <!-- Hamburger for mobile, left-aligned and spaced -->
+                        <div class="hamburger  h-16 lg:hidden mr-4 mt-1" onclick="toggleMobileSidebar()">
+                            <i class="fa-solid fa-gear"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl lg:text-3xl font-bold text-aktara-black mb-2">Account Overview</h1>
+                            <p class="text-gray-600">Welcome back, Priya! Here's what's happening with your account.</p>
+                        </div>
                     </div>
 
                     <!-- Quick Stats -->
@@ -631,7 +635,7 @@
                             <div
                                 class="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-gray-200 rounded-lg gap-4">
                                 <div class="flex items-center space-x-4">
-                                    <img src="/placeholder.svg?height=60&width=60" alt="Saree"
+                                    <img src="assets/image4.jpg" alt="Saree"
                                         class="w-12 h-12 lg:w-15 lg:h-15 object-cover rounded">
                                     <div>
                                         <h3 class="font-medium text-aktara-black text-sm lg:text-base">Banarasi Silk
@@ -649,7 +653,7 @@
                             <div
                                 class="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-gray-200 rounded-lg gap-4">
                                 <div class="flex items-center space-x-4">
-                                    <img src="/placeholder.svg?height=60&width=60" alt="Saree"
+                                    <img src="assets/image4.jpg" alt="Saree"
                                         class="w-12 h-12 lg:w-15 lg:h-15 object-cover rounded">
                                     <div>
                                         <h3 class="font-medium text-aktara-black text-sm lg:text-base">Cotton Handloom
@@ -814,7 +818,7 @@
 
                             <div
                                 class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
-                                <img src="/placeholder.svg?height=80&width=80" alt="Saree"
+                                <img src="assets/image4.jpg" alt="Saree"
                                     class="w-16 h-16 lg:w-20 lg:h-20 object-cover rounded">
                                 <div class="flex-1">
                                     <h4 class="font-medium text-aktara-black">Banarasi Silk Saree - Red</h4>
@@ -857,7 +861,7 @@
 
                             <div
                                 class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
-                                <img src="/placeholder.svg?height=80&width=80" alt="Saree"
+                                <img src="assets/image4.jpg" alt="Saree"
                                     class="w-16 h-16 lg:w-20 lg:h-20 object-cover rounded">
                                 <div class="flex-1">
                                     <h4 class="font-medium text-aktara-black">Cotton Handloom Saree - Blue</h4>
@@ -900,7 +904,7 @@
 
                             <div
                                 class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
-                                <img src="/placeholder.svg?height=80&width=80" alt="Saree"
+                                <img src="assets/image4.jpg" alt="Saree"
                                     class="w-16 h-16 lg:w-20 lg:h-20 object-cover rounded">
                                 <div class="flex-1">
                                     <h4 class="font-medium text-aktara-black">Designer Silk Saree - Green</h4>
@@ -941,7 +945,7 @@
 
                             <div
                                 class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
-                                <img src="/placeholder.svg?height=80&width=80" alt="Saree"
+                                <img src="assets/image4.jpg" alt="Saree"
                                     class="w-16 h-16 lg:w-20 lg:h-20 object-cover rounded">
                                 <div class="flex-1">
                                     <h4 class="font-medium text-aktara-black">Cotton Saree - Yellow</h4>
@@ -982,7 +986,7 @@
                         <!-- Wishlist Item 1 -->
                         <div class="dashboard-card rounded-lg p-4">
                             <div class="relative mb-4">
-                                <img src="/placeholder.svg?height=200&width=200" alt="Saree"
+                                <img src="assets/image4.jpg" alt="Saree"
                                     class="w-full h-40 lg:h-48 object-cover rounded">
                                 <button onclick="openModal('removeWishlistModal')"
                                     class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
@@ -1003,7 +1007,7 @@
                         <!-- Wishlist Item 2 -->
                         <div class="dashboard-card rounded-lg p-4">
                             <div class="relative mb-4">
-                                <img src="/placeholder.svg?height=200&width=200" alt="Saree"
+                                <img src="assets/image4.jpg" alt="Saree"
                                     class="w-full h-40 lg:h-48 object-cover rounded">
                                 <button onclick="openModal('removeWishlistModal')"
                                     class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
@@ -1024,7 +1028,7 @@
                         <!-- Wishlist Item 3 -->
                         <div class="dashboard-card rounded-lg p-4">
                             <div class="relative mb-4">
-                                <img src="/placeholder.svg?height=200&width=200" alt="Saree"
+                                <img src="assets/image4.jpg" alt="Saree"
                                     class="w-full h-40 lg:h-48 object-cover rounded">
                                 <button onclick="openModal('removeWishlistModal')"
                                     class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
@@ -1329,7 +1333,7 @@
 
             <!-- Product Info -->
             <div class="flex items-center space-x-4 mb-6 p-4 bg-gray-50 rounded-lg">
-                <img src="/placeholder.svg?height=80&width=80" alt="Saree" class="w-16 h-16 object-cover rounded">
+                <img src="assets/image4.jpg" alt="Saree" class="w-16 h-16 object-cover rounded">
                 <div>
                     <h3 class="font-medium text-aktara-black">Banarasi Silk Saree - Red</h3>
                     <p class="text-sm text-gray-600">Order #AKT2024001</p>
