@@ -1,63 +1,7 @@
 // Common functionality for navbar, footer, search, and wishlist
 
-// Search functionality with debouncing only
 let searchTimeout
 const searchCache = new Map()
-
-// Dummy search data
-const dummySearchData = [
-  {
-    id: 1,
-    name: "Royal Red Silk Saree",
-    category: "Silk",
-    image: "https://lajreedesigner.com/cdn/shop/files/KP-Karishma-Red_5_900x1350_crop_center@2x.jpg?v=1745495600",
-  },
-  {
-    id: 2,
-    name: "Blue Cotton Saree",
-    category: "Cotton",
-    image:
-      "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSOasMiGNdg35aA_gedyxtQrTdiqiD9CkOB84MO-PfrA5jT7KywRbaBYaYv3K-aai2hUUjG0ds8hdgSliDfV8Tcmp20v_5yjWRTYM_PqL8HyPN2-MbhLUqG",
-  },
-  {
-    id: 3,
-    name: "Green Designer Saree",
-    category: "Designer",
-    image:
-      "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSxsA-rILRGxU6gC2sCdj0FcqyLFgQRUWS_ISaaYzN_j1rSF5kjNUkIV6VD9fwF6dHHY6ZkCjsUKRp97x5E4Dg_WrIWbNWV0BSzSC9b1wk",
-  },
-  {
-    id: 4,
-    name: "Pink Bridal Saree",
-    category: "Bridal",
-    image: "https://www.banarasee.in/cdn/shop/files/IMG_9630_940x.jpg?v=1683428505",
-  },
-  {
-    id: 5,
-    name: "Yellow Chiffon Saree",
-    category: "Chiffon",
-    image: "https://www.lavanyathelabel.com/cdn/shop/files/lbl101ks886_1_700x.jpg?v=1752668380",
-  },
-  {
-    id: 6,
-    name: "Purple Georgette Saree",
-    category: "Georgette",
-    image:
-      "https://diwalistyle.com/wp-content/uploads/2024/03/Madhuri-Dixit-Purple-Color-60-Gram-Georgette-Sequins-Work-Saree-4.jpeg",
-  },
-  {
-    id: 7,
-    name: "Maroon Silk Traditional",
-    category: "Silk",
-    image: "https://resources.indianclothstore.com/productimages/Maroon-Silk-Saree-With-Blouse-18710418042024.jpg",
-  },
-  {
-    id: 8,
-    name: "Orange Festival Cotton",
-    category: "Cotton",
-    image: "https://arvisaa.com/cdn/shop/products/KP-Kalyani-Orange_1_720x.jpg?v=1737618305",
-  },
-]
 
 // Debounced search function
 function debounceSearch(func, delay) {
@@ -86,11 +30,7 @@ async function callSearchAPI(query) {
     return data.results || []
   } catch (error) {
     console.error("API call failed:", error)
-    return dummySearchData.filter(
-      (item) =>
-        item.name.toLowerCase().includes(query.toLowerCase()) ||
-        item.category.toLowerCase().includes(query.toLowerCase()),
-    )
+    return []
   }
 }
 
@@ -123,7 +63,7 @@ async function performSearch(query, isDesktop = true) {
     // Simulate API call delay
     await new Promise((resolve) => setTimeout(resolve, 300))
 
-    // Use API call (falls back to dummy data if API fails)
+    // Use API call
     const results = await callSearchAPI(query)
 
     // Cache results
@@ -356,8 +296,6 @@ function toggleMobileMenu() {
 
 // Initialize common functionality
 function initCommon() {
-  // console.log("Initializing common functionality...")
-
   // Scroll progress
   const scrollProgress = document.getElementById("scrollProgress")
   if (scrollProgress) {
@@ -427,8 +365,6 @@ function initCommon() {
 
   // Clear search cache periodically
   setInterval(() => searchCache.clear(), 5 * 60 * 1000)
-
-  // console.log("Common functionality initialized successfully")
 }
 
 // Initialize when DOM is loaded
